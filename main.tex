@@ -1,0 +1,464 @@
+\documentclass{article}
+
+\usepackage[utf8]{inputenc}
+% \usepackage[round]{natbib}
+\usepackage[english]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{dsfont}
+\usepackage{url}
+\usepackage{hyperref}
+\usepackage{tikz-cd}
+\usepackage{mathpartir}
+\usepackage{mathtools}
+\usepackage{enumitem}
+\usepackage{color}
+
+\mathtoolsset{showonlyrefs}
+
+\newcommand{\todo}[1]{\textcolor{red}{#1}}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{corollary}{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{definition-proposition}{Definition and Proposition}
+\newtheorem{proposition}{Proposition}
+\newtheorem{assumption}{Assumption}
+
+\begin{document}
+
+\title{A model of extensional type theory in a model category of locally cartesian closed categories}
+
+\author{Martin E.\@ Bidlingmaier}
+
+\maketitle
+
+\begin{abstract}
+  \todo{TODO}
+\end{abstract}
+
+\section{Introduction}
+\todo{TODO}
+
+\section{Lcc sketches}
+\label{sec:lcc-sketches}
+
+In this section we define the model category $\mathrm{Lcc}$ of locally cartesian closed (lcc) sketches.
+Intuitively, lcc sketches are categories in which the structure of lcc categories (terminal objects, pullback squares, dependent products) are only sketched:
+Certain diagrams are marked as supposed to have a certain universal property, but not required to actually satisfy it.
+Thus an lcc sketch comes with squares marked as pullback squares, with objects marked as terminal objects and diagrams marked as dependent products their evaluation maps, but none of them are required to actually satisfy the universal property.
+However, every lcc category has the structure of an lcc sketch.
+The model category structure of $\mathrm{Lcc}$ is set up such that its fibrant objects are precisely the lcc categories, and general lcc sketches are equivalent if and only if the lcc categories they generate by fibrant replacement are equivalent.
+Thus $\mathrm{Lcc}$ can be seen as a model categorical presentation of the $(2, 1)$-category of lcc categories, lcc functors and their natural isomorphisms.
+
+The main technical device for defining $\mathrm{Lcc}$ is a model category structure of marked objects over a base model category established by Isaev \cite{marked-objects}.
+This is instantiated for the base category $\mathrm{Cat}$ with its canonical model structure and suitable shape of the markings, and $\mathrm{Lcc}$ is then given as a left Bousfield localization.
+
+\begin{definition}[\cite{marked-objects} Definition 2.1]
+  Let $\mathcal{C}$ be a category.
+  Let $i : I \rightarrow \mathcal{C}$ be a functor from a small category $I$ to $\mathcal{C}$.
+  An \emph{($i$-)marked object} is given by an object $X$ in $\mathcal{C}$ and a subfunctor $m_X$ of $\mathrm{Hom}(i(-), X) : I^\mathrm{op} \rightarrow \mathrm{Set}$.
+  A map of the form $k : i(K) \rightarrow X$ is \emph{marked} if $k \in m_X(K)$.
+
+  A morphism of $i$-marked objects is a marking-preserving morphism of underlying objects in $\mathcal{C}$, i.e.\@ a morphism $f : X \rightarrow Y$ such that the image of $m_X$ under postcomposition by $f$ is contained in $m_Y$.
+  The category of $i$-marked objects is denoted by $\mathcal{M}^i$.
+\end{definition}
+
+The forgetful functor $U : \mathcal{C}^i \rightarrow \mathcal{C}$ has a left and right adjoint:
+Its left adjoint $X \mapsto X^\flat$ is given by equipping an object $X$ of $\mathcal{C}$ with the minimal marking $m_{X^\flat} = \emptyset \subseteq \mathrm{Hom}(i(-), X)$, while the right adjoint $X \mapsto X^\sharp$ equips objects with their maximal marking $m_{X^\sharp} = \mathrm{Hom}(i(-), X)$.
+
+In our application, $I$ contain diagrams corresponding to the shape of lcc structure.
+The morphisms in $I$ are used to enforce that the domains of maps marked as evaluation maps are marked as pullback squares.
+
+\begin{definition}
+  The small subcategory $I_\mathrm{Lcc} \subseteq \mathrm{Cat}$ of \emph{lcc shapes} is given by the terminal category 
+  \begin{equation}
+    \mathrm{T} =
+    \left\{
+      \begin{tikzcd}
+        t
+      \end{tikzcd}
+    \right\}
+  \end{equation}
+  consisting of a single object $t$, the free standing (non-commutative) square
+  \begin{equation}
+    \mathrm{Pb} =
+    \left\{
+      \begin{tikzcd}
+        \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+        \cdot \arrow[r, "f_1"] & \cdot
+      \end{tikzcd}
+    \right\}
+  \end{equation}
+  and the diagram
+  \begin{equation}
+    \mathrm{Pi} =
+    \left\{
+      \begin{tikzcd}
+        \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+        & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
+        & \cdot \arrow[r, "f_1"] & \cdot
+      \end{tikzcd}
+    \right\}.
+  \end{equation}
+  The only non-trivial functor in $I_\mathrm{Lcc}$ is the inclusion $\mathrm{Pb} \subseteq \mathrm{Pi}$ given by the outer square of $\mathrm{Pi}$ as indicated by the variable names.
+\end{definition}
+
+We obtain the category of lcc marked categories.
+It has the structure of a model category theory by the following theorem.
+
+\begin{theorem}[\cite{marked-objects} Theorem 3.3]
+  \label{th:marked-model-category}
+  Let $\mathcal{M}$ be a combinatorial model category $\mathcal{M}$.
+  Let $i : I \rightarrow \mathcal{M}$ be functor from a small category $I$ to $\mathcal{M}$.
+  Then the following defines the structure of a combinatorial model category on $\mathcal{M}^i$:
+  \begin{itemize}
+    \item
+      A marking-preserving morphism $f : X \rightarrow Y$ is a cofibration if and only if it is a cofibration in $\mathcal{M}$.
+    \item
+      \todo{
+        Describe weak equivalences, preferably without referring to a fibrant replacment functor.
+        See \cite{marked-objects} Lemma 2.5.
+      }
+    \item
+      A marked object $X$ is fibrant if and only if $U(X)$ is fibrant in $\mathcal{M}$ and marked maps are stable under homotopy in $\mathcal{M}$, in the sense that if $k \simeq \ell : F(K) \rightarrow U(X)$ are homotopic maps in $\mathcal{M}$ and $k$ is marked, then $\ell$ is marked.
+      \todo{This can be removed if the previous point is there (in itself it's also not enough to determine the model category structure uniquely)}
+  \end{itemize}
+  Let $I$ be a set of generating cofibrations of $\mathcal{M}$.
+  Then the set
+  \begin{equation}
+    I' = \{ i^\flat \mid i \in I \} \cup \{ K^\flat \rightarrow (K, G\{\mathrm{id} : K \rightarrow K\}) \mid K \in \mathcal{K} \}
+  \end{equation}
+  generates the cofibrations of $\mathcal{M}_K$.
+  \todo{
+    Can we say something about generating trivial cofibrations?
+    In the case where every object of $\mathcal{M}$ is fibrant this is the obvious thing (see proof in \cite{marked-objects}, but I'm doubtful whether this works in general.
+  }
+  Moreover, the adjunctions $(-)^\flat \dashv U$ and $U \dashv (-)^\sharp$ are Quillen adjunctions.
+\end{theorem}
+
+\begin{lemma}
+  Suppose that in the setting of theorem \ref{th:marked-model-category} $\mathcal{M}$ is furthermore a simplicial model category.
+  Then $\mathcal{M}^i$ is a simplicial model category, and $(-)^\flat \dashv U$ and $U \dashv (-)^\sharp$ are simplicial Quillen adjunctions.
+\end{lemma}
+\begin{proof}
+  The mapping spaces of $\mathcal{C}^i(X, Y)$ are given by the subspaces of $\mathcal{C}(X, Y)$ consisting of the marking preserving maps.
+  The power $X^S$ of a marked object $X$ by a simplicial set $S$ is given by the power $U(X)^S$ in $\mathcal{M}$ in which $k : i(K) \rightarrow U(X)^S$ is marked if and only if the composite $K \rightarrow U(X^G) \xrightarrow{\mathrm{id}^s} U(X)$ is marked for every vertex $s : \Delta^0 \rightarrow S$.
+  Dually, the tensor $S \otimes X$ is given the underlying tensor $S \otimes U(X)$, and maps $k : K \rightarrow U(S \otimes X)$ are marked if and only if they factor as $K \xrightarrow{k} U(X) \xrightarrow{s \otimes \mathrm{id}} S \times U(X)$ for some $s : \Delta^0 \rightarrow S$ and $k$ marked in $U(X)$.
+  \todo{Proof that this indeed works (see also \cite{marked-objects} Lemma 3.4)}
+\end{proof}
+
+The category of lcc category and lcc functors is a full subcategory of $I_\mathrm{Lcc}$-marked objects:
+Every lcc category $\mathcal{C}$ defines an lcc marked category by letting those functors $\mathrm{T} \rightarrow \mathcal{C}$ be marked whose image is a terminal object, and functors $\mathrm{Pb} \rightarrow \mathcal{C}$ be marked if their image is a pullback square and functors $m : \mathrm{Pi} \rightarrow \mathcal{C}$ be marked if they map $f_2$ to a dependent product of the images of $f_1$ and $g$ with evaluation map $\varepsilon$ (up to ismorphism).
+Note that for this inclusion to be injective on objects, ``lcc category'' has to be understood as categories for which there \emph{exists} lcc structure as opposed to categories equipped with a choice of structure.
+By theorem \ref{th:marked-model-category}, the category of $I_\mathrm{Lcc}$ marked objects has model category structure.
+Intuitively, this model category can be understood as a category of models for the \emph{signature} of lcc categories because we have so far not specified axioms.
+To obtain a model category of lcc sketches, we encode the axioms of lcc categories (e.g.\@ that every two parallel morphisms to a terminal object are equal) as lifting conditions against a set of cofibrations and localize.
+
+\begin{definition}
+  The model category $\mathrm{Lcc}$ of lcc sketches is the left Bousfield localization of the model category of $I_\mathrm{Lcc}$-marked objects at the following cofibrations.
+  \begin{itemize}
+    \item
+      There exists a terminal object:
+      \begin{equation}
+        \emptyset \rightarrow \{ t \}
+      \end{equation}
+    \item
+      There is morphism from every object to every terminal object:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            \cdot & t
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{ 
+          \begin{tikzcd}
+            \cdot \arrow[r] & t
+          \end{tikzcd}
+        \right\} 
+      \end{equation}
+      (where $t$ is marked via $\mathrm{T}$ in domain and codomain).
+    \item
+      Any two morphisms with the same domain to a terminal object $\mathrm{T}$ are equal:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[r, shift left] \arrow[r, shift right] & t
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{ 
+          \begin{tikzcd}
+            \cdot \arrow[r] & t
+          \end{tikzcd}
+        \right\} 
+      \end{equation}
+      (where $t$ is marked via $\mathrm{T}$ in domain and codomain).
+    \item
+      Pullback squares commute:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
+            \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[dr, phantom, "\circlearrowleft"] \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
+            \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+      \end{equation}
+      (where the squares in domain and codomain are marked via $\mathrm{Pb}$ but only the latter commutes).
+    \item
+      Every cospan can be completed to a pullback square:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            & \cdot \arrow[d, "f_2"] \\
+            \cdot \arrow[r, "f_1"] & \cdot 
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
+            \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+      \end{equation}
+      (where the domain is minimally marked and the square in the codomain is marked via $\mathrm{Pb}$).
+    \item
+      Every square completing a cospan factors via any pullback square over that cospan:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[ddr, bend right, "q_1"'] \arrow[drr, bend left, "q_2"] \arrow[dr, phantom, "\circlearrowleft", near end] \\
+            & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+            & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr] \\
+            & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+            & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+      \end{equation}
+      (where the lower right squares are marked via $\mathrm{Pb}$ and the large squares commute in domain and codomain).
+    \item
+      Every two such factorizations via a pullback square are equal:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr, shift left] \arrow[dr, shift right] \\
+            & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+            & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr] \\
+            & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+            & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+      \end{equation}
+      (where the lower right squares are marked via $\mathcal{B}$ and the large squares commute in domain and codomain).
+      \todo{Make more explicit that the two parallel arrows both separately commute with $q_1$ and $q_2$}
+    \item
+      A dependent product $f_2 = \Pi_{f_1} g$ exists for every appropriate pair of morphisms:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            & \cdot \arrow[d, "g"] \\
+            & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
+            & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+      \end{equation}
+      (where the codomain is marked via $\mathrm{Pb}$ and $\mathrm{Pi}$ as indicated).
+    \item
+      The evaluation map $\varepsilon$ commutes with the projection map:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
+            & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[ddr, bend right, "p_1"] \arrow[ddr, phantom, "\circlearrowleft", near end] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
+            & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+      \end{equation}
+    \item
+      Any other morphism with an evaluation map factors via dependent products:
+      \begin{equation}
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[dddrr, bend right, "p'_1"] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right] & \\
+            & \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            & & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] & \cdot \arrow[dl, "f'_2"] \\
+            & & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+        \rightarrow
+        \left\{
+          \begin{tikzcd}
+            \cdot \arrow[dr] \arrow[dddrr, bend right, "p'_1"] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right] & \\
+            & \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            & & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] & \cdot \arrow[dl, "f'_2"] \arrow[l] \\
+            & & \cdot \arrow[r, "f_1"] & \cdot
+          \end{tikzcd}
+        \right\}
+      \end{equation}
+      \todo{(where several squares and triangle commute.)}
+    \item
+      Any two such factorizations via an evaluation map are equal:
+      \todo{absolute mess}
+  \end{itemize}
+\end{definition}
+
+\begin{proposition}
+  The subcategory of fibrant objects of the category of $\mathrm{Lcc}$ is equivalent to the category of lcc categories and non-strict lcc functors.
+  The homotopy category of $\mathrm{Lcc}$ sketches is equivalent to the category of lcc categories and isomorphism classes of non-strict lcc functors.
+  The homotopy function complexes of fibrant lcc sketches are given by the groupoids of lcc functors and their natural isomorphisms.
+\end{proposition}
+\begin{proof}
+  \todo{
+    The fibrant objects of $\mathrm{Lcc}$ are fibrant marked categories which are local wrt.\@ the morphisms defined above, and a direct but lengthy calculation shows that these are precisely lcc categories.
+    Every object is cofibrant, so the other claims follow from the way the mapping groupoids of marked objects (and hence also in the localization) are defined.
+  }
+\end{proof}
+
+\section{Strict lcc categories}
+\label{sec:strict-lcc-categories}
+
+As explained in the introduction \todo{TODO}, our ultimate goal is to define an interpretation of extensional dependent type theory in which contexts are interpreted as lcc categories, substitutions as lcc functors, types as objects in lcc categories and terms as morphisms with terminal domain.
+However, the category $\mathrm{Lcc}$ defined in \ref{sec:lcc-sketches} is not suitable for this purpose:
+All type theoretic structure has the be preserved up to equality by substitutions, but lcc functors preserve the corresponding objects with universal properties only up to isomorphism.
+Luckily $\mathrm{Lcc}$ is just one particular presentation of the $(2, 1)$-category of lcc categories, and so we may hope to find alternative presentations which are more suitable for interpreting type theory.
+In this section, we explain results from the literature for building such alternative descriptions.
+As a first step, we have to rectify the fact that lcc functors do not preserve lcc structure up to equality.
+Indeed, the way we have defined lcc sketches and categories, we cannot even state when an lcc functor is strict because there is no canonical choice of lcc structure.
+Lcc categories are fibrant lcc sketches, which means that they have the right lifting \emph{property} against the generating trivial cofibrants of $\mathrm{Lcc}$.
+In order to speak of canonical choices of lcc structure, we need canonical lifts against the trivial cofibrations.
+
+\begin{definition}[\cite{algebraic-models}]
+  Let $\mathcal{M}$ be a combinatorial model category with set $J$ of generating trivial cofibrations.
+  An \emph{algebraically fibrant object} of $\mathcal{M}$ (with respect to $J$) consists of an object $X \in \operatorname{Ob} \mathcal{M}$ equipped with a choice of lifts against all morphisms $j \in J$.
+  Thus $X$ comes with choices of lifts $\ell_{j, a} : B \rightarrow X$ for all $j : A \rightarrow B$ in $J$ and $a : A \rightarrow X$ in $\mathcal{M}$ such that
+  \begin{equation}
+    \begin{tikzcd}
+      A \arrow[d, "j"] \arrow[r, "a"] & X \\
+      B \arrow[ur, "{\ell_{j, a}}"']
+    \end{tikzcd}
+  \end{equation}
+  commutes.
+  A morphism of algebraically fibrant objects $f : (X, \ell) \rightarrow (X', \ell')$ is a morphism $f : X \rightarrow X'$ that preserves the lifts $\ell$, in the sense that $f\ell_{j, a} = \ell'_{fj, fa}$ for all $j$ and $a$.
+  The category of algebraically fibrant objects is denoted by $\operatorname{Alg} \mathcal{M}$, and the evident forgetful functor $\operatorname{Alg} \mathcal{M} \rightarrow \mathcal{M}$ by $G$.
+\end{definition}
+
+\begin{theorem}[\cite{algebraic-models} Proposition 2.4, \cite{equipping-weak-equivalences} Theorem 19]
+  \label{th:algebraically-fibrant-model-category}
+  Suppose $\mathcal{M}$ is a combinatorial model category.
+  Then $G$ is monadic with left adjoint $F$.
+  The model structure of $\mathcal{M}$ can be transferred along the adjunction $F \dashv G$ to $\operatorname{Alg} \mathcal{M}$.
+  $\operatorname{Alg} \mathcal{M}$ is a combinatorial model category, and $F \dashv G$ is a Quillen equivalence.
+\end{theorem}
+
+Thus with theorem \ref{th:algebraically-fibrant-model-category} we have found an equivalent model for the category of lcc categories:
+\begin{definition}
+  The model category of strict lcc categories and strict lcc functors is given by $\mathrm{sLcc} = \operatorname{Alg} \mathrm{Lcc}$.
+\end{definition}
+
+An interpretation of dependent type theory in $\mathrm{sLcc}$ seems much more feasible at first:
+As before, types are interpreted as objects in (now strict) lcc categories, and cosubstitutions as (strict) lcc functors.
+$\mathrm{sLcc}$ is a model category and hence has an initial object which is given by applying the left adjoint $F$ to the empty sketch.
+Context extension by a type $\Gamma \vdash \sigma$ can be constructed as a pushout
+\begin{equation}
+  \begin{tikzcd}
+    F(\{t, \sigma\}) \arrow[r] \arrow[d] & F(\{v : t \rightarrow \sigma \}) \arrow[d] \\
+    \Gamma \arrow[r, "p"] & \Gamma.\sigma
+  \end{tikzcd}
+\end{equation}
+where $t$ is marked as terminal in the two lcc sketches in the top, and the left vertical arrow is induced by $\sigma \in \operatorname{Ob} \Gamma$ and the canonical terminal object of $\Gamma$.
+
+Type constructors are interpreted using the canonical lcc structure of a strict lcc category, and the fact that morphisms in $\mathrm{sLcc}$ are functors preserving the canonical structure on the nose means that type constructors are also preserved on the nose, as required by the rules of dependent type theory.
+Unit types are interpreted by the canonical terminal object of strict lcc categories.
+Having chosen a fixed method of constructing equalizers from pullback squares, we can interpret equality types $\operatorname{Eq} s \, t$ of terms $s, t : \sigma$ in a context $\Gamma$ as equalizer of $s$ and $t$.
+
+However, we run into a problem when interpreting $\Pi$- or $\Sigma$-types.
+The type forming rule for $\Pi$-types is
+\begin{equation}
+  \inferrule
+  {\Gamma \vdash \sigma \\ \Gamma.\sigma \vdash \tau}
+  {\Gamma \vdash \Pi_\sigma \tau}.
+\end{equation}
+To interpret it, we would like to apply the dependent product functor $\Gamma_{/ \sigma} \rightarrow \Gamma$ to $\tau$.
+But $\tau$ is an object of $\Gamma.\sigma$, so we need a comparison functor $D : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$.
+An obvious attempt at doing so is the use of the universal property of $\Gamma.\sigma$ as context extension:
+The pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ is lcc and the diagonal $d : \sigma \rightarrow \sigma \times \sigma$ induces a term $\Gamma_{\sigma} \vdash d' : \sigma \times \sigma$ in $\Gamma_{/ \sigma}$.
+However, the pullback functor $\sigma^*$, while lcc, is usually not strict lcc, but the universal property of $\Gamma$ requires a strict lcc functor.
+
+\section{Algebraically cofibrant strict lcc categories}
+
+Dually we want to consider algebraically cofibrant objects.
+Unfortunately, $\mathcal{M}$ is not the opposite of a combinatorial model category in our application.
+Thus the description of algebraic fibrant objects as objects with a choice of lifts against generating cofibrations does not dualize well.
+However, algebraically fibrant objects in combinatorial model categories can equivalently be desribed as algebras for a fibrant replacement monad, and cofibrant replacements comonads are available under insignificant additional technical assumptions on $\mathcal{M}$.
+We can then consider coalgebras over such comonads.
+
+\begin{theorem}[\cite{coalgebraic-models} Lemmas 1.2 and 1.3, Theorems 1.4 and 2.5]
+  Let $\mathcal{M}$ be a combinatorial and simplicial model category.
+  Then there are arbitrarily large cardinals $\lambda$ such that
+  \begin{enumerate}
+    \item
+      $\mathcal{M}$ is is locally $\lambda$-presentable;
+    \item
+      $\mathcal{M}$ is cofibrantly generated with a set of generating cofibrations for which domains and codomains are $\lambda$-presentable objects;
+    \item
+      an object $X \in \mathcal{M}$ is $\lambda$-presentable if and only if the functor $\mathrm{Hom}(X, -) : \mathcal{M} \rightarrow \mathrm{Set}$, given by the simplicial enrichment of $\mathcal{M}$, preserves $\lambda$-filtered colimits.
+  \end{enumerate}
+
+  Let $\lambda$ be any such cardinal.
+  Then there is a simplicially-enriched cofibrant replacement comonad $C : \mathcal{M} \rightarrow \mathcal{M}$ that preserves $\lambda$-filtered colimits. 
+  Let $C$ be any such comonad.
+  Denote the category of its coalgebras by $\operatorname{Coa} \mathcal{M}$.
+  The forgetful functor $U : \operatorname{Coalg} \mathcal{M} \rightarrow \mathcal{M}$ has a left adjoint $V$.
+  $\operatorname{Coa} \mathcal{M}$ has the structure of a simplicially enriched category with tensors and cotensors, and $V \dashv U$ is a simplicial adjunction.
+  The model category structure of $\mathcal{M}$ can be transferred along $V \dashv U$, making $\operatorname{Coa} \mathcal{M}$ a simplicial and combinatorial model category.
+  $V \dashv U$ is a simplicial Quillen equivalence.
+\end{theorem}
+
+\todo{
+  Can this be simplified a little for the application?
+  Having this $\lambda$ around is annoying.
+}
+
+\bibliographystyle{alpha}
+\bibliography{main}
+
+\end{document}
