@@ -399,6 +399,7 @@ As before, types are interpreted as objects in (now strict) lcc categories, and 
 $\mathrm{sLcc}$ is a model category and hence has an initial object which is given by applying the left adjoint $F$ to the empty sketch.
 Context extension by a type $\Gamma \vdash \sigma$ can be constructed as a pushout
 \begin{equation}
+  \label{eq:slcc-context-extension}
   \begin{tikzcd}
     F(\{t, \sigma\}) \arrow[r] \arrow[d] & F(\{v : t \rightarrow \sigma \}) \arrow[d] \\
     \Gamma \arrow[r, "p"] & \Gamma.\sigma
@@ -424,6 +425,35 @@ The pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ is lcc an
 However, the pullback functor $\sigma^*$, while lcc, is usually not strict lcc, but the universal property of $\Gamma$ requires a strict lcc functor.
 
 \section{Algebraically cofibrant strict lcc categories}
+
+As a starting point to remedy the situation, recall that the slice category $\Gamma_{/ \sigma}$ of an lcc category $\Gamma$ (or any category with finite limits) is bifreely generated from the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and the diagonal of $\sigma$, which in $\Gamma_{/ \sigma}$ is up to isomorphism a morphism from the terminal object to $\sigma^*(\sigma)$.
+Phrased model categorically, bifreeness amounts to saying that the square
+\begin{equation}
+  \label{eq:homotopy-pushout-lcc}
+  \begin{tikzcd}
+    \{ t, x \} \arrow[r] \arrow[d] & \{ v : t \rightarrow x \} \arrow[d] \\
+    \Gamma \arrow[r, "x^*"] & \Gamma_{/ x}
+  \end{tikzcd}
+\end{equation}
+is a homotopy pushout square in $\mathrm{Lcc}$.
+Similarly to the pushout square \eqref{eq:slcc-context-extension}, the left vertical arrow is given by sending the object $t$ to some terminal object of $\mathcal{C}$.
+Equivalently, the two lcc sketches appearing in the top row with their weakly equivalent fibrant replacements, giving us essentially the same top left span as in \eqref{eq:slcc-context-extension} but in $\mathrm{Lcc}$.
+Because $\mathrm{Lcc}$ and $\mathrm{sLcc}$ are Quillen equivalent, we should thus expect $\mathcal{C}_{/ x}$ and $\mathcal{C}.x$ to be weakly equivalent if the pushout square \eqref{eq:slcc-context-extension} is a homotopy pushout square.
+By \todo{Lurie somewhere, see also nlab}, \eqref{eq:slcc-context-extension} is a homotopy pushout if the three objects forming the upper left span are cofibrant and on of the the left or right legs are cofibrations.
+The cofibrations of $\mathrm{Lcc}$ are the maps whose underlying functors are injective on objects.
+Thus $\{t, \sigma\}$ and $\{ v : t \rightarrow \sigma\}$ are cofibrant lcc sketches, and the inclusion of the former into the latter is a cofibration.
+$F$ is a left Quillen functor and so preserves cofibrations.
+Thus the conditions of \todo{ibd.} are satisfied if $\Gamma$ is cofibrant, and in this case we should expect a weak equivalence relating $\Gamma.\sigma$ with $\Gamma_{/ \sigma}$.
+
+Note that the composite $FG : \mathrm{sLcc} \rightarrow \mathrm{Lcc} \mathrm{sLcc}$ is a cofibrant replacement functor because $F \dashv G$ is a Quillen equivalence and every object in $\mathrm{Lcc}$ is cofibrant.
+It follows that a strict lcc category $\Gamma$ is cofibrant if and only if the counit $F(G(\Gamma)) \rightarrow \Gamma$ is a retraction, say with section $\lambda : \Gamma \rightarrow F(G(\Gamma))$.
+This retraction can be used to strictify the pullback functor:
+We have $\sigma^* : G(\Gamma) \rightarrow G(\Gamma)_{/ \sigma}$, which induces a strict lcc functor $\overline{\sigma^*} : F(G(\Gamma)) \rightarrow \Gamma_{/ \sigma}$ by adjointness.
+Now $\sigma^s = \lambda \circ \overline{\sigma^*} : \Gamma \rightarrow \Gamma_{/ \sigma}$.
+$G(\sigma^s)$ is naturally equivalent to $\sigma^*$ because \todo{TODO}.
+It follows that the diagonal $d$ can be pre- and postcomposed with this natural equivalence, giving a term of type $\sigma^s(\sigma)$ in $\Gamma_{/ \sigma}$, which induces the required comparison functor $D : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$.
+
+\todo{Refactor the following to previous paragraphs.}
 
 Dually we want to consider algebraically cofibrant objects.
 Unfortunately, $\mathcal{M}$ is not the opposite of a combinatorial model category in our application.
