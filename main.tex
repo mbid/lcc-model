@@ -116,7 +116,7 @@ To make our idea of an interpretation of dependent type theory precise, we shoul
 Unfortunately this fails for very similar reason as the naïve interpretation of type theory in a fixed lcc category:
 Like pullback functors, lcc functors preserve lcc structure only up to ismorphism and not necessarily up to equality.
 Furthermore, the obvious choice for context extension along a type $\Gamma \vdash \sigma$, the slice category $\Gamma.\sigma = \Gamma_{/ \sigma}$, has the required universal property only in the 2-categorical sense:
-The category of lcc functors $f : \Gamma \rightarrow \Delta$ and terms $\Delta \vdash w : f(\sigma)$ with natural isomorphisms of lcc functors is equivalent, but not isomorphic, to the category of lcc functors $k : \Gamma_{/ \sigma} \rightarrow \Delta$ which commute with the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and map the diagonal $\sigma \rightarrow \sigma \times \sigma$ in $\Gamma_{/ \sigma}$ to $w$.
+The groupoid of lcc functors $f : \Gamma \rightarrow \Delta$ and terms $\Delta \vdash w : f(\sigma)$ with natural isomorphisms of lcc functors as morphisms is equivalent, but not isomorphic, to the groupoid of lcc functors $k : \Gamma_{/ \sigma} \rightarrow \Delta$ which commute with the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and map the diagonal $\sigma \rightarrow \sigma \times \sigma$ in $\Gamma_{/ \sigma}$ to $w$.
 
 \section{Lcc sketches}
 \label{sec:lcc-sketches}
@@ -193,26 +193,26 @@ This model structure identifies lcc-marked categories if their choice of marking
 \begin{theorem}[\cite{marked-objects} Theorem 3.3]
   \label{th:marked-model-category}
   Let $\mathcal{M}$ be a combinatorial model category $\mathcal{M}$.
-  Let $i : I \rightarrow \mathcal{M}$ be functor from a small category $I$ to $\mathcal{M}$.
+  Let $i : I \rightarrow \mathcal{M}$ be functor from a small category $I$ to $\mathcal{M}$ such that every object in the image of $i$ is cofibrant.
   Then the following defines the structure of a combinatorial model category on $\mathcal{M}^i$:
   \begin{itemize}
     \item
       A marking-preserving morphism $f : X \rightarrow Y$ is a cofibration if and only if it is a cofibration in $\mathcal{M}$.
     \item
+      Let $R : \mathcal{M} \rightarrow \mathcal{M}$ be a functor and $t : \mathrm{Id} \Rightarrow R$ be a natural transformation such that $M \xrightarrow{t_M} R(M)$ is a fibrant replacement for each $M \in \operatorname{Ob} \mathcal{M}$.
+      Then a morphism $f : X \rightarrow Y$ in $\mathcal{M}^i$ is a weak equivalence if and only if $U(f)$ is a weak equivalence in $\mathcal{M}$ and for all $h : i(K) \rightarrow R(U(X))$ and marked $k : i(K) \rightarrow U(Y)$, if $R(U(f)) \circ h$ and $t_{U(Y)} \circ k$ are homotopic, then $h$ is homotopic to a map that factors as $i(K) \xrightarrow{h'} U(X) \xrightarrow{t_{U(X)}} R(U(X))$ with $h'$ marked.
       \todo{
-        Describe weak equivalences, preferably without referring to a fibrant replacment functor.
-        See \cite{marked-objects} Lemma 2.5.
+        This looks equivalent to saying that $f$ reflects marked maps in the homotopy category, which would be easier to state but is not proved in \cite{marked-objects}.
       }
     \item
-      A marked object $X$ is fibrant if and only if $U(X)$ is fibrant in $\mathcal{M}$ and marked maps are stable under homotopy in $\mathcal{M}$, in the sense that if $k \simeq \ell : F(K) \rightarrow U(X)$ are homotopic maps in $\mathcal{M}$ and $k$ is marked, then $\ell$ is marked.
-      \todo{This can be removed if the previous point is there (in itself it's also not enough to determine the model category structure uniquely)}
+      A marked object $X$ is fibrant if and only if $U(X)$ is fibrant in $\mathcal{M}$ and marked maps are stable under homotopy in $\mathcal{M}$; that is, if $k \simeq \ell : F(K) \rightarrow U(X)$ are homotopic maps in $\mathcal{M}$ and $k$ is marked, then $\ell$ is marked.
   \end{itemize}
   Let $I$ be a set of generating cofibrations of $\mathcal{M}$.
   Then the set
   \begin{equation}
     I' = \{ i^\flat \mid i \in I \} \cup \{ K^\flat \rightarrow (K, G\{\mathrm{id} : K \rightarrow K\}) \mid K \in \mathcal{K} \}
   \end{equation}
-  generates the cofibrations of $\mathcal{M}_K$.
+  generates the cofibrations of $\mathcal{M}^i$.
   \todo{
     Can we say something about generating trivial cofibrations?
     In the case where every object of $\mathcal{M}$ is fibrant this is the obvious thing (see proof in \cite{marked-objects}, but I'm doubtful whether this works in general.
@@ -225,10 +225,16 @@ This model structure identifies lcc-marked categories if their choice of marking
   Then $\mathcal{M}^i$ is a simplicial model category, and $(-)^\flat \dashv U$ and $U \dashv (-)^\sharp$ are simplicial Quillen adjunctions.
 \end{lemma}
 \begin{proof}
-  The mapping spaces of $\mathcal{C}^i(X, Y)$ are given by the subspaces of $\mathcal{C}(X, Y)$ consisting of the marking preserving maps.
+  The mapping spaces of $\mathcal{M}^i(X, Y)$ are given by the full subspaces of $\mathcal{M}(X, Y)$ of marking preserving maps.
   The power $X^S$ of a marked object $X$ by a simplicial set $S$ is given by the power $U(X)^S$ in $\mathcal{M}$ in which $k : i(K) \rightarrow U(X)^S$ is marked if and only if the composite $K \rightarrow U(X^G) \xrightarrow{\mathrm{id}^s} U(X)$ is marked for every vertex $s : \Delta^0 \rightarrow S$.
   Dually, the tensor $S \otimes X$ is given the underlying tensor $S \otimes U(X)$, and maps $k : K \rightarrow U(S \otimes X)$ are marked if and only if they factor as $K \xrightarrow{k} U(X) \xrightarrow{s \otimes \mathrm{id}} S \times U(X)$ for some $s : \Delta^0 \rightarrow S$ and $k$ marked in $U(X)$.
-  \todo{Proof that this indeed works (see also \cite{marked-objects} Lemma 3.4)}
+  The explicit construction shows that the adjunction $(-)^\flat \dashv U$ and $U \dashv (-)^\flat$ are simplicial.
+  It remains to show that the tensoring $\mathrm{sSet} \times \mathcal{M}^i \rightarrow \mathcal{M}^i$ is a Quillen bifunctor.
+  \todo{
+    See also \cite{marked-objects} Lemma 3.4.
+    TODO---$U$ preserves tensoring, so checking that the pushout product of cofibrations is a cofibration is trivial.
+    I don't know what to do if either of the two cofibrations is trivial though.
+  }
 \end{proof}
 
 So far, the model structure is not aware of what kind of universal property marked diagrams are supposed to have, much like structures interpreting logical signatures are defined without reference to a set of axioms they might satisfy.
@@ -470,26 +476,43 @@ In order to speak of canonical choices of lcc structure, we need canonical lifts
 Thus with theorem \ref{th:algebraically-fibrant-model-category} we have found an equivalent model for the category of lcc categories:
 \begin{definition}
   The model category of strict lcc categories and strict lcc functors is given by $\mathrm{sLcc} = \operatorname{Alg} \mathrm{Lcc}$.
+  The canonical covariant cwf structure on $\mathrm{sLcc}$ is given by $\mathrm{Ty}(\Gamma) = \operatorname{Ob} \Gamma$ and $\mathrm{Tm}(\Gamma, \sigma) = \mathrm{Hom}_\Gamma(1, \sigma)$, where $1$ denotes the canonical terminal object of $\Gamma$.
 \end{definition}
 
-An interpretation of dependent type theory in $\mathrm{sLcc}$ seems much more feasible at first:
-As before, types are interpreted as objects in (now strict) lcc categories, and cosubstitutions as (strict) lcc functors.
-$\mathrm{sLcc}$ is a model category and hence has an initial object which is given by applying the left adjoint $F$ to the empty sketch.
-Context extension by a type $\Gamma \vdash \sigma$ can be constructed as a pushout
-\begin{equation}
-  \label{eq:slcc-context-extension}
-  \begin{tikzcd}
-    F(\{t, \sigma\}) \arrow[r] \arrow[d] & F(\{v : t \rightarrow \sigma \}) \arrow[d] \\
-    \Gamma \arrow[r, "p"] & \Gamma.\sigma
-  \end{tikzcd}
-\end{equation}
-where $t$ is marked as terminal in the two lcc sketches in the top, and the left vertical arrow is induced by $\sigma \in \operatorname{Ob} \Gamma$ and the canonical terminal object of $\Gamma$.
+\begin{proposition}
+  The covariant cwf $\mathrm{sLcc}$ supports an empty context, context extension, finite product types and equality types.
+\end{proposition}
+\begin{proof}
+  $\mathrm{sLcc}$ is a model category and in particular has an initial object, hence supports an empty context.
+  
+  Let $\Gamma \vdash \sigma$.
+  The context extension $\Gamma.\sigma$ can be constructed as pushout
+  \begin{equation}
+    \begin{tikzcd}
+      F(\{ t, \sigma \}) \arrow[d] \arrow[r] & F(\{ v : t \rightarrow \sigma \}) \arrow[d] \\
+      \Gamma \arrow[r, "p"] & \Gamma.\sigma,
+    \end{tikzcd}
+  \end{equation}
+  where $\{ t, \sigma \}$ denotes an lcc sketch with two objects and $\{ v : t \rightarrow \sigma \}$ is an lcc sketch with a single nontrivial morphism.
+  The vertical left morphism is induced by mapping $t$ to $1$ and $\sigma$ to $\sigma$, and the top morphism is the evident inclusion.
+  The variable $\Gamma.\sigma \vdash \mathbf{v} : p(\sigma)$ is given by the image of $v$.
 
-Type constructors are interpreted using the canonical lcc structure of a strict lcc category, and the fact that morphisms in $\mathrm{sLcc}$ are functors preserving the canonical structure on the nose means that type constructors are also preserved on the nose, as required by the rules of dependent type theory.
-Unit types are interpreted by the canonical terminal object of strict lcc categories.
-Having chosen a fixed method of constructing equalizers from pullback squares, we can interpret equality types $\operatorname{Eq} s \, t$ of terms $s, t : \sigma$ in a context $\Gamma$ as equalizer of $s$ and $t$.
+  The unit type $\Gamma \vdash \mathbf{1}$ is given by the canonical terminal object of $\Gamma$.
+  Binary product types $\Gamma \vdash \sigma \mathbf{\times} \tau$ are given by fibre products $\sigma \times_1 \tau$ over the canonical terminal object $1$ in $\Gamma$.
+  Finally, equality types $\Gamma \vdash \operatorname{\mathbf{Eq}} s \, t$ are constructed as pullbacks
+  \begin{equation}
+    \label{eq:slcc-context-extension}
+    \begin{tikzcd}
+      \operatorname{\mathbf{Eq}} s \, t \arrow[r] \arrow[d] & 1 \arrow[d, "t"] \\
+      1 \arrow[r, "s"] & \sigma,
+    \end{tikzcd}
+  \end{equation}
+  i.e.\@ as the equalizer of $s$ and $t$.
 
-However, we run into a problem when interpreting $\Pi$- or $\Sigma$-types.
+  The type constructors defined such and the (omitted) term constructors are built from the canonical structure of strict lcc category and hence stable under substitution.
+\end{proof}
+
+Unfortunately, $\mathrm{sLcc}$ does not support $\Pi$- or $\Sigma$-types in a similarly obvious way.
 The type forming rule for $\Pi$-types is
 \begin{equation}
   \inferrule
@@ -498,9 +521,9 @@ The type forming rule for $\Pi$-types is
 \end{equation}
 To interpret it, we would like to apply the dependent product functor $\Gamma_{/ \sigma} \rightarrow \Gamma$ to $\tau$.
 But $\tau$ is an object of $\Gamma.\sigma$, so we need a comparison functor $D : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$.
-An obvious attempt at doing so is the use of the universal property of $\Gamma.\sigma$ as context extension:
+An obvious attempt at constructing it is to use of the universal property of $\Gamma.\sigma$ as context extension:
 The pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ is lcc and the diagonal $d : \sigma \rightarrow \sigma \times \sigma$ induces a term $\Gamma_{\sigma} \vdash d' : \sigma \times \sigma$ in $\Gamma_{/ \sigma}$.
-However, the pullback functor $\sigma^*$, while lcc, is usually not strict lcc, but the universal property of $\Gamma$ requires a strict lcc functor.
+However, the pullback functor $\sigma^*$, while lcc, is usually not strict lcc, whereas the universal property of $\Gamma.\sigma$ requires a strict lcc functor.
 
 \section{Algebraically cofibrant strict lcc categories}
 \label{sec:algebraically-cofibrant}
@@ -510,36 +533,34 @@ Phrased model categorically, bifreeness amounts to saying that the square
 \begin{equation}
   \label{eq:homotopy-pushout-lcc}
   \begin{tikzcd}
-    \{ t, x \} \arrow[r] \arrow[d] & \{ v : t \rightarrow x \} \arrow[d] \\
+    \{ t, \sigma \} \arrow[r] \arrow[d] & \{ v : t \rightarrow \sigma \} \arrow[d] \\
     \Gamma \arrow[r, "x^*"] & \Gamma_{/ x}
   \end{tikzcd}
 \end{equation}
 is a homotopy pushout square in $\mathrm{Lcc}$.
-Similarly to the pushout square \eqref{eq:slcc-context-extension}, the left vertical arrow is given by sending the object $t$ to some terminal object of $\mathcal{C}$.
 Equivalently, the two lcc sketches appearing in the top row with their weakly equivalent fibrant replacements, giving us essentially the same top left span as in \eqref{eq:slcc-context-extension} but in $\mathrm{Lcc}$.
-Because $\mathrm{Lcc}$ and $\mathrm{sLcc}$ are Quillen equivalent, we should thus expect $\mathcal{C}_{/ x}$ and $\mathcal{C}.x$ to be weakly equivalent if the pushout square \eqref{eq:slcc-context-extension} is a homotopy pushout square.
-By \todo{Lurie somewhere, see also nlab}, \eqref{eq:slcc-context-extension} is a homotopy pushout if the three objects forming the upper left span are cofibrant and on of the the left or right legs are cofibrations.
+Because $\mathrm{Lcc}$ and $\mathrm{sLcc}$ are Quillen equivalent, we should thus expect $\Gamma_{/ \sigma}$ and $\Gamma.\sigma$ to be weakly equivalent if the pushout square \eqref{eq:slcc-context-extension} is a homotopy pushout square.
+By \todo{Lurie somewhere, see also nlab}, this is the case if the three objects forming the upper left span are cofibrant and the left or top leg is a cofibration.
 The cofibrations of $\mathrm{Lcc}$ are the maps whose underlying functors are injective on objects.
 Thus $\{t, \sigma\}$ and $\{ v : t \rightarrow \sigma\}$ are cofibrant lcc sketches, and the inclusion of the former into the latter is a cofibration.
 $F$ is a left Quillen functor and so preserves cofibrations.
 Thus the conditions of \todo{ibd.} are satisfied if $\Gamma$ is cofibrant, and in this case we should expect a weak equivalence relating $\Gamma.\sigma$ with $\Gamma_{/ \sigma}$.
 
-Note that the composite $FG : \mathrm{sLcc} \rightarrow \mathrm{Lcc} \mathrm{sLcc}$ is a cofibrant replacement functor because $F \dashv G$ is a Quillen equivalence and every object in $\mathrm{Lcc}$ is cofibrant.
-It follows that a strict lcc category $\Gamma$ is cofibrant if and only if the counit $F(G(\Gamma)) \rightarrow \Gamma$ is a retraction, say with section $\lambda : \Gamma \rightarrow F(G(\Gamma))$.
+Note that the counit $\varepsilon : FG \Rightarrow \mathrm{Id} : \mathrm{sLcc} \rightarrow \mathrm{sLcc}$ is a cofibrant replacement: $F \dashv G$ is a Quillen equivalence and every object in $\mathrm{Lcc}$ is cofibrant.
+It follows that a strict lcc category $\Gamma$ is cofibrant if and only if the counit $\varepsilon_\Gamma$ is a retraction, say with section $\lambda : \Gamma \rightarrow F(G(\Gamma))$.
 This retraction can be used to strictify the pullback functor:
-We have $\sigma^* : G(\Gamma) \rightarrow G(\Gamma)_{/ \sigma}$, which induces a strict lcc functor $\overline{\sigma^*} : F(G(\Gamma)) \rightarrow \Gamma_{/ \sigma}$ by adjointness.
-Now $\sigma^s = \lambda \circ \overline{\sigma^*} : \Gamma \rightarrow \Gamma_{/ \sigma}$.
-$G(\sigma^s)$ is naturally equivalent to $\sigma^*$ because \todo{TODO}.
+We have $\sigma^* : G(\Gamma) \rightarrow G(\Gamma)_{/ \sigma}$, which induces a strict lcc functor $\overline{\sigma^*} : F(G(\Gamma)) \rightarrow \Gamma_{/ \sigma}$.
+Now $(\sigma^*)^s = \lambda \circ \overline{\sigma^*} : \Gamma \rightarrow \Gamma_{/ \sigma}$, and $G(((\sigma)^*)^s)$ is naturally isomorphic to $\sigma^*$ \todo{because the unit of the adjunction is an equivalence}.
 It follows that the diagonal $d$ can be pre- and postcomposed with this natural equivalence, giving a term of type $\sigma^s(\sigma)$ in $\Gamma_{/ \sigma}$, which induces the required comparison functor $D : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$.
-Given $\Gamma.\sigma \vdash \tau$, we might then define $\Gamma \vdash \Pi_\sigma \, \tau$ as the image of $\tau$ under the composite $\Gamma.\sigma \xrightarrow{D} \Gamma_{/ \sigma} \xrightarrow{\Pi_\sigma} \Gamma$.
+Given $\Gamma.\sigma \vdash \tau$, we might then try to define $\Gamma \vdash \mathbf{\Pi}_\sigma \, \tau$ as the image of $\tau$ under the composite $\Gamma.\sigma \xrightarrow{D} \Gamma_{/ \sigma} \xrightarrow{\Pi_\sigma} \Gamma$.
 As a first attempt, we might thus restrict the category of contexts to the cofibrant strict lcc categories.
-Indeed, cofibrant objects are stable under pushouts, along cofibrations, thus context extensions $\Gamma.\sigma$ will be cofibrant again if $\Gamma$ was.
+Indeed, cofibrant objects are stable under pushouts along cofibrations, thus context extensions $\Gamma.\sigma$ will be cofibrant again if $\Gamma$ was.
 However, the definition of the comparison functor $D : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$ required a \emph{choice} of retraction $\lambda : \Gamma \rightarrow F(G(\Gamma))$, and some choices will not be compatible with even strict lcc functors $\Gamma \rightarrow \Delta$.
 Thus the $\Pi$-types defined such will not be stable under substitution.
 
 To solve this issue, we make the retraction $\lambda$ part of the structure:
 Similarly to how strict lcc categories have associated structure corresponding to their fibrancy in lcc, we make the retraction $\lambda$ witnessing the cofibrancy of strict lcc categories part of the data.
-We thus consider coalgebraically fibrant objects, which, dually to algebraically fibrant objects, are defined as coalgebras for a cofibrant replacement comonad.
+We thus consider algebraically cofibrant objects, which, dually to algebraically fibrant objects, are defined as coalgebras for a cofibrant replacement comonad.
 Like in the case of algebraically fibrant objects, we are justified in doing so because we obtain an equivalent model category:
 
 \begin{theorem}[\cite{coalgebraic-models} Lemmas 1.2 and 1.3, Theorems 1.4 and 2.5]
@@ -557,9 +578,9 @@ Like in the case of algebraically fibrant objects, we are justified in doing so 
 
   Let $\lambda$ be any such cardinal.
   Then there is a simplicially-enriched cofibrant replacement comonad $C : \mathcal{M} \rightarrow \mathcal{M}$ that preserves $\lambda$-filtered colimits. 
-  Let $C$ be any such comonad.
-  Denote the category of its coalgebras by $\operatorname{Coa} \mathcal{M}$.
-  The forgetful functor $U : \operatorname{Coalg} \mathcal{M} \rightarrow \mathcal{M}$ has a left adjoint $V$.
+  Let $C$ be any such comonad and denote its category of coalgebras by $\operatorname{Coa} \mathcal{M}$.
+
+  Then the forgetful functor $U : \operatorname{Coa} \mathcal{M} \rightarrow \mathcal{M}$ has a left adjoint $V$.
   $\operatorname{Coa} \mathcal{M}$ has the structure of a simplicially enriched category with tensors and powers, and $V \dashv U$ is a simplicial adjunction.
   The model category structure of $\mathcal{M}$ can be transferred along $V \dashv U$, making $\operatorname{Coa} \mathcal{M}$ a simplicial and combinatorial model category.
   $V \dashv U$ is a simplicial Quillen equivalence.
@@ -580,20 +601,8 @@ In our case, the first infinite cardinal $\omega$ satisfies the three conditions
   if $\mathcal{C}$ is finitely presentable and the $\mathcal{D}_i$ are filtered.
 }
 
-This is the final ingredient into solving the coherence condition, so we are ready to define a CwF.
-
 \begin{definition}
-  The covariant cwf of lcc categories $\mathbf{Lcc}$ is given as follows.
-  \begin{itemize}
-    \item
-      Its category of contexts $\Gamma$ and cosubustitions $f : \Delta \rightarrow \Gamma$ is given by $\operatorname{Coa} \mathrm{sLcc}$.
-    \item
-      Types $\Gamma \vdash \sigma$ in a context $\Gamma$ are objects of $\Gamma$.
-    \item
-      Terms $\Gamma \vdash s : \sigma$ of type $\sigma$ in  context $\Gamma$ are morphisms $1 \rightarrow \sigma$ in $\Gamma$, where $1$ denotes the canonical terminal object of $\Gamma$.
-    \item
-      Application of cosubstituions to types and terms is given by application of strict lcc functors to objects and morphisms in their domain.
-  \end{itemize}
+  The canonical covariant cwf structure on $\operatorname{Coa} \mathrm{sLcc}$ is defined by $\mathrm{Ty}((\Gamma, \lambda)) = \mathrm{Ty}(\Gamma)$ and $\mathrm{Tm}((\Gamma, \lambda), \sigma) = \mathrm{Tm}(\Gamma, \sigma)$ in terms of the canonical covariant cwf structure of $\mathrm{sLcc}$.
 \end{definition}
 
 \begin{lemma}
@@ -610,9 +619,22 @@ This is the final ingredient into solving the coherence condition, so we are rea
 \end{proof}
 
 \begin{proposition}
-  The cwf $\mathbf{Lcc}$ has an empty context and all context extensions.
+  The covariant cwf $\operatorname{Coa} \mathrm{sLcc}$ supports an empty context and context extension, and the forgetful functor $\operatorname{Coa} \mathrm{sLcc} \rightarrow \mathrm{sLcc}$ preserves both.
 \end{proposition}
 \begin{proof}
+  The model category $\operatorname{Coa} \mathrm{sLcc}$ has an initial object, i.e.\@ an empty context.
+  Its underlying strict lcc category $\Gamma$ is the initial strict lcc category, and the structure map $i : \Gamma \rightarrow F(G(\Gamma))$ is the unique strict lcc functor with this signature.
+
+  Let $(\Gamma, i)$ be a context and let $(\Gamma, i) \vdash \sigma$ be a type.
+  The underlying strict lcc category of the context extension $(\Gamma,\lambda).\sigma$ is defined as the context extension $p : \Gamma \rightarrow \Gamma.\sigma, \Gamma \vdash \mathbf{v} : p(\sigma)$ in $\mathrm{sLcc}$.
+  The structure map $i.\sigma : \Gamma.\sigma \rightarrow F(G(\Gamma.\sigma))$ is induced by the composite $\Gamma \xrightarrow{i} F(G(\Gamma)) \xrightarrow{F(G(p))}$ and the term $w$ in $F(G(\Gamma.\sigma))$ defined by commutativity of
+  \begin{equation}
+    \begin{tikzcd}
+      1 \arrow[r, "v"] & F(G(p))(i(\sigma)) \\
+      \eta(1) \arrow[r, "\eta(\mathbf{v})"] & \eta(p(\sigma))
+    \end{tikzcd}
+  \end{equation}
+
   $\operatorname{Coa} \mathrm{sLcc}$ is a model category and in particular cocomplete, hence posesses an initial object, i.e.\@ an empty context.
   \todo{Explicity description?}
 
