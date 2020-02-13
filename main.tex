@@ -221,6 +221,7 @@ This model structure identifies lcc-marked categories if their choice of marking
 \end{theorem}
 
 \begin{lemma}
+  \label{lem:simplicial-marked-objects}
   Suppose that in the setting of theorem \ref{th:marked-model-category} $\mathcal{M}$ is furthermore a simplicial model category.
   Then $\mathcal{M}^i$ is a simplicial model category, and $(-)^\flat \dashv U$ and $U \dashv (-)^\sharp$ are simplicial Quillen adjunctions.
 \end{lemma}
@@ -242,17 +243,19 @@ To obtain a model category of lcc sketches, we \emph{localize} at a set of morph
 We want to consider lcc-marked categories equivalent if they represent the same lcc category.
 
 \begin{definition}
+  \label{def:lcc-axioms}
   The model category $\mathrm{Lcc}$ of lcc sketches is the left Bousfield localization of the model category of $I_\mathrm{Lcc}$-marked objects at the following cofibrations.
   \begin{itemize}
     \item
-      There exists a terminal object:
+      There is a terminal object:
       \begin{equation}
-        \emptyset \rightarrow \{ t \}
+        \mathbf{T_1} : \emptyset \rightarrow \{ t \}
       \end{equation}
       (in which $t$ is marked via $T$ in the codomain).
     \item
-      There is morphism from every object to every terminal object:
+      There is a morphism from every object to every terminal object:
       \begin{equation}
+        \mathbf{T_2} :
         \left\{
           \begin{tikzcd}
             \cdot & t
@@ -266,25 +269,27 @@ We want to consider lcc-marked categories equivalent if they represent the same 
         \right\} 
       \end{equation}
       (where $t$ is marked via $\mathrm{T}$ in domain and codomain).
+    % \item[\bf T3]
+    %   Any two morphisms with the same domain and terminal codomain are equal:
+    %   \begin{equation}
+    %     \left\{
+    %       \begin{tikzcd}
+    %         \cdot \arrow[r, shift left] \arrow[r, shift right] & t
+    %       \end{tikzcd}
+    %     \right\}
+    %     \rightarrow
+    %     \left\{ 
+    %       \begin{tikzcd}
+    %         \cdot \arrow[r] & t
+    %       \end{tikzcd}
+    %     \right\} 
+    %   \end{equation}
+    %   (where $t$ is marked via $\mathrm{T}$ in domain and codomain).
     \item
-      Any two morphisms with the same domain and terminal codomain are equal:
-      \begin{equation}
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[r, shift left] \arrow[r, shift right] & t
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{ 
-          \begin{tikzcd}
-            \cdot \arrow[r] & t
-          \end{tikzcd}
-        \right\} 
-      \end{equation}
-      (where $t$ is marked via $\mathrm{T}$ in domain and codomain).
-    \item
+      \label{itm:pbs-commute}
       Pullback squares commute:
       \begin{equation}
+        \mathbf{Pb_0} :
         \left\{
           \begin{tikzcd}
             \cdot \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
@@ -301,8 +306,10 @@ We want to consider lcc-marked categories equivalent if they represent the same 
       \end{equation}
       (where the squares in domain and codomain are marked via $\mathrm{Pb}$ but only the latter commutes).
     \item
+      \label{itm:pbs-exist}
       Every cospan can be completed to a pullback square:
       \begin{equation}
+        \mathbf{Pb_1} : 
         \left\{
           \begin{tikzcd}
             & \cdot \arrow[d, "f_2"] \\
@@ -319,8 +326,10 @@ We want to consider lcc-marked categories equivalent if they represent the same 
       \end{equation}
       (where the domain is minimally marked and the square in the codomain is marked via $\mathrm{Pb}$).
     \item
+      \label{itm:pbs-factorizations}
       Every square completing a cospan factors via any pullback square over that cospan:
       \begin{equation}
+        \mathbf{Pb_2} : 
         \left\{
           \begin{tikzcd}
             \cdot \arrow[ddr, bend right, "q_1"'] \arrow[drr, bend left, "q_2"] \arrow[dr, phantom, "\circlearrowleft", near end] \\
@@ -338,30 +347,52 @@ We want to consider lcc-marked categories equivalent if they represent the same 
         \right\}
       \end{equation}
       (where the lower right squares are marked via $\mathrm{Pb}$ and the large squares commute in domain and codomain).
+    % \item
+    %   Every two factorizations via a pullback square are equal:
+    %   \begin{equation}
+    %     \left\{
+    %       \begin{tikzcd}
+    %         \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr, shift left] \arrow[dr, shift right] \\
+    %         & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+    %         & \cdot \arrow[r, "f_1"] & \cdot
+    %       \end{tikzcd}
+    %     \right\}
+    %     \rightarrow
+    %     \left\{
+    %       \begin{tikzcd}
+    %         \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr] \\
+    %         & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+    %         & \cdot \arrow[r, "f_1"] & \cdot
+    %       \end{tikzcd}
+    %     \right\}
+    %   \end{equation}
+    %   (where the lower right squares are marked via $\mathcal{B}$ and the large squares commute in domain and codomain).
+    %   \todo{Make more explicit that the two parallel arrows both separately commute with $q_1$ and $q_2$}
     \item
-      Every two factorizations via a pullback square are equal:
+      The evaluation map $\varepsilon$ commutes with the projection map:
       \begin{equation}
+        \mathbf{Pi_0} :
         \left\{
           \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr, shift left] \arrow[dr, shift right] \\
-            & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+            \cdot \arrow[ddr, bend right, "p_1"'] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
             & \cdot \arrow[r, "f_1"] & \cdot
           \end{tikzcd}
         \right\}
         \rightarrow
         \left\{
           \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr] \\
-            & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+            \cdot \arrow[ddr, bend right, "p_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
             & \cdot \arrow[r, "f_1"] & \cdot
           \end{tikzcd}
         \right\}
       \end{equation}
-      (where the lower right squares are marked via $\mathcal{B}$ and the large squares commute in domain and codomain).
-      \todo{Make more explicit that the two parallel arrows both separately commute with $q_1$ and $q_2$}
+      (where domain and codomain are marked via $\mathrm{Pb}$ and $\mathrm{Pi}$ as indicated by the variable names).
     \item
-      A dependent product $f_2 = \Pi_{f_1} g$ exists for every appropriate pair of morphisms:
+      There is a dependent product $f_2 = \Pi_{f_1} g$ for every composable pair of morphisms:
       \begin{equation}
+        \mathbf{Pi_1} :
         \left\{
           \begin{tikzcd}
             & \cdot \arrow[d, "g"] \\
@@ -379,31 +410,13 @@ We want to consider lcc-marked categories equivalent if they represent the same 
       \end{equation}
       (where the codomain is marked via $\mathrm{Pb}$ and $\mathrm{Pi}$ as indicated by the variable names).
     \item
-      The evaluation map $\varepsilon$ commutes with the projection map:
-      \begin{equation}
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
-            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
-            & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "p_1"] \arrow[ddr, phantom, "\circlearrowleft", near end] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
-            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
-            & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
-      \end{equation}
-    \item
       Any other morphism with an evaluation map factors via dependent products:
       \begin{equation}
+        \mathbf{Pi_2} :
         \left\{
           \begin{tikzcd}
-            \cdot \arrow[dddrr, bend right, "p'_1"] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right] & \\
-            & \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            \cdot \arrow[dddrr, bend right, "p'_1"'] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right] & \\
+            & \cdot \arrow[ddr, bend right, "p_1", near end] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
             & & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] & \cdot \arrow[dl, "f'_2"] \\
             & & \cdot \arrow[r, "f_1"] & \cdot
           \end{tikzcd}
@@ -411,30 +424,82 @@ We want to consider lcc-marked categories equivalent if they represent the same 
         \rightarrow
         \left\{
           \begin{tikzcd}
-            \cdot \arrow[dr] \arrow[dddrr, bend right, "p'_1"] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right] & \\
-            & \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+            \cdot \arrow[dr] \arrow[dddrr, bend right, "p'_1"'] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right] & \\
+            & \cdot \arrow[ddr, bend right, "p_1" near end] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
             & & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] & \cdot \arrow[dl, "f'_2"] \arrow[l] \\
             & & \cdot \arrow[r, "f_1"] & \cdot
           \end{tikzcd}
         \right\}
       \end{equation}
       \todo{(where several squares and triangle commute.)}
-    \item
-      Any two such factorizations via an evaluation map are equal:
-      \todo{absolute mess}
   \end{itemize}
 \end{definition}
 
 \begin{proposition}
-  The subcategory of fibrant objects of the category of $\mathrm{Lcc}$ is equivalent to the category of lcc categories and lcc functors.
-  The homotopy category of $\mathrm{Lcc}$ is equivalent to the category of lcc categories and isomorphism classes of lcc functors.
-  The homotopy function complexes of fibrant lcc sketches are given by the groupoids of lcc functors and their natural isomorphisms.
+  The model category $\mathrm{Lcc}$ is a model for the $(2, 1)$-category of lcc categories and lcc functors:
+  \begin{enumerate}
+    \item
+      \label{itm:lcc-fibrant-objects}
+      An object $\mathcal{C} \in \mathcal{M}$ is fibrant if and only if its underlying category is lcc such that
+      \begin{itemize}
+        \item
+          a map $i(\mathrm{T}) \rightarrow U(\mathcal{C})$ is marked if and only if its image is a terminal object;
+        \item
+          a map $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ is marked if and only if its image is a  pullback square; and
+        \item
+          a map $i(\mathrm{Pi}) \rightarrow U(\mathcal{C})$ is marked if and only if its image is (isomorphic to) the diagram of the evaluation map of a dependent product.
+      \end{itemize}
+    \item
+      \label{itm:lcc-homotopy-category}
+      The homotopy category of $\mathrm{Lcc}$ is equivalent to the category of lcc categories and isomorphism classes of lcc functors.
+    \item
+      \label{itm:lcc-homotopy-function-complexes}
+      The homotopy function complexes of fibrant lcc sketches are given by the groupoids of lcc functors and their natural isomorphisms.
+  \end{enumerate}
 \end{proposition}
 \begin{proof}
-  \todo{
-    The fibrant objects of $\mathrm{Lcc}$ are fibrant marked categories which are local wrt.\@ the morphisms defined above, and a direct but lengthy calculation shows that these are precisely lcc categories.
-    Every object is cofibrant, so the other claims follow from the way the mapping groupoids of marked objects (and hence also in the localization) are defined.
-  }
+  The homotopy function complexes of maps between fibrant objects in the localization of a model category $\mathcal{M}$ agree with those in $\mathcal{M}$, thus \ref{itm:lcc-homotopy-category} and \ref{itm:lcc-homotopy-function-complexes} follow from \ref{itm:lcc-fibrant-objects} and lemma \ref{lem:simplicial-marked-objects}.
+
+  \ref{itm:lcc-fibrant-objects} is a classification of fibrant objects in left Bousfield localization $S^{-1} \mathrm{Cat}^{I_\mathrm{Lcc}}$, where $S$ is the set containing the morphisms defined in \ref{def:lcc-axioms}.
+  By \todo{reference Hirschhorn}, these are precisely the $S$-local fibrant objects of $\mathrm{Cat}^{I_\mathrm{Lcc}}$, i.e.\@ fibrant lcc marked categories $\mathcal{C}$ such that for all morphism $f : A \rightarrow B$ in $S$ the induced map
+  \begin{equation}
+    \mathrm{sSet}(f, \mathcal{C}) : \mathrm{sSet}(B, \mathcal{C}) \rightarrow \mathrm{sSet}(A, \mathcal{C})
+  \end{equation}
+  is a trivial Kan fibration.
+  Recall (\todo{lemma on enrichment}) that the mapping spaces $\mathrm{sSet}(-, \mathcal{C})$ of lcc-marked categories are the full subspaces of mapping spaces in $\mathrm{Cat}$ given by the marking preserving maps, and that the mapping spaces in $\mathrm{Cat}$ are the nerves of the groupoids of functors and their natural isomorphisms.
+  Thus $\mathrm{sSet}(f, \mathcal{C})$ will be a trivial Kan fibration if it has the right lifting property with respect to the boundary inclusion $\partial \Delta^n \hookrightarrow \Delta^n$ for $n \leq 2$.
+
+  The verification the equivalence asserted in \ref{itm:lcc-fibrant-objects} can be split up into three parts corresponding to terminal objects, pullback squares and dependent products.
+  As all three parts are proved very similarly, only the part for pullback squares will be shown here.
+  For this we must show that if $\mathcal{C}$ is a lcc-marked category, then marked maps of the form $i(\mathrm{Pb}) \rightarrow \mathcal{C}$ are stable under homotopy and $\mathrm{sSet}(\mathbf{Pb_i}, \mathcal{C})$ for $i = 0, 1, 2$ has the right lifting property with respect to $\partial \Delta^n \hookrightarrow \Delta^n$ for $n \leq 2$ if and only if the underlying category $U(\mathcal{C})$ has all pullbacks and maps $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ are marked precisely when their images are a pullback squares.
+
+  Let us unfold what it means that $\mathrm{sSet}(\mathbf{Pb_i}, \mathcal{C})$ has the right lifting property against $\partial \Delta^n \hookrightarrow \Delta^n$ for $i = 0, 1, 2$ and $n = 0, 1, 2$.
+  \begin{itemize}
+    \item
+      For $i = 0$ and $n = 0$ this is equivalent to images of marked maps $\mathrm{Pb} \rightarrow U(\mathcal{C})$ being commutative squares.
+    \item
+      For $i = 0$ and $n = 1$ or $n = 2$ the condition is vacuous.
+    \item
+      For $i = 1$ and $n = 0$ it says that every cospan $\cdot \xrightarrow{f_1} \cdot \xleftarrow{f_2} \cdot$ in $U(\mathcal{C})$ can be completed to a marked square.
+    \item
+      For $i = 1$ and $n = 1$ it says that every isomorphism of the lower cospans of two marked squares can be extended to an isomorphism of the full squares.
+    \item
+      For $i = 1$ and $n = 2$ it says that triangles of isomorphisms of marked squares commute as soon if their restrictions to cospans comute.
+    \item
+      For $i = 2$ and $n = 0$ it says that every square completing the cospan of a marked square factors via the marked square.
+    \item
+      For $i = 2$ and $n = 1$ it says that factorizations as in the case $i = 2$, $n = 0$ are compatible with isomorphisms of marked squares and completions of their cospans.
+    \item
+      For $i = 2$ and $n = 2$ the condition is vacuous.
+  \end{itemize}
+  Now suppose that these conditions are satisfied.
+  Then every marked square is a pullback square:
+  Marked square commute by the condition for $n = 0, i = 0$.
+  The case $n = 2, i = 1$ guarantees that every cone over the lower cospan of a marked square factors via the marked square, and by $n = 2, i = 2$ instantiated with the identity isomorphism implies uniquness of the factorization.
+  $\mathcal{C}$ has all pullbacks by the condition for $i = 1, n = 0$.
+  Finally, if marked squares are stable under homotopy (i.e.\@ isomorphism), then all pullback squares will be marked because they are isomorphic to the marked squares over their cospans by the condition for $i = 1, n = 0$.
+
+  On the other hand, if $U(\mathcal{C})$ has all pullbacks and squares are marked if and only if they are pullback squares, then all of these conditions are satisfied, and marked squares are stable under isomorphism.
 \end{proof}
 
 \section{Strict lcc categories}
