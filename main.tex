@@ -285,16 +285,11 @@ The assignment $(m_X, X) \mapsto (\gamma(m_X), \gamma(X))$ is functorial.
   It follows by \cite[Theorem 4.85]{basic-concepts-of-enriched-category-theory} from the preservation of tensors and cotensors by $U$ that the 1-categorical adjunctions $(-)^\flat \dashv U$ and $U \dashv (-)^\flat$ extend to simplicial adjunctions.
 
   It remains to show that the tensoring $\mathrm{sSet} \times \mathcal{M}^i \rightarrow \mathcal{M}^i$ is a Quillen bifunctor.
-  For this we need to prove that if $f : S \rightarrowtail T$ is a cofibration of simplicial sets and $g : X \rightarrowtail Y$ is a cofibration of marked objects, then the canonical map $f \mathbin{\square} g$ in
+  For this we need to prove that if $f : S \rightarrowtail T$ is a cofibration of simplicial sets and $g : X \rightarrowtail Y$ is a cofibration of marked objects, then the canonical map
   \begin{equation}
-    \label{eq:tensor-pushout-product}
-    \begin{tikzcd}
-      S \otimes X \arrow[r] \arrow[d] \arrow[dr, phantom, near end, "\ulcorner"] & T \otimes X \arrow[d] \arrow[ddr, bend left=10] \\
-      S \otimes Y \arrow[r] \arrow[drr, bend right=10] & \cdot \arrow[dr, dashed, "f \mathbin{\square} g" description, label] \\
-      & & T \otimes Y
-    \end{tikzcd}
+    f \mathbin{\square} g : S \otimes Y \amalg_{S \otimes X} T \otimes X \rightarrow T \otimes Y
   \end{equation}
-  is a cofibration, and that it is a weak equivalence if at least one of $f$ and $g$ is furthermore a weak equivalence.
+  is a cofibration and a weak equivalence if at least one of $f$ and $g$ is furthermore a weak equivalence.
   The first part follows directly from the same property for the simplical enrichment of $\mathcal{M}$ and the fact that $U$ preserves tensors and pushouts, and reflects cofibrations.
 
   For the second part, we have in both cases $f \mathbin{\square} g$ is a weak equivalence when considered as morphism in $\mathcal{M}$ because $\mathcal{M}$ is a simplicial model category.
