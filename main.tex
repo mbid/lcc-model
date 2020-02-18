@@ -589,24 +589,24 @@ In order to speak of canonical choices of lcc structure, we need canonical lifts
 
 \begin{definition}[\cite{algebraic-models}]
   Let $\mathcal{M}$ be a combinatorial model category with set $J$ of generating trivial cofibrations.
-  An \emph{algebraically fibrant object} of $\mathcal{M}$ (with respect to $J$) consists of an object $X \in \operatorname{Ob} \mathcal{M}$ equipped with a choice of lifts against all morphisms $j \in J$.
-  Thus $X$ comes with choices of lifts $\ell_{j, a} : B \rightarrow X$ for all $j : A \rightarrow B$ in $J$ and $a : A \rightarrow X$ in $\mathcal{M}$ such that
+  An \emph{algebraically fibrant object} of $\mathcal{M}$ (with respect to $J$) consists of an object $G(X) \in \operatorname{Ob} \mathcal{M}$ equipped with a choice of lifts against all morphisms $j \in J$.
+  Thus $X$ comes with choices of lifts $\ell_X({j, a}) : B \rightarrow G(X)$ for all $j : A \rightarrow B$ in $J$ and $a : A \rightarrow G(X)$ in $\mathcal{M}$ such that
   \begin{equation}
     \begin{tikzcd}
-      A \arrow[d, "j"] \arrow[r, "a"] & X \\
-      B \arrow[ur, "{\ell_{j, a}}"']
+      A \arrow[d, "j"] \arrow[r, "a"] & G(X) \\
+      B \arrow[ur, "{\ell_X(j, a)}"']
     \end{tikzcd}
   \end{equation}
   commutes.
-  A morphism of algebraically fibrant objects $f : (X, \ell) \rightarrow (X', \ell')$ is a morphism $f : X \rightarrow X'$ that preserves the lifts $\ell$, in the sense that $f\ell_{j, a} = \ell'_{fj, fa}$ for all $j$ and $a$.
+  A morphism of algebraically fibrant objects $f : X \rightarrow Y$ is a morphism $f : G(X) \rightarrow G(Y)$ in $\mathcal{M}$ that preserves the choices of lifts, in the sense that $f \ell_X(j, a) = \ell_Y(j, fa)$ for all $j : A \rightarrow B$ in $J$ and $a : A \rightarrow G(X)$.
   The category of algebraically fibrant objects is denoted by $\operatorname{Alg} \mathcal{M}$, and the evident forgetful functor $\operatorname{Alg} \mathcal{M} \rightarrow \mathcal{M}$ by $G$.
 \end{definition}
 
 Fix a set $J$ of generating trivial cofibrations of $\mathrm{Lcc}$.
 As all of the morphisms $\mathbf{T_1}$, $\mathbf{Pb_1}$ and $\mathbf{Pi_1}$ of definition \ref{def:lcc-axioms} are trivial cofibrations in $\mathrm{Lcc}$, we may assume that they are in $J$.
-Let $(\mathcal{C}, \ell)$ be an algebraically fibrant lcc sketch (with respect to $J$).
-Then $\mathcal{C}$ is a fibrant lcc sketch, i.e.\@ an lcc category.
-The lifts $\ell_{j, a}$ against generating trivial cofibrations $j \in J$ determine canonical lcc structure on $\mathcal{C}$:
+Let $\mathcal{C}$ be an algebraically fibrant lcc sketch (with respect to $J$).
+Then $G(\mathcal{C})$ is a fibrant lcc sketch, i.e.\@ an lcc category.
+The lifts $\ell_\mathcal{C}(j, a)$ against generating trivial cofibrations $j \in J$ determine canonical lcc structure on $\mathcal{C}$:
 The lift against $\mathbf{T_1}$ determines a canonical terminal object, lifts against $\mathbf{Pb_1}$ determine canonical pullback squares, and lifts against $\mathbf{Pi_1}$ determine canonical dependent products.
 Morphisms of fibrant lcc sketches preserve the universal properties of terminal objects, pullback squares and dependent products.
 Morphisms of algebraically fibrant lcc sketches furthermore preserve canonical choices of these universal objects:
@@ -618,6 +618,171 @@ They are strict lcc functors.
   Then $G$ is monadic with left adjoint $F$, and $\operatorname{Alg} \mathcal{M}$ is a locally presentable category.
   The model structure of $\mathcal{M}$ can be transferred along the adjunction $F \dashv G$ to $\operatorname{Alg} \mathcal{M}$, making $\operatorname{Alg} \mathcal{M}$ a combinatorial model category and $F \dashv G$ a Quillen equivalence.
 \end{theorem}
+
+\begin{lemma}
+  \label{lem:simplicial-enrichment-from-simplicial-objects}
+  Let $\mathcal{C}$ be a category and let $S : \mathcal{C} \rightarrow \mathcal{C}^{\Delta^\mathrm{op}}$ be a functor assigning to every object $X$ in $\mathcal{C}$ a simplicial object
+  \begin{equation}
+    \begin{tikzcd}
+      X_0 \arrow[r] & X_1 \arrow[l, shift left] \arrow[l, shift right] \arrow[r, shift left] \arrow[r] \arrow[r, shift right] & \dots
+    \end{tikzcd}
+  \end{equation}
+  in $\mathcal{C}$ such that $X_0 = X$.
+  Then
+  \begin{equation}
+    \mathrm{Hom}(\Delta^n, \mathcal{C}(X, Y)) = \mathrm{Hom}(X_0, Y_n)
+  \end{equation}
+  defines a simplicial enrichment on $\mathcal{C}$.
+  $\mathcal{C}$ has all powers, and powers by simplices can be computed as $X^{\Delta^n} = X_n$.
+\end{lemma}
+\begin{proof}
+  \todo{See proof of lemma \ref{lem:algebraically-fibrant-lproper-simplicial}}.
+\end{proof}
+
+\begin{lemma}
+  \label{lem:algebraically-fibrant-lproper-simplicial}
+  Let $\mathcal{M}$ be as in theorem \ref{th:algebraically-fibrant-model-category}.
+  \begin{enumerate}
+    \item
+      \label{itm:algebraic-left-proper}
+      If $\mathcal{M}$ is a left proper model category, then $\mathcal{M}^i$ is a left proper model category.
+      \todo{Is this needed? Looks nice as it is because it's similar to the analogue for marked objects.}
+    \item
+      \label{itm:algebraic-simplicial}
+      Suppose that $\mathcal{M}$ is a simplicial model category.
+      Then $\operatorname{Alg} \mathcal{M}$ has the structure of a simplicial model category such that the adjunction $F \dashv G$ lifts to a simplicial Quillen adjunction.
+  \end{enumerate}
+\end{lemma}
+\begin{proof}
+  \emph{\ref{itm:algebraic-left-proper}.}
+  \todo{TODO}
+
+  \emph{\ref{itm:algebraic-simplicial}.}
+  \todo{Tear out the part about the well-definedness of the simplicial enrichment to lemma \ref{lem:simplicial-enrichment-from-simplicial-objects}.}
+  We proceed as follows:
+  First we define by induction over $n$ for every algebraically fibrant object $X$ and simplex $\Delta^n$ an algebraically fibrant object $X^{\Delta^n}$ with underlying object $G(X)^{\Delta^n}$ such that the following holds:
+  \begin{enumerate}
+    \item
+      \label{itm:strict-faces-degeneracies}
+      For every $X$, the morphisms occuring in the simplicial object
+      \begin{equation}
+        \begin{tikzcd}
+          G(X^{\Delta^0}) \arrow[r] & G(X^{\Delta^1}) \arrow[l, shift left] \arrow[l, shift right] \dots
+        \end{tikzcd}
+      \end{equation}
+      in $\mathcal{M}$ are morphisms of algebraically fibrant objects.
+    \item
+      \label{itm:strict-functorial-powers}
+      For every morphism $f : X \rightarrow Y$ of algebraically fibrant objects and $n \geq 0$, the canonical map
+      \begin{equation}
+        G(f)^{\Delta^n} : G(X^{\Delta^n}) \rightarrow G(Y^{\Delta^n})
+      \end{equation}
+      is a morphism of algebraically fibrant objects.
+  \end{enumerate}
+  We then define 
+  \begin{equation}
+    \label{eq:simplicial-enrichment-from-powers}
+    \mathrm{Hom}(\Delta^n, (\operatorname{Alg} \mathcal{M})(X, Y)) = \mathrm{Hom}(X, Y^{\Delta^n}),
+  \end{equation}
+  which is a simplicial set by \ref{itm:strict-faces-degeneracies}.
+  The composition of $n$-simplices $f : X \rightarrow Y^{\Delta^n}$ and $g : Y \rightarrow Z^{\Delta^n}$ is defined as
+  \begin{equation}
+    \begin{tikzcd}
+      g \circ f : X \arrow[r, "f"] & Y^{\Delta^n} \arrow[r, "g^{\Delta^n}"] & (Z^{\Delta^n})^{\Delta^n} \arrow[r, "\cong"] & Z^{\Delta^n \times \Delta^n} \arrow[r, "Y^{\delta}"] & Z^{\Delta^n},
+    \end{tikzcd}
+  \end{equation}
+  where $\delta : \Delta^n \rightarrow \Delta^n \times \Delta^n$ is the diagonal.
+  This restricts to the composition of morphisms in $\operatorname{Alg} \mathcal{M}$ for $n = 0$.
+
+  By construction, $X^{\Delta^n}$ is the power of $X$ by $\Delta^n$ in $\operatorname{Alg} \mathcal{M}$.
+  In particular, because every simplicial set is a colimit of simplices, $\operatorname{Alg} \mathcal{M}$ has all powers, and $G$ preserves them.
+  It follows from \todo{basic enriched category theory} that the adjunction $F \dashv G$ lifts to a simplicial adjunction, from which it follows by monadicity of $G$ that $\operatorname{Alg} \mathcal{M}$ also has tensors \todo{that's probably also in enriched category theory; we also need that $G$ is monadic as \emph{enriched} functor}.
+  Finally, for any cofibration $f : S \rightarrowtail T$ of simplicial sets and fibration $g : X \twoheadrightarrow Y$ of algebraically fibrant objects, the canonical map
+  \begin{equation}
+    A^T \rightarrow A^S \times_{B^S} B^T
+  \end{equation}
+  is a fibration and a weak equivalence if at least on of $f$ and $g$ are weak equivalences because $G$ preserves pullbacks and tensors, and reflects fibrations and weak equivalences.
+  Thus $\operatorname{Alg} \mathcal{M}$ is a simplicial model category.
+
+  Let $j : A \rightarrow B$ be in $J$, let $n \geq 0$ and denote by $b_n : \partial \Delta^n \rightarrow \Delta^n$ the boundary inclusion.
+  Because $\mathcal{M}$ is a simplicial model category, the morphism
+  \begin{equation}
+    b_n \mathbin{\square} j : \Delta^n \otimes A \amalg_{\partial \Delta^n \otimes A} \partial \Delta^n \otimes B \rightarrow \Delta^n \otimes B
+  \end{equation}
+  is a trivial cofibration.
+  Fix once and for all for each $n \geq 0$ and $j \in J$ a way to write $b_n \mathbin{\square} j$ as an element of the saturated class generated by $J$.
+  Thus we fix a transfinite composition
+  \begin{equation}
+    \label{eq:transfinite-composition}
+    b_n \mathbin{\square} j : C_0 \xrightarrow{c_0} C_1 \xrightarrow{c_1} \dots \rightarrow C_\beta \xrightarrow{c_\beta} \dots \rightarrow \operatorname{colim}_{\beta < \lambda} C_\beta
+  \end{equation}
+  and diagrams
+  \begin{equation}
+    \label{eq:pushout-retract}
+    \begin{tikzcd}
+      A' \arrow[d, "j'"] \arrow[r] \arrow[dr, phantom, near end, "\ulcorner"] & D \arrow[d] \arrow[r, shift left] & C_\beta \arrow[l, shift left] \arrow[d, "c_\beta"] \\
+      B' \arrow[r] & E \arrow[r, shift left] & C_{\beta + 1} \arrow[l, shift left]
+    \end{tikzcd}
+  \end{equation}
+  exhibiting $c_\beta$ as retract of a pushout of some $j' \in J$, for each $j \in J$ and $n \geq 0$.
+
+  Let $(G(X), \ell_X)$ be an algebraically fibrant object.
+  Then the function $\ell_X$ assigning canonical choices of lifts against morphisms in $J$ can be canonically extended to a function on morphisms of the form $b_n \mathbin{\square} j$ using the data \eqref{eq:transfinite-composition} and \eqref{eq:pushout-retract}:
+  One first extends $\ell_X$ to morphisms $c_\beta$ using the diagram \eqref{eq:pushout-retract} and then to their transfinite compositions by taking colimits.
+  Because these lifts are defined in terms of $\ell_X(-, j')$ for various $j' \in J$, they will be preserved by morphisms of algebraically fibrant objects.
+
+  Let us construct algebraically fibrant objects $X^{\Delta^n}$ by recursion over $n$.
+  For $n = 0$, we take $X^{\Delta^n} = X$.
+  Now suppose that $X^{\Delta^m}$ has been constructed and let $n = m + 1$.
+  Let $j : A \rightarrow B$ be in $J$ and let $a : A \rightarrow G(X)^{\Delta^n}$.
+  If $a$ factors as
+  \begin{equation}
+    \begin{tikzcd}
+      A \arrow[r, "a'"] & G(X)^{\Delta^{m}} \arrow[r, "G(X)^{s_i}"] & G(X)^{\Delta^{n}}
+    \end{tikzcd}
+  \end{equation}
+  for some degeneracy $s_i : \Delta^n \rightarrow \Delta^m$, then we define
+  \begin{equation}
+    \ell_{X^{\Delta^n}}(a, j) = G(X)^{s_i} \circ \ell_X^{\Delta^n}(j, a')
+  \end{equation}
+  in terms of the canonical lift of $X^{\Delta^m}$.
+  Otherwise, $a$ does not factor via $X^{\Delta^m}$.
+  Lifts in the two diagrams
+  \begin{mathpar}
+    \begin{tikzcd}
+      A \arrow[r, "a"] \arrow[d, "j"'] & G(X)^{\Delta^n} \\
+      B \arrow[ur, dashed]
+    \end{tikzcd}
+    \and
+    \begin{tikzcd}
+      \Delta^n \otimes A \arrow[r, "\bar a"] \arrow[d, "\Delta^n \otimes j"'] & G(X) \\
+      \Delta^n \otimes B \arrow[ur, dashed]
+    \end{tikzcd}
+  \end{mathpar}
+  are in bijection by definition of tensor and power.
+  For each face map $d_i : \Delta^m \rightarrow \Delta^n$, we obtain canonical lifts $\alpha_i$ in
+  \begin{equation}
+    \begin{tikzcd}
+      \Delta^m \otimes A \arrow[r, "d_i \otimes A"] \arrow[d, "\Delta^m \otimes j"'] & \Delta^n \otimes A \arrow[r, "\bar a"] & G(X) \\
+      \Delta^m \otimes B. \arrow[urr, dashed, "\alpha_i"']
+    \end{tikzcd}
+  \end{equation}
+  as mates of canonical lifts of $X^{\Delta^m}$.
+  By the restriction of property \ref{itm:strict-faces-degeneracies} for dimension $< n$, the $\alpha_i$ agree on common $(n - 2)$-dimensional faces and hence glue to a map $\partial \Delta^n \otimes B \rightarrow G(X)$.
+  We now define $\ell_{X^{\Delta^n}}(j, a)$ to be the mate of the canonical lift
+  \begin{equation}
+    \begin{tikzcd}
+      \partial \Delta^n \otimes A \amalg_{\partial \Delta^n \otimes A} \Delta^n \otimes B \arrow[d, "b_n \mathbin{\square} j"'] \arrow[rr] & & G(X) \\
+      \Delta^n \otimes B \arrow[urr, dashed]
+    \end{tikzcd}
+  \end{equation}
+  of $X$ against $b_n \mathbin{\square} j$ that we constructed earlier in the proof.
+
+  Property \ref{itm:strict-faces-degeneracies} is satisfied by construction:
+  The canonical lifts of powers $X^{\Delta^n}$ are compatible with degeneracy maps because of our case distinction on whether a map $a : A \rightarrow X^{\Delta^n}$ factors via $X^{\Delta^{n - 1}}$, and they are compatible with face maps because we defined them by extending the lifts of restrictions to the faces $X^{\Delta^{n - 1}}$.
+  Property \ref{itm:strict-faces-degeneracies} holds because only canonical lifts (with respect to our fixed choice of diagrams \eqref{eq:transfinite-composition} and \eqref{eq:pushout-retract}) which are preserved by morphisms of algebraically fibrant objects were used in the construction.
+\end{proof}
+
 Thus with theorem \ref{th:algebraically-fibrant-model-category} we have found an equivalent model for the category of lcc categories:
 \begin{definition}
   The model category of strict lcc categories and strict lcc functors is given by $\mathrm{sLcc} = \operatorname{Alg} \mathrm{Lcc}$.
