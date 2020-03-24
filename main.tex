@@ -688,12 +688,45 @@ They are strict lcc functors.
   The composition of $n$-simplices $f : X \rightarrow Y^{\Delta^n}$ and $g : Y \rightarrow Z^{\Delta^n}$ is defined as
   \begin{equation}
     \begin{tikzcd}
-      g \circ f : X \arrow[r, "f"] & Y^{\Delta^n} \arrow[r, "g^{\Delta^n}"] & (Z^{\Delta^n})^{\Delta^n} \arrow[r, "\cong"] & Z^{\Delta^n \times \Delta^n} \arrow[r, "Y^{\delta}"] & Z^{\Delta^n},
+      g \circ f : X \arrow[r, "f"] & Y^{\Delta^n} \arrow[r, "g^{\Delta^n}"] & (Z^{\Delta^n})^{\Delta^n} \arrow[r, "\cong"] & Z^{\Delta^n \times \Delta^n} \arrow[r, "Z^{\delta}"] & Z^{\Delta^n},
     \end{tikzcd}
   \end{equation}
   where $\delta : \Delta^n \rightarrow \Delta^n \times \Delta^n$ is the diagonal.
-  This restricts to the composition of morphisms in $\operatorname{Alg} \mathcal{M}$ for $n = 0$.
+  $g^{\Delta^n}$ is preserves canonical lifts by \ref{itm:strict-functorial-powers}.
+  If now $Z^\delta$ would preserve them, then composition would be well-defined.
+  \todo{\bf Unfortunately this is unlikely to be true.}
+  Let $j : A \rightarrow B$ and let $A \rightarrow (X^{\Delta^n})^{\Delta^n}$ be a morphism.
+  We would need to show that
+  \begin{equation}
+    \begin{tikzcd}
+      \Delta^n \otimes A \arrow[d] \arrow[r, "\delta \otimes A"] & \Delta^n \times \Delta^n \otimes A \arrow[d] \arrow[r] & X \\
+      \Delta^n \otimes B \arrow[r, "\delta \otimes B"] \arrow[urr, dashed] & \Delta^n \times \Delta^n \otimes B \arrow[ur, dashed]
+    \end{tikzcd}
+  \end{equation}
+  commutes, where the two dashed arrows are defined as transposes of lifts for $X^{\Delta^n}$ and $(X^{\Delta^n})^{\Delta^n}$.
+  Unfolding the definitions, this amounts to showing that the dashed arrows in the diagram which can be found in \texttt{diagonal-strictness-failure.pdf}.
+  There $A' \rightarrow B'$ and $A'' \rightarrow B''$ are the chosen transfinite compositions of $J$ from which are part of the indicated chosen pushout squares.
+  But there appears to be no relation between these two morphisms.
+  If something was known about them, then universal properties of pushouts could be used, but without it we're stuck here.
 
+  A solution to this problem could be to change the definition of algebraically fibrant object.
+  At the moment these are the algebras for a fibrant replacement monad.
+  Maybe they could be made algebras for a \emph{simplicial} monad?
+  Then the resulting category would automatically be simplicial.
+  Maybe such a category of simplicial algebras could be described as objects $X$ with chosen lifts $\ell_S(j, a)$ against morphisms $S \otimes j : S \otimes A \rightarrow S \otimes B$ for generating trivial cofibrations $j$ for products of simplices or maybe even general simplicial sets $S$.
+  These would need to be compatible with at least some morphisms in $S$.
+  One could imagine defining the lifts on fibrant objects by induction over the dimension for finite $S$:
+  If lifts for simplicial sets of dimension $< n$ are constructed, we would need to construct the lifts for $S$ of dimension $n$ such that they are compatible with the inclusion $S^{< n} \rightarrow S$, i.e.
+  \begin{equation}
+    \begin{tikzcd}
+      S \otimes A \arrow[r] \arrow[d] & X \\
+      S \otimes A \amalg_{S^{< n} \otimes A} S^{< n} \otimes B \arrow[d] \arrow[ur] \\
+      S \otimes B \arrow[uur, dashed]
+    \end{tikzcd}
+  \end{equation}
+  where the middle morphism from left to right is induced by the already defined lifts in dimension $\leq n$ and the dashed arrow is then given by some canonical way to fill up the $n$-cells of $S$.
+
+  But now onto the construction of the simplicial objects $n \mapsto X^{\Delta^n}$ which unfortunately don't seem to introduce simplicial structre on the category.
   By construction, $X^{\Delta^n}$ is the power of $X$ by $\Delta^n$ in $\operatorname{Alg} \mathcal{M}$.
   In particular, because every simplicial set is a colimit of simplices, $\operatorname{Alg} \mathcal{M}$ has all powers, and $G$ preserves them.
   It follows from \todo{basic enriched category theory} that the adjunction $F \dashv G$ lifts to a simplicial adjunction, from which it follows by monadicity of $G$ that $\operatorname{Alg} \mathcal{M}$ also has tensors \todo{that's probably also in enriched category theory; we also need that $G$ is monadic as \emph{enriched} functor}.
