@@ -637,37 +637,17 @@ They are strict lcc functors.
 \end{theorem}
 
 \begin{lemma}
-  \label{lem:simplicial-enrichment-from-simplicial-objects}
-  Let $\mathcal{C}$ be a category and let $S : \mathcal{C} \rightarrow \mathcal{C}^{\Delta^\mathrm{op}}$ be a functor assigning to every object $X$ in $\mathcal{C}$ a simplicial object
-  \begin{equation}
-    \begin{tikzcd}
-      X_0 \arrow[r] & X_1 \arrow[l, shift left] \arrow[l, shift right] \arrow[r, shift left] \arrow[r] \arrow[r, shift right] & \dots
-    \end{tikzcd}
-  \end{equation}
-  in $\mathcal{C}$ such that $X_0 = X$.
-  Then
-  \begin{equation}
-    \mathrm{Hom}(\Delta^n, \mathcal{C}(X, Y)) = \mathrm{Hom}(X_0, Y_n)
-  \end{equation}
-  defines a simplicial enrichment on $\mathcal{C}$.
-  $\mathcal{C}$ has all powers, and powers by simplices can be computed as $X^{\Delta^n} = X_n$.
-\end{lemma}
-\begin{proof}
-  \todo{See proof of lemma \ref{lem:algebraically-fibrant-lproper-simplicial}}.
-\end{proof}
-
-\begin{lemma}
   \label{lem:algebraically-fibrant-lproper-simplicial}
   Let $\mathcal{M}$ be as in theorem \ref{th:algebraically-fibrant-model-category}.
   \begin{enumerate}
     \item
       \label{itm:algebraic-left-proper}
-      If $\mathcal{M}$ is a left proper model category, then $\mathcal{M}^i$ is a left proper model category.
+      If $\mathcal{M}$ is a left proper model category, then $\operatorname{Alg} \mathcal{M}$ is a left proper model category.
       \todo{Is this needed? Looks nice as it is because it's similar to the analogue for marked objects.}
     \item
       \label{itm:algebraic-simplicial}
-      Suppose that $\mathcal{M}$ is a simplicial model category.
-      Then $\operatorname{Alg} \mathcal{M}$ has the structure of a simplicial model category such that the adjunction $F \dashv G$ lifts to a simplicial Quillen adjunction.
+      Suppose that $\mathcal{M}$ is a model $\mathrm{Gpd}$-category.
+      Then $\operatorname{Alg} \mathcal{M}$ has the structure of a model $\mathrm{Gpd}$-category, and the the adjunction $F \dashv G$ lifts to a Quillen $\mathrm{Gpd}$-adjunction.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -675,132 +655,64 @@ They are strict lcc functors.
   \todo{TODO}
 
   \emph{\ref{itm:algebraic-simplicial}.}
-  \todo{Tear out the part about the well-definedness of the simplicial enrichment to lemma \ref{lem:simplicial-enrichment-from-simplicial-objects}.}
-  We proceed as follows:
-  First we define by induction over $n$ for every algebraically fibrant object $X$ and simplex $\Delta^n$ an algebraically fibrant object $X^{\Delta^n}$ with underlying object $G(X)^{\Delta^n}$ such that the following holds:
-  \begin{enumerate}
-    \item
-      \label{itm:strict-faces-degeneracies}
-      For every $X$, the morphisms occuring in the simplicial object
-      \begin{equation}
-        \begin{tikzcd}
-          G(X^{\Delta^0}) \arrow[r] & G(X^{\Delta^1}) \arrow[l, shift left] \arrow[l, shift right] \dots
-        \end{tikzcd}
-      \end{equation}
-      in $\mathcal{M}$ are morphisms of algebraically fibrant objects.
-    \item
-      \label{itm:strict-functorial-powers}
-      For every morphism $f : X \rightarrow Y$ of algebraically fibrant objects and $n \geq 0$, the canonical map
-      \begin{equation}
-        G(f)^{\Delta^n} : G(X^{\Delta^n}) \rightarrow G(Y^{\Delta^n})
-      \end{equation}
-      is a morphism of algebraically fibrant objects.
-  \end{enumerate}
-  We then define 
-  \begin{equation}
-    \label{eq:simplicial-enrichment-from-powers}
-    \mathrm{Hom}(\Delta^n, (\operatorname{Alg} \mathcal{M})(X, Y)) = \mathrm{Hom}(X, Y^{\Delta^n}),
-  \end{equation}
-  which is a simplicial set by \ref{itm:strict-faces-degeneracies}.
-  The composition of $n$-simplices $f : X \rightarrow Y^{\Delta^n}$ and $g : Y \rightarrow Z^{\Delta^n}$ is defined as
-  \begin{equation}
-    \begin{tikzcd}
-      g \circ f : X \arrow[r, "f"] & Y^{\Delta^n} \arrow[r, "g^{\Delta^n}"] & (Z^{\Delta^n})^{\Delta^n} \arrow[r, "\cong"] & Z^{\Delta^n \times \Delta^n} \arrow[r, "Y^{\delta}"] & Z^{\Delta^n},
-    \end{tikzcd}
-  \end{equation}
-  where $\delta : \Delta^n \rightarrow \Delta^n \times \Delta^n$ is the diagonal.
-  This restricts to the composition of morphisms in $\operatorname{Alg} \mathcal{M}$ for $n = 0$.
+  Let $X$ and $Y$ be algebraically fibrant objects.
+  We define the mapping groupoid $(\operatorname{Alg} \mathcal{M})(X, Y)$ to be the full subgroupoid of $\mathcal{M}(G(X), G(Y))$ given by the maps of algebraically fibrant objects $X \rightarrow Y$.
 
-  By construction, $X^{\Delta^n}$ is the power of $X$ by $\Delta^n$ in $\operatorname{Alg} \mathcal{M}$.
-  In particular, because every simplicial set is a colimit of simplices, $\operatorname{Alg} \mathcal{M}$ has all powers, and $G$ preserves them.
-  It follows from \todo{basic enriched category theory} that the adjunction $F \dashv G$ lifts to a simplicial adjunction, from which it follows by monadicity of $G$ that $\operatorname{Alg} \mathcal{M}$ also has tensors \todo{that's probably also in enriched category theory; we also need that $G$ is monadic as \emph{enriched} functor}.
-  Finally, for any cofibration $f : S \rightarrowtail T$ of simplicial sets and fibration $g : X \twoheadrightarrow Y$ of algebraically fibrant objects, the canonical map
+  Because $\mathrm{Gpd}$ is generated under colimits by the walking isomorphism $\mathcal{I}$, it will follow from the existence of powers $X^\mathcal{I}$ that $\operatorname{Alg} \mathcal{M}$ is complete as a $\mathrm{Gpd}$-category.
+  These powers are constructed such that they commute with $G$, i.e.\@ we have $G(X^\mathcal{G}) = G(X)^\mathcal{G}$.
+  The lifts $\ell = \ell_{X^\mathcal{I}}(j, a) : B \rightarrow G(X)^\mathcal{I}$ for $j : A \rightarrow B$ and $a : A \rightarrow G(X)^\mathcal{I}$ are defined as indicated in the following diagram:
   \begin{equation}
-    A^T \rightarrow A^S \times_{B^S} B^T
+    \begin{tikzcd}
+      A \arrow[r, "a"] \arrow[d, "j"'] & G(X)^\mathcal{I} \arrow[d, "G(X)^{\{0, 1\}}"] \\
+      B \arrow[r, "{\langle \ell_0, \ell_1 \rangle}"'] \arrow[ur, dashed, "\ell"] & G(X)^2
+    \end{tikzcd}
+    \label{eq:lift-in-power}
   \end{equation}
-  is a fibration and a weak equivalence if at least on of $f$ and $g$ are weak equivalences because $G$ preserves pullbacks and tensors, and reflects fibrations and weak equivalences.
-  Thus $\operatorname{Alg} \mathcal{M}$ is a simplicial model category.
+  Here the right vertical map is given by restriction along the inclusion $2 \subseteq \mathcal{I}$ of the discrete groupoid with two objects into $\mathcal{I}$.
+  There is a canonical isomorphism $G(X)^2 \cong G(X) \times G(X)$, and $\ell_i$ is defined as $\ell_X(j, X^{\{i\}} \circ a)$, i.e.\@ as canonical lift of $X$ after restriction to one of the two endpoints of $\mathcal{I}$.
+  Because the inclusion $2 \subseteq \mathcal{I}$ is a cofibration, the right vertical map $G(X)^{\{0, 1\}}$ is a fibration, thus there exists a diagonal lift $\ell$ as indicated.
 
-  Let $j : A \rightarrow B$ be in $J$, let $n \geq 0$ and denote by $b_n : \partial \Delta^n \rightarrow \Delta^n$ the boundary inclusion.
-  Because $\mathcal{M}$ is a simplicial model category, the morphism
+  In fact $\ell$ as defined as a lift in \eqref{eq:lift-in-power} is unique:
+  Any other lift $\ell'$ will be homotopic to $\ell$.
+  This homotopy can be described as a commuting square
   \begin{equation}
-    b_n \mathbin{\square} j : \Delta^n \otimes A \amalg_{\partial \Delta^n \otimes A} \partial \Delta^n \otimes B \rightarrow \Delta^n \otimes B
-  \end{equation}
-  is a trivial cofibration.
-  Fix once and for all for each $n \geq 0$ and $j \in J$ a way to write $b_n \mathbin{\square} j$ as an element of the saturated class generated by $J$.
-  Thus we fix a transfinite composition
-  \begin{equation}
-    \label{eq:transfinite-composition}
-    b_n \mathbin{\square} j : C_0 \xrightarrow{c_0} C_1 \xrightarrow{c_1} \dots \rightarrow C_\beta \xrightarrow{c_\beta} \dots \rightarrow \operatorname{colim}_{\beta < \lambda} C_\beta
-  \end{equation}
-  and diagrams
-  \begin{equation}
-    \label{eq:pushout-retract}
     \begin{tikzcd}
-      A' \arrow[d, "j'"] \arrow[r] \arrow[dr, phantom, near end, "\ulcorner"] & D \arrow[d] \arrow[r, shift left] & C_\beta \arrow[l, shift left] \arrow[d, "c_\beta"] \\
-      B' \arrow[r] & E \arrow[r, shift left] & C_{\beta + 1} \arrow[l, shift left]
+      \ell_0 \arrow[r, "\ell"] \arrow[d, equals] & \ell_1 \arrow[d, equals] \\
+      \ell_0 \arrow[r, "\ell'"] & \ell_1 \\
     \end{tikzcd}
   \end{equation}
-  exhibiting $c_\beta$ as retract of a pushout of some $j' \in J$, for each $j \in J$ and $n \geq 0$.
+  in $\mathcal{M}(B, G(X))$, which implies that $\ell = \ell'$.
+  From uniqueness of $\ell$ it follows that a map $G(Y) \rightarrow G(X)^\mathcal{I}$ preserves canonical lifts if and only if the two composites
+  \begin{equation}
+    \begin{tikzcd}[column sep=large]
+      G(Y) \arrow[r] & G(X)^\mathcal{I} \arrow[r, "G(X)^{\{i\}}"] & G(X)
+    \end{tikzcd}
+  \end{equation}
+  for $i = 0, 1$ preserve canonical lifts.
+  Thus the canonical isomorphism
+  \begin{equation}
+    \mathrm{Gpd}(\mathcal{I}, \mathcal{M}(G(Y), G(X))) \cong \mathcal{M}(G(Y), G(X)^\mathcal{I})
+  \end{equation}
+  restricts to an isomorphism
+  \begin{equation}
+    \mathrm{Gpd}(\mathcal{I}, (\operatorname{Alg} \mathcal{M})(Y, X)) \cong (\operatorname{Alg} \mathcal{M})(Y, X^\mathcal{I}).
+  \end{equation}
 
-  Let $(G(X), \ell_X)$ be an algebraically fibrant object.
-  Then the function $\ell_X$ assigning canonical choices of lifts against morphisms in $J$ can be canonically extended to a function on morphisms of the form $b_n \mathbin{\square} j$ using the data \eqref{eq:transfinite-composition} and \eqref{eq:pushout-retract}:
-  One first extends $\ell_X$ to morphisms $c_\beta$ using the diagram \eqref{eq:pushout-retract} and then to their transfinite compositions by taking colimits.
-  Because these lifts are defined in terms of $\ell_X(-, j')$ for various $j' \in J$, they will be preserved by morphisms of algebraically fibrant objects.
+  It follows by \cite[theorem 4.85]{basic-concepts-of-enriched-category-theory} and the preservation of powers by $G$ that the adjunction $F \dashv G$ lifts to a $\mathrm{Gpd}$-adjunction.
+  It is proved in \cite{algebraic-models} that $G$, when considered as a functor of ordinary categories, is monadic using Beck's monadicity theorem.
+  The only additional assumption for the enriched version of Beck's theorem we have to check is that the coequalizer of a $G$-split pair of morphisms as constructed in \cite{algebraic-models} is a colimit also in the enriched sense.
+  This follows immediately from the fact that $G$ is full and faithful on 2-cells.
+  $G$ is $\mathrm{Gpd}$-monadic and accessible (see \todo{where?}), so $\operatorname{Alg} \mathcal{M}$ is $\mathrm{Gpd}$-cocomplete by \todo{two-dimensional monad theory}.
 
-  Let us construct algebraically fibrant objects $X^{\Delta^n}$ by recursion over $n$.
-  For $n = 0$, we take $X^{\Delta^n} = X$.
-  Now suppose that $X^{\Delta^m}$ has been constructed and let $n = m + 1$.
-  Let $j : A \rightarrow B$ be in $J$ and let $a : A \rightarrow G(X)^{\Delta^n}$.
-  If $a$ factors as
+  It remains to show that $\operatorname{Alg} \mathcal{M}$ is groupoid enriched also in the model categorical sense.
+  For this it suffices to remark that $G$ preserves limits and that $G$ preserves and reflects fibrations and weak equivalences, so the map
   \begin{equation}
-    \begin{tikzcd}
-      A \arrow[r, "a'"] & G(X)^{\Delta^{m}} \arrow[r, "G(X)^{s_i}"] & G(X)^{\Delta^{n}}
-    \end{tikzcd}
+    X^\mathcal{H} \rightarrow X^\mathcal{G} \times_{Y^\mathcal{G}} Y^\mathcal{H}
   \end{equation}
-  for some degeneracy $s_i : \Delta^n \rightarrow \Delta^m$, then we define
-  \begin{equation}
-    \ell_{X^{\Delta^n}}(a, j) = G(X)^{s_i} \circ \ell_X^{\Delta^n}(j, a')
-  \end{equation}
-  in terms of the canonical lift of $X^{\Delta^m}$.
-  Otherwise, $a$ does not factor via $X^{\Delta^m}$.
-  Lifts in the two diagrams
-  \begin{mathpar}
-    \begin{tikzcd}
-      A \arrow[r, "a"] \arrow[d, "j"'] & G(X)^{\Delta^n} \\
-      B \arrow[ur, dashed]
-    \end{tikzcd}
-    \and
-    \begin{tikzcd}
-      \Delta^n \otimes A \arrow[r, "\bar a"] \arrow[d, "\Delta^n \otimes j"'] & G(X) \\
-      \Delta^n \otimes B \arrow[ur, dashed]
-    \end{tikzcd}
-  \end{mathpar}
-  are in bijection by definition of tensor and power.
-  For each face map $d_i : \Delta^m \rightarrow \Delta^n$, we obtain canonical lifts $\alpha_i$ in
-  \begin{equation}
-    \begin{tikzcd}
-      \Delta^m \otimes A \arrow[r, "d_i \otimes A"] \arrow[d, "\Delta^m \otimes j"'] & \Delta^n \otimes A \arrow[r, "\bar a"] & G(X) \\
-      \Delta^m \otimes B. \arrow[urr, dashed, "\alpha_i"']
-    \end{tikzcd}
-  \end{equation}
-  as mates of canonical lifts of $X^{\Delta^m}$.
-  By the restriction of property \ref{itm:strict-faces-degeneracies} for dimension $< n$, the $\alpha_i$ agree on common $(n - 2)$-dimensional faces and hence glue to a map $\partial \Delta^n \otimes B \rightarrow G(X)$.
-  We now define $\ell_{X^{\Delta^n}}(j, a)$ to be the mate of the canonical lift
-  \begin{equation}
-    \begin{tikzcd}
-      \partial \Delta^n \otimes A \amalg_{\partial \Delta^n \otimes A} \Delta^n \otimes B \arrow[d, "b_n \mathbin{\square} j"'] \arrow[rr] & & G(X) \\
-      \Delta^n \otimes B \arrow[urr, dashed]
-    \end{tikzcd}
-  \end{equation}
-  of $X$ against $b_n \mathbin{\square} j$ that we constructed earlier in the proof.
-
-  Property \ref{itm:strict-faces-degeneracies} is satisfied by construction:
-  The canonical lifts of powers $X^{\Delta^n}$ are compatible with degeneracy maps because of our case distinction on whether a map $a : A \rightarrow X^{\Delta^n}$ factors via $X^{\Delta^{n - 1}}$, and they are compatible with face maps because we defined them by extending the lifts of restrictions to the faces $X^{\Delta^{n - 1}}$.
-  Property \ref{itm:strict-faces-degeneracies} holds because only canonical lifts (with respect to our fixed choice of diagrams \eqref{eq:transfinite-composition} and \eqref{eq:pushout-retract}) which are preserved by morphisms of algebraically fibrant objects were used in the construction.
+  induced by a cofibration of groupoids $f : \mathcal{G} \rightarrowtail \mathcal{H}$ and a fibration $g : X \rightarrow Y$ in $\operatorname{Alg} \mathcal{M}$ is a fibration and a weak equivalence if either $f$ or $g$ is a weak equivalence.
 \end{proof}
 
-Thus with theorem \ref{th:algebraically-fibrant-model-category} we have found an equivalent model for the category of lcc categories:
+With theorem \ref{th:algebraically-fibrant-model-category} we have found an equivalent model for the category of lcc categories:
 \begin{definition}
   The model category of strict lcc categories and strict lcc functors is given by $\mathrm{sLcc} = \operatorname{Alg} \mathrm{Lcc}$.
   The canonical covariant cwf structure on $\mathrm{sLcc}$ is given by $\mathrm{Ty}(\Gamma) = \operatorname{Ob} \Gamma$ and $\mathrm{Tm}(\Gamma, \sigma) = \mathrm{Hom}_\Gamma(1, \sigma)$, where $1$ denotes the canonical terminal object of $\Gamma$.
