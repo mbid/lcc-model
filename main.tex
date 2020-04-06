@@ -250,7 +250,7 @@ The assignment $(m_X, X) \mapsto (\gamma(m_X), \gamma(X))$ is functorial.
       If $\mathcal{M}$ is a left proper model category, then $\mathcal{M}^i$ is a left proper model category.
     \item
       \label{itm:marked-simplicial}
-      If $\mathcal{M}$ is a simplicial model category, then $\mathcal{M}^i$ admits the structure of a simplicial model category such that $(-)^\flat \dashv U$ and $U \dashv (-)^\sharp$ lift to simplicial Quillen adjunctions.
+      If $\mathcal{M}$ is a model $\mathrm{Gpd}$-category, then $\mathcal{M}^i$ admits the structure of a model $\mathrm{Gpd}$-category such that $(-)^\flat \dashv U$ and $U \dashv (-)^\sharp$ lift to Quillen $\mathrm{Gpd}$-adjunctions.
   \end{enumerate}
 \end{lemma}
 \begin{proof}
@@ -279,31 +279,48 @@ The assignment $(m_X, X) \mapsto (\gamma(m_X), \gamma(X))$ is functorial.
   We have showed that $\gamma(f')$ is an isomorphism of marked objects in $\operatorname{Ho} \mathcal{M}$, thus $f'$ is a weak equivalence.
 
   \emph{\ref{itm:marked-simplicial}}.
-  The simplices of mapping spaces $\mathcal{M}^i(X, Y)$ are those simplices of $\mathcal{M}(U(X), U(Y))$ whose vertices are maps $U(X) \rightarrow U(Y)$ that preserve the markings.
-  The power $X^S$ of a marked object $X$ by a simplicial set $S$ is given by the power $U(X)^S$ in $\mathcal{M}$ in which $k : i(K) \rightarrow U(X)^S$ is marked if and only if the composite $K \rightarrow U(X^G) \xrightarrow{\mathrm{id}^s} U(X)$ is marked for every vertex $s : \Delta^0 \rightarrow S$.
-  Dually, the tensor $S \otimes X$ is given the underlying tensor $S \otimes U(X)$, and maps $k : K \rightarrow U(S \otimes X)$ are marked if and only if they factor as $K \xrightarrow{k} U(X) \xrightarrow{s \otimes \mathrm{id}} S \times U(X)$ for some $s : \Delta^0 \rightarrow S$ and $k$ marked in $U(X)$.
-  It follows by \cite[Theorem 4.85]{basic-concepts-of-enriched-category-theory} from the preservation of tensors and cotensors by $U$ that the 1-categorical adjunctions $(-)^\flat \dashv U$ and $U \dashv (-)^\flat$ extend to simplicial adjunctions.
+  Let $X$ and $Y$ be marked objects.
+  We define the mapping groupoid $\mathcal{M}^i(X, Y)$ as the full subgroupoid of $\mathcal{M}(G(X), G(Y))$ of marking preserving maps.
 
-  It remains to show that the tensoring $\mathrm{sSet} \times \mathcal{M}^i \rightarrow \mathcal{M}^i$ is a Quillen bifunctor.
-  For this we need to prove that if $f : S \rightarrowtail T$ is a cofibration of simplicial sets and $g : X \rightarrowtail Y$ is a cofibration of marked objects, then the canonical map
+  $\mathcal{M}^i$ is complete and cocomplete as a 1-category.
+  Thus if we construct tensors $\mathcal{G} \otimes X$ and powers $X^\mathcal{G}$ for all $X \in \operatorname{Ob} \mathcal{M}$ and $\mathcal{G} \in \operatorname{Ob} \mathrm{Gpd}$ it follows that $\mathcal{M}^i$ is also complete and cocomplete as a $\mathrm{Gpd}$-category.
+  The underlying object of powers and copowers is constructed in $\mathcal{M}$, i.e.\@ $G(\mathcal{G} \otimes X) = \mathcal{G} \otimes G(X)$ and $G(X^\mathcal{G}) = G(X)^\mathcal{G}$.
+  A map $k : i(K) \rightarrow X^\mathcal{G}$ is marked if and only if the composite
   \begin{equation}
-    f \mathbin{\square} g : S \otimes Y \amalg_{S \otimes X} T \otimes X \rightarrow T \otimes Y
+    \begin{tikzcd}
+      i(K) \arrow[r, "k"] & G(X)^\mathcal{G} \arrow[r, "X^v"] & G(X)^1 = G(X)
+    \end{tikzcd}
   \end{equation}
-  is a cofibration and a weak equivalence if at least one of $f$ and $g$ is furthermore a weak equivalence.
-  The first part follows directly from the same property for the simplical enrichment of $\mathcal{M}$ and the fact that $U$ preserves tensors and pushouts, and reflects cofibrations.
+  is marked for every $v \in \operatorname{Ob} \mathcal{G}$ (which we identify with a map $v : 1 \rightarrow \mathcal{G}$).
+  Similarly, a map $k : i(K) \rightarrow \mathcal{G} \otimes X$ is marked if and only if it factors as
+  \begin{equation}
+    \begin{tikzcd}
+      i(K) \arrow[r, "k_0"] & G(X) = 1 \otimes G(X) \arrow[r, "v \mathbin{\otimes} \mathrm{id}"] & \mathcal{G} \otimes G(X)
+    \end{tikzcd}
+  \end{equation}
+  for some object $v : 1 \rightarrow \mathcal{G}$ and marked $k_0$.
+  It follows by \cite[Theorem 4.85]{basic-concepts-of-enriched-category-theory} from the preservation of tensors and powers by $U$ that the 1-categorical adjunctions $(-)^\flat \dashv U$ and $U \dashv (-)^\flat$ extend to $\mathrm{Gpd}$-adjunctions.
 
-  For the second part, we have in both cases $f \mathbin{\square} g$ is a weak equivalence when considered as morphism in $\mathcal{M}$ because $\mathcal{M}$ is a simplicial model category.
-  Thus we only need to show that $f \mathbin{\square} g$ reflects a given marked morphism $k : i(K) \rightarrow T \otimes Y$ in $\operatorname{Ho} \mathcal{M}$.
-  It follows from the construction of $T \otimes Y$ that for any such $k$ there exists a vertex $t : \Delta^0 \rightarrow T$ such that $k = (t \otimes \mathrm{id}) \circ k_0$ for some marked map $k_0 : i(K) \rightarrow Y = \Delta^0 \otimes Y$.
+  It remains to show that the tensoring $\mathrm{Gpd} \times \mathcal{M}^i \rightarrow \mathcal{M}^i$ is a Quillen bifunctor.
+  For this we need to prove that if $f : \mathcal{G} \rightarrowtail \mathcal{H}$ is a cofibration of groupoids and $g : X \rightarrowtail Y$ is a cofibration of marked objects, then their pushout-product
+  \begin{equation}
+    f \mathbin{\square} g : \mathcal{G} \otimes Y \amalg_{\mathcal{G} \otimes X} \mathcal{H} \otimes X \rightarrow \mathcal{H} \otimes Y
+  \end{equation}
+  is a cofibration, and that it is a weak equivalence if either $f$ or $g$ is furthermore a weak equivalence.
+  The first part follows directly from the same property for the $\mathrm{Gpd}$-enrichment of $\mathcal{M}$ and the fact that $U$ preserves tensors and pushouts, and reflects cofibrations.
 
-  Assume first that $f$ is a trivial cofibration.
-  Then there exists vertex $s : \Delta^0 \rightarrow S$ such that $f(s)$ and $t$ are in the same path component of $T$.
-  Thus $k$ is (left) homotopic to $(f(s) \otimes \mathrm{id}) \circ k_0$, which factors via the marked map $(s \otimes \mathrm{id}) \circ k_0 : i(K) \rightarrow S \otimes Y$.
+  For the second part, we have in both cases that $f \mathbin{\square} g$ is a weak equivalence when considered as morphism in $\mathcal{M}$.
+  Thus we only need to show that $f \mathbin{\square} g$ reflects a given marked morphism $k : i(K) \rightarrow \mathcal{H} \otimes G(Y)$ in $\operatorname{Ho} \mathcal{M}$.
+  It follows from the construction of $\mathcal{H} \otimes Y$ that for any such $k$ there exists a vertex $w : 1 \rightarrow \mathcal{H}$ such that $k = (w \otimes \mathrm{id}) \circ k_0$ for some marked map $k_0 : i(K) \rightarrow G(Y)$.
+
+  Assume first that $f$ is a trivial cofibration, i.e.\@ an equivalence of groupoids that is injective on objects.
+  Then there exists an object $v : \Delta^0 \rightarrow S$ such that $f(v)$ and $w$ are equivalent in $\mathcal{H}$.
+  Thus $k$ is (left) homotopic to $(f(v) \otimes \mathrm{id}) \circ k_0$, which factors via the marked map $(v \otimes \mathrm{id}) \circ k_0 : i(K) \rightarrow \mathcal{G} \otimes G(Y)$.
   Thus $\gamma(f)$ reflects marked morphisms.
 
   Now assume that $g$ is a trivial cofibration.
-  Then $\gamma(g)$ reflects marked maps, i.e.\@ there exists marked $h_0 : i(K) \rightarrow X$ such that $\gamma(f)\gamma(h) = \gamma(k_0)$.
-  Thus the equivalence class of $(t \otimes \mathrm{id}) \circ h_0 : i(K) \rightarrow S \otimes X$ in $\operatorname{Ho} \mathcal{M}$ is marked and mapped to $\gamma(k)$ under postcomposition by $\gamma(f)$.
+  Then $\gamma(g)$ reflects marked maps, i.e.\@ there exists a marked map $h_0 : i(K) \rightarrow G(X)$ such that $\gamma(g)\gamma(h_0) = \gamma(h)$.
+  Thus the equivalence class of $(w \otimes \mathrm{id}) \circ h_0 : i(K) \rightarrow \mathcal{H} \otimes X$ in $\operatorname{Ho} \mathcal{M}$ is marked and mapped to $\gamma(k)$ under postcomposition by $\gamma(f)$.
 \end{proof}
 
 So far, the model structure is not aware of what kind of universal property marked diagrams are supposed to have, much like structures interpreting logical signatures are defined without reference to a set of axioms they might satisfy.
