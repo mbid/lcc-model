@@ -866,17 +866,44 @@ The first infinite cardinal $\omega$ satisfies the three conditions of theorem \
   The canonical covariant cwf structure on $\operatorname{Coa} \mathrm{sLcc}$ is defined by $\mathrm{Ty}((\Gamma, \lambda)) = \mathrm{Ty}(\Gamma)$ and $\mathrm{Tm}((\Gamma, \lambda), \sigma) = \mathrm{Tm}(\Gamma, \sigma)$ in terms of the canonical covariant cwf structure of $\mathrm{sLcc}$.
 \end{definition}
 
+Denote by $\eta : \mathrm{Id} \Rightarrow G F : \mathrm{Lcc} \rightarrow \mathrm{Lcc}$ and $\varepsilon : F G \Rightarrow \mathrm{Id} : \mathrm{sLcc} \rightarrow \mathrm{sLcc}$ the unit resp.\@ counit of the adjunction $F : \mathrm{Lcc} \leftrightarrows \mathrm{sLcc} : G$.
 \begin{lemma}
+  \label{lem:coalgebra-vs-eta}
   Let $\lambda : \Gamma \rightarrow F(G(\Gamma))$ be a coalgebra for $FG$.
-  Then there is a canonical natural isomorphism $\phi : G(\lambda) \cong \eta_{G(\Gamma)} : G(\Gamma) \rightarrow G(F(G(\Gamma)))$ for lcc functors, which is compatible with morphisms of $FG$-coalgebras.
+  Then there is a canonical natural isomorphism $\phi : G(\lambda) \cong \eta_{G(\Gamma)} : G(\Gamma) \rightarrow G(F(G(\Gamma)))$ of lcc functors which is compatible with morphisms of $FG$-coalgebras.
 \end{lemma}
 \begin{proof}
-  By one of the triangle identities and $\lambda$ being a coalgebra, we have
+  It suffices to construct a natural isomorphism
   \begin{equation}
-    G(\varepsilon_\Gamma \circ \lambda) = G(\varepsilon_\Gamma) \circ \eta_{G(\Gamma)} = \mathrm{Id} : G(\Gamma) \rightarrow G(\Gamma).
+    \psi : \mathrm{id}_{G(\Gamma)} \cong \eta_{G(\Gamma)} G(\varepsilon_\Gamma)
   \end{equation}
-  Because $F \dashv G$ is a Quillen equivalence, the composite $\eta_{G(\Gamma)} \circ G(\varepsilon_\Gamma) : G(\Gamma) \rightarrow G(\Gamma)$ is naturally isomorphic to the identity.
-  A natural isomorphism $\theta : G(F(G(\Gamma)) \rightarrow G(F(G(\Gamma)))^{\Delta^1}$ can be constructed explicitly using the inserter \todo{finish proof}.
+  of lcc endofunctors on $G(F(G(\Gamma)))$ for every strict lcc category $\Gamma$, because then
+  \begin{equation}
+    \phi = \psi G(\lambda) : \eta_{G(\Gamma)} = \eta_{G(\Gamma)} G(\varepsilon \lambda) \cong G(\lambda)
+  \end{equation}
+  for every coalgebra $\lambda : \Gamma \rightarrow F(G(\Gamma))$.
+
+  $\psi$ can be defined as filler of the commuting square
+  \begin{equation}
+    \begin{tikzcd}[column sep=large, row sep=large]
+      G(\Gamma) \arrow[d, "\eta"] \arrow[r, "s \eta"] & G(F(G(\Gamma)^\mathcal{I} \arrow[d] \\
+      G(F(G(\Gamma))) \arrow[r, "{\langle \mathrm{id}, \eta \varepsilon \rangle}"] \arrow[ur, dashed, "\psi"] & G(F(G(\Gamma)))^2.
+    \end{tikzcd}
+  \end{equation}
+  Here $s : G(F(G(\Gamma))) \rightarrow G(F(G(\Gamma)))$ denotes the identity isomorphism on $\mathrm{id}_{G(F(G(\Gamma)))}$, and the square commutes because
+  \begin{equation}
+    \langle \mathrm{id}, \eta \varepsilon \rangle \eta = \langle \eta, \eta \varepsilon \eta \rangle = \langle \eta, \eta \rangle.
+  \end{equation}
+  $\eta$ is a trivial cofibration because $F \dashv G$ is a Quillen equivalence.
+  \todo{
+    This is not enough.
+    I think because $G(\Gamma)$ is cofibrant $\eta$ is a weak equivalence.
+    Why is it a cofibration?
+    One way to see this is is that $\eta$ is constructed via the/Garner's small object argument, i.e.\@ as composition of pushouts of trivial cofibrations.
+    Is there a more conceptual reason?
+  }
+  Because $2 \rightarrow \mathcal{I}$ is a cofibration of groupoids and $G(F(G(\Gamma)))$ is fibrant, the vertical morphism on the right-hand side is a fibration.
+  As argued in the proof of lemma \ref{lem:algebraically-fibrant-lproper-simplicial}, the existence of a homotopy relating any two fillers of the square implies that the filler $\psi$ is unique and hence preserved by strict lcc functors $\Gamma \rightarrow \Delta$.
 \end{proof}
 
 \begin{proposition}
@@ -884,27 +911,39 @@ The first infinite cardinal $\omega$ satisfies the three conditions of theorem \
 \end{proposition}
 \begin{proof}
   The model category $\operatorname{Coa} \mathrm{sLcc}$ has an initial object, i.e.\@ an empty context.
-  Its underlying strict lcc category $\Gamma$ is the initial strict lcc category, and the structure map $i : \Gamma \rightarrow F(G(\Gamma))$ is the unique strict lcc functor with this signature.
+  Its underlying strict lcc category $\Gamma$ is the initial strict lcc category, and the structure map $\lambda : \Gamma \rightarrow F(G(\Gamma))$ is the unique strict lcc functor with this signature.
 
-  Let $(\Gamma, i)$ be a context and let $(\Gamma, i) \vdash \sigma$ be a type.
-  The underlying strict lcc category of the context extension $(\Gamma,\lambda).\sigma$ is defined as the context extension $p : \Gamma \rightarrow \Gamma.\sigma, \Gamma \vdash \mathbf{v} : p(\sigma)$ in $\mathrm{sLcc}$.
-  The structure map $i.\sigma : \Gamma.\sigma \rightarrow F(G(\Gamma.\sigma))$ is induced by the composite $\Gamma \xrightarrow{i} F(G(\Gamma)) \xrightarrow{F(G(p))}$ and the term $w$ in $F(G(\Gamma.\sigma))$ defined by commutativity of
+  Now let $(\Gamma, \lambda)$ be a context in $\operatorname{Coa} \mathrm{sLcc}$ and let $\Gamma \vdash \sigma$ be a type.
+  We must construct coalgebra structure $\lambda.\sigma : \Gamma.\sigma \rightarrow F(G(\Gamma.\sigma))$ on the context extension taken in $\mathrm{sLcc}$ such that
   \begin{equation}
     \begin{tikzcd}
-      1 \arrow[r, "v"] & F(G(p))(i(\sigma)) \\
-      \eta(1) \arrow[r, "\eta(\mathbf{v})"] & \eta(p(\sigma))
+      \Gamma \arrow[r, "p"] \arrow[d, "\lambda"] & \Gamma.\sigma \arrow[d, "\lambda.\sigma"] \\
+      F(G(\Gamma)) \arrow[r, "F(G(p))"] & F(G(\Gamma.\sigma))
     \end{tikzcd}
   \end{equation}
+  commutes, and show that the strict lcc functor $\langle f, w \rangle : \Gamma.\sigma \rightarrow \Delta$ induced from a coalgebra morphism $f : (\Gamma, \lambda) \rightarrow (\Delta, \lambda')$ and a term $\Delta \vdash w : f(\sigma)$ is a coalgebra morphism.
 
-  $\operatorname{Coa} \mathrm{sLcc}$ is a model category and in particular cocomplete, hence posesses an initial object, i.e.\@ an empty context.
-  \todo{Explicity description?}
+  Note that $\eta_{\Gamma.\sigma}(v)$ is a morphism $\eta_{\Gamma.\sigma}(1) \rightarrow \eta_{\Gamma.\sigma}(p(\sigma)) = F(G(p))(\eta_\Gamma(\sigma))$.
+  $\eta(1)$ is a terminal object and hence uniquely isomorphic to $1$ in $F(G(\Gamma.\sigma))$, and $F(G(p))(\eta(\sigma))$ is isomorphic to $F(G(p))(\lambda(\sigma))$ via $F(G(p))(\phi_\sigma)$ for $\phi$ as in lemma \ref{lem:coalgebra-vs-eta}.
+  We thus obtain a term $\Gamma.\sigma \vdash v' : F(G(p))(\lambda(\sigma))$ and can define
+  \begin{equation}
+    \lambda.\sigma = \langle F(G(p)) \lambda, v' \rangle
+  \end{equation}
+  via the universal property of $\Gamma.\sigma$.
+  By definition, $p : \Gamma \rightarrow \Gamma.\sigma$ is compatible with $\lambda$ and $\lambda.\sigma$.
 
-  \todo{
-    Spell out the proof on my board for context extension.
-    The underlying strict lcc category is the strict context extension as explained before.
-    Its comonad structure $\Gamma.\sigma \rightarrow FG(\Gamma)$ is defined by the universal property and the previous lemma.
-    Its universal property among coalgebra morphisms is again verified with the universal property (it amounts to proving that two strict lcc functors with domain $\Gamma.\sigma$ are equal).
-  }
+  Now let $f : (\Gamma, \lambda) \rightarrow (\Delta, \lambda')$ be a comonad morphism and let $\Delta \vdash w : f(\sigma)$.
+  We need to show that
+  \begin{equation}
+    \begin{tikzcd}[column sep=large, row sep=large]
+      \Gamma.\sigma \arrow[r, "{\langle f, w \rangle}"] \arrow[d, "\lambda.\sigma"] & \Delta \arrow[d, "\lambda'"] \\
+      F(G(\Gamma.\sigma)) \arrow[r, "{G(F(\langle f, w \rangle}))"] & F(G(\Delta))
+    \end{tikzcd}
+  \end{equation}
+  commutes.
+  This follows from the universal property of $\Gamma.\sigma$:
+  The two paths through the square agree after precomposing $p : \Gamma \rightarrow \Gamma.\sigma$ because by assumption $f$ is a coalgebra morphism, and they both map $v$ to the term $F(G(\Delta)) \vdash w' : \lambda'(f(\sigma))$ obtained from $w$ similarly to $v'$ because the isomorphism $\phi$ constructed in lemma \ref{lem:coalgebra-vs-eta} is compatible with coalgebra morphisms.
+  \todo{double check this}
 \end{proof}
 
 \begin{lemma}
