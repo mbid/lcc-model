@@ -758,18 +758,57 @@ The introduction rule for $\mathbf{\Pi}$-types is
   {\Gamma \vdash \sigma \\ \Gamma.\sigma \vdash \tau}
   {\Gamma \vdash \mathbf{Pi}_\sigma \tau}.
 \end{equation}
-To interpret it, we would like to apply the dependent product functor $G(\Gamma)_{/ \sigma} \rightarrow G(\Gamma)$ of underlying categories to $\tau$.
-But $\tau$ is an object of $\Gamma.\sigma$, so we will first need to construct a comparison map $D : G(\Gamma.\sigma) \rightarrow G(\Gamma)_{/ \sigma}$.
-It is tempting to define $D$ as a strict lcc functor using the universal property of $\Gamma.\sigma$.
-For this we first endow $G(\Gamma)_{/\sigma}$ with structure of a \emph{strict} lcc category:
-\todo{
-  For this we should know precisely what the generating trivial cofibrations of $\mathrm{Lcc}$ are.
-}
-The canonical terminal object of $G(\Gamma)_{/ \sigma}$ is the identity $\sigma \rightarrow \sigma$ on $\sigma$, the canonical pullbacks in $G(\Gamma)_{/ \sigma}$ are computed as canonical pullbacks in $G(\Gamma)$, and the canonical functors $\Pi : (G(\Gamma)_{/ \sigma})_{/ \tau_0} \rightarrow (G(\Gamma)_{/ \sigma})_{/ \tau_1}$ are defined using the the canonical $\Pi$-functors of $\Gamma$ isomorphisms $(G(\Gamma)_{/ \sigma})_{/ \tau_i} \cong (G(\Gamma)_{/ \operatorname{dom} \tau_i}$.
-The assignment $(\Gamma, \sigma) \mapsto \Gamma_{/ \sigma}$ is functorial wrt.\@ strict functors in $\Gamma$.
+To interpret it, we would like to apply the dependent product functor $\Pi_\sigma : U(G(\Gamma))_{/ \sigma} \rightarrow U(G(\Gamma))$ to $\tau$.
+(Recall that $U$ is the forgetful functor from lcc-marked categories to categories---$\Pi_\sigma$ is not lcc.)
+We thus have to related the slice category $U(G(\Gamma))_{/ \sigma}$ to the context extension $\Gamma.\sigma$ in some way, and it appears that this is impossible in $\mathrm{sLcc}$.
+Section \ref{sec:algebraically-cofibrant} is devoted to this issue.
+Nevertheless, taking slice categories is otherwise well-behaved in $\mathrm{sLcc}$:
+\begin{proposition}
+  \label{prop:strict-slicing}
+  Let $\Gamma$ be a strict lcc category and let $\Gamma \vdash \sigma$.
+  Then there is a strict lcc category $\Gamma_{/ \sigma}$ whose underlying category is the slice of the underlying category of $\Gamma$ over $\sigma$.
+  There is an lcc functor $\sigma^* : G(\Gamma) \rightarrow G(\Gamma_{/ \sigma})$, functors $\Sigma_\sigma, \Pi_\sigma : U(G(\Gamma_{/ \sigma})) \rightarrow U(G(\Gamma))$ (not necessarily lcc) and adjunctions
+  \begin{equation}
+    \Sigma_\sigma \dashv \sigma^* \dashv \Pi_\sigma.
+  \end{equation}
+  This data is natural in $\Gamma$, in the sense that if $f : \Gamma \rightarrow \Delta$ is strict lcc and satisfies $f(\sigma) = \tau$, then the canonical functor $f_{/ \sigma} : \Gamma_{/ \sigma} \rightarrow \Delta_{/ \tau}$ is strict lcc, the three squares
+  \begin{mathpar}
+    \begin{tikzcd}
+      \Gamma_{/\sigma} \arrow[r, "f_{/\sigma}"] & \Delta_{/ \delta} \\
+      \Gamma \arrow[r, "f"] \arrow[u, "\sigma^*"] & \Delta \arrow[u, "\tau^*"]
+    \end{tikzcd}
+    \and
+    \begin{tikzcd}
+      \Gamma_{/\sigma} \arrow[r, "f_{/\sigma}"] \arrow[d, "\Sigma_\sigma"] & \Delta_{/ \delta} \arrow[d, "\Sigma_\tau"] \\
+      \Gamma \arrow[r, "f"] & \Delta
+    \end{tikzcd}
+    \and
+    \begin{tikzcd}
+      \Gamma_{/\sigma} \arrow[r, "f_{/\sigma}"] \arrow[d, "\Pi_\sigma"] & \Delta_{/ \delta} \arrow[d, "\Pi_\tau"] \\
+      \Gamma \arrow[r, "f"] & \Delta
+    \end{tikzcd}
+  \end{mathpar}
+  in $\mathrm{Cat}$ commute \todo{to be precise we should apply $UG$ to all objects here and $G$ or $U$ to some morphisms, but that will add a lot of clutter.}, $f$ and $f_{/ \sigma}$ commute with taking transposes along the adjunctions $\Sigma_\sigma \dashv \sigma^*$ respectively $\Sigma_\tau \dashv \tau^*$ and $\sigma^* \dashv \Pi_\sigma$ respectively $\tau^* \dashv \Pi_\tau$.
+\end{proposition}
+\begin{proof}
+  \todo{
+    $U(G(\Gamma))_{/ \sigma}$ has lcc structure, and it can be explicitly constructed:
+  }
+  The canonical terminal object of $G(\Gamma)_{/ \sigma}$ is the identity $\sigma \rightarrow \sigma$ on $\sigma$, the canonical pullbacks in $G(\Gamma)_{/ \sigma}$ are computed as canonical pullbacks in $G(\Gamma)$, and the canonical functors $\Pi_k : (G(\Gamma)_{/ \sigma})_{/ \tau_0} \rightarrow (G(\Gamma)_{/ \sigma})_{/ \tau_1}$ for $k : \tau_0 \rightarrow \tau_1$ are defined using the the canonical $\Pi$-functors of $\Gamma$ via the isomorphisms $(G(\Gamma)_{/ \sigma})_{/ \tau_i} \cong (G(\Gamma)_{/ \operatorname{dom} \tau_i}$.
+  \todo{
+    To make this precise, we have to relate this to $J$.
+    For this we need an explicit description of $J$, which is hard because Smith's recognition theorem obfuscates this.
+    Perhaps it's better to only require that $J$ is such that an \emph{object} is fibrant iff it has the rlp wrt all $j \in J$.
+    It's even stated like this in Nikolaus, but there it's also required that all cofibrations are monos, whereas Bourke wants $J$ to be a generating set.
+    I'd be surprised if there wasn't a common generalization of the two.
+    Because fibrant objects in all model categories here are easy to
+    describe, it's probably easy to construct such a $J$ explicitly.
+  }
 
-Now $D : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$ should be defined as $D = \langle \sigma^*, d \rangle$, where $\sigma^* : G(\Gamma) \rightarrow G(\Gamma_{/ \sigma})$ and $d : \sigma \rightarrow \sigma \times \sigma$ is the diagonal.
-But $\sigma^*$ is not strict, and there appears to be no obvious way to modify the strict lcc structure of $\Gamma_{/ \sigma}$ to make $\sigma^*$ strict.
+  $\Sigma_\sigma$ is given by taking domains of morphisms with codomain $\sigma$, and $\Pi_\sigma$ is given by the domain of the canonical evaluation maps.
+  The adjunctions are then defined via the universal property of canonical pullbacks and canonical evaluation maps.
+  Because all structure is defined directly in terms of the canonical lifts of $\Gamma$, it is stable under strict lcc functors.
+\end{proof}
 
 \section{Algebraically cofibrant strict lcc categories}
 \label{sec:algebraically-cofibrant}
@@ -947,51 +986,63 @@ Denote by $\eta : \mathrm{Id} \Rightarrow G F : \mathrm{Lcc} \rightarrow \mathrm
 \end{proof}
 
 \begin{lemma}
-  \label{lem:extension-to-slice}
-  For each context $\lambda : \Gamma \rightarrow F(G(\Gamma))$ and type $\Gamma \vdash \sigma$ there is a strict lcc functor $D : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$ which is a weak equivalence in $\mathrm{sLcc}$.
-  The construction of $D = D_{\lambda, \sigma}$ is natural with respect to coalgebra morphisms $f : (\Gamma, \lambda) \rightarrow (\Delta, \mu)$, in the sense that
-  \begin{equation}
-    \begin{tikzcd}
-      \Gamma.\sigma \arrow[d, "D_{\lambda, \sigma}"] \arrow[r, "f.\sigma"] & \Delta.f(\sigma) \arrow[d, "D_{\mu, f(\sigma)}"] \\
-      \Gamma_{/ \sigma} \arrow[r, "f_{/ \sigma}"] & \Delta_{/ f(\sigma)}
-    \end{tikzcd}
-  \end{equation}
-  commutes.
+  \label{lem:strictification}
+  Let $(\Gamma, \lambda)$ be an algebraically cofibrant strict lcc category and let $f : G(\Gamma) \rightarrow G(\Delta)$ be an lcc functor for some strict lcc category $\Delta$.
+  Then there is a strict lcc functor $f^s : \Gamma \rightarrow \Delta$ and a natural isomorphism $\zeta^f : G(f^s) \cong f$.
+  The construction of $f^s$ and $\zeta^f$ is natural in $(\Gamma, \lambda)$ and $\Delta$.
 \end{lemma}
 \begin{proof}
-  \todo{This is basically explained in the meta of this chapter---the problem there was that $\lambda$ might not be preserved, but this is fixed now.}
+  The transpose of $f$ is a strict lcc functor $\bar f : F(G(\Gamma)) \rightarrow \Delta$ such that $G(\bar f) \eta = f$.
+  We set $f^s = \bar f \lambda$ and $\zeta^f = G(\bar f) \phi$ for $\phi : G(\lambda) \cong \eta$ as in lemma \ref{lem:coalgebra-vs-eta}.
 \end{proof}
+
+\begin{lemma}
+  \label{lem:extension-to-slice}
+  For every algebraically cofibrant strict lcc category $\lambda : \Gamma \rightarrow F(G(\Gamma))$ and type $\Gamma \vdash \sigma$ there is a weak equivalence $d : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$ in $\mathrm{sLcc}$, a homotopy inverse $G(d)^{-1} : G(\Gamma.\sigma) \rightarrow G(\Gamma_{/ \sigma})$ to $G(D)$ in $\mathrm{Lcc}$, and a natural isomorphism
+  \begin{equation}
+    \begin{tikzcd}
+      G(\Gamma.\sigma) \arrow[rr, "d"] & \, & G(\Gamma_{/ \sigma}) \\
+      & G(\Gamma) \arrow[ul, "G(p)"] \arrow[ur, "\sigma^*"'] \arrow[u, phantom, near end, "\overset{\delta}{\cong}"].
+    \end{tikzcd}
+  \end{equation}
+  The construction of $d$, $G(d)^{-1}$ and $\delta$ is natural in $(\Gamma, \lambda)$.
+\end{lemma}
+\begin{proof}
+  Applying lemma \ref{lem:strictification} to $\sigma^*$, we obtain a strict lcc functor $(\sigma^*)^s : \Gamma \rightarrow \Gamma_{/ \sigma}$ and a natural isomorphism $\zeta = \zeta^{\sigma^*} : G((\sigma^*)^s) \cong \sigma^*$.
+  Under the isomorphism $\zeta^{\sigma^*}$, the diagonal $w : \delta \rightarrow \delta \times \delta$, viewed as a morphism over $\sigma$, corresponds to a morphism $w^s : 1 \rightarrow (\sigma^*)^s(\sigma)$, i.e. $\Gamma_{/ \sigma} \vdash w^s : (\sigma^*)^s(\sigma)$.
+  We can thus define $d = \langle (\sigma^*)^s, w^s \rangle$ and $\delta = \zeta$.
+\end{proof}
+
+\begin{lemma}
+  Let $\lambda: \Gamma \rightarrow F(G(\Gamma))$ be an $FG$-coalgebrand let $\sigma \in \operatorname{Ob} \Gamma$.
+  Let
+  \begin{equation}
+    \Pi'_\sigma : \Gamma.\sigma \xrightarrow{d} \Gamma_{/ \sigma} \xrightarrow{\Pi_\sigma} \Gamma
+  \end{equation}
+  and 
+  \begin{equation}
+    \Sigma'_\sigma : \Gamma.\sigma \xrightarrow{d} \Gamma_{/ \sigma} \xrightarrow{\Sigma_\sigma} \Gamma.
+  \end{equation}
+  Then $\Pi'_\sigma \dashv p_\sigma$.
+  This adjunction is preserved under coalgebra morphisms $f : (\Gamma, \lambda) \rightarrow (\Delta, \lambda')$, in the sense that if $f(\sigma) = \tau$, then $f$ and $f.\sigma : \Gamma.\sigma \rightarrow \Delta.\tau$ commute with taking transposes along $\Pi'_\sigma \dashv p_\sigma$ and $\Pi'_\tau \dashv p_\tau$.
+\end{lemma}
 
 \begin{theorem}
   \label{th:lcc-supports-types}
-  The cwf $\mathbf{Lcc}$ supports unit, extensional equality, $\mathbf{\Pi}$ and $\mathbf{\Sigma}$ types.
+  The cwf $\operatorname{Coa} \mathrm{sLcc}$ supports finite product, extensional equality, $\mathbf{\Pi}$ and $\mathbf{\Sigma}$ types.
 \end{theorem}
 \begin{proof}
-  As explained earlier unit types can be interpreted as canonical terminal objects and equality types as equalizers (which can be constructed uniformly from pullback squares).
-  \todo{
-    Should probably be worked out properly at least once somewhere.
-    Maybe this can be done in the previous section for just strict lcc categories, and then I can handwave that it works the same here.
-  }
-
-  \emph{$\mathbf{\Pi}$-types.}
+  Finite product and equality types are interpreted as in $\mathrm{sLcc}$.
   Let $\Gamma \vdash \sigma$ and $\Gamma.\sigma \vdash \tau$.
-  Then $\Gamma \vdash \mathbf{\Pi}_\sigma \, \tau$ is defined as $\Pi_\sigma(D(\tau))$, where $D : \Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$ is as in lemma \ref{lem:extension-to-slice} and $\Pi_\sigma : \Gamma_{/ \sigma} \rightarrow \Gamma$ is the canonical right adjoint to the canonical pullback functor (\todo{should probably say what's meant by ``canonical'' here: It's a version of $\Pi$ constructed (uniformly for all slcc categories) from the canonical lifts of strict lcc categories.}
-  $D$ and $\Pi_\sigma$ are natural with respect to cosubstitutions, so the $\Pi$-types defined such are stable under substitution.
+  Then $\Gamma \vdash \mathbf{\Sigma}_\sigma \, \tau$ is defined as $\Sigma'_\sigma(\tau)$, and similarly $\mathbf{\Pi}_\sigma \, \tau = \Pi'_\sigma(\tau)$.
+  Terms $\Gamma.\sigma \vdash t: \tau$ are by definition morphisms $t : 1 = p_\sigma(1) \rightarrow \tau$, hence are in bijection with terms $\Gamma \vdash u: \mathbf{\Pi}_\sigma \, \tau$.
+  The two functions back and forth define the lambda abstraction $\mathbf{\lambda}(t)$ and its inverse (i.e.\@ application of $p_\sigma(u)$ to the fresh variable of $\Gamma.\sigma$).
 
-  Now let $\Gamma.\sigma \vdash t : \tau$.
-  We must construct a lambda abstraction $\Gamma \vdash \mathbf{\lambda}(t) : \mathbf{\Pi}_\sigma \, \tau$.
-  This is done by mapping $t$ to $\Gamma_{/ \sigma}$ using the comparison functor $D$ as above, and using the adjunction $\sigma^* \dashv \Pi_\sigma$ to obtain a morphism $\mathbf{\lambda}(t) : \top \rightarrow \Pi_\sigma(D(\tau))$ in $\Gamma$ from the morphism $\sigma^*(\top) \xrightarrow{\sim} \top \xrightarrow{D(t)} D(\tau)$ in $\Gamma_{/ \sigma}$.
-  Here the morphism $\sigma^*(\top) \xrightarrow{\sim} \top$ can be explictly constructed from the strict lcc structure of $\Gamma$, hence is stable under substitution.
-  Application of $\Gamma \vdash u : \mathbf{\Pi}_\sigma \, \tau$ to the variable in an extended context $\Gamma.\sigma \vdash \mathbf{App}(u)$ is constructed along the same lines. \todo{explain more}
-  The required equations hold because of adjointness \todo{explain more}
-  \todo{
-    Actually, this can maybe be done somewhat more elegant by first proving that cwf has $\Pi$ types iff there is an adjunction among categories of terms in context or something.
-    The category of terms in context is likely equivalent isomorphic to the context (i.e.\@ the underlying slcc category) itself.
-  }
+  \todo{$\Sigma$ is not as similar as I thought.}
 
-  \todo{
-    $\Sigma$-types, but that's probably also easier handled first purely in term of categories of terms in context.
-  }
+  % Lambda abstraction and its inverse is defined via the adjunction $_\sigma \dashv \Pi'_\sigma$, which establishes an isomorphism of morphisms $t : 1 = p_\sigma(1) \rightarrow \tau$ in $\Gamma.\sigma$ with morphisms $u : 1 \rightarrow \rightarrow \Pi'_\sigma(\tau)$ in $\Gamma$, i.e.\@ of terms $\Gamma.\sigma \vdash t : \tau$ with terms $\Gamma \vdash u : \mathbf{\Pi}_\sigma \, \tau$.
+
+
 \end{proof}
 
 \section{Recovering an interpretation in a single lcc category}
