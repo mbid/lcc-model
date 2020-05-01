@@ -1045,6 +1045,12 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
   in $\mathcal{D}$ commutes is contractible (i.e.\@ equivalent to the terminal groupoid).
 \end{definition}
 
+\begin{remark}
+  \label{rem:discrete-weak-ext-mapping}
+Note that this definition entails that the mapping groupoids of all lcc functors $\mathcal{D} \rightarrow \mathcal{E}$ over $\mathcal{C}$ is a equivalent to a discrete groupoid:
+If $h_0, h_1 : \mathcal{D} \rightarrow \mathcal{E}$ are isomorphic over $\mathcal{C}$, then they correspond to the same morphism $w : u \rightarrow g(x)$ in $\mathcal{E}$.
+\end{remark}
+
 \begin{lemma}
   \label{lem:strictification}
   Let $\lambda : \Gamma \rightarrow F(G(\Gamma))$ an $FG$-coalgebra and let $\Delta$ be a strict lcc category.
@@ -1285,44 +1291,95 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
   The functors $a, \sigma^*, \Sigma_\sigma, \Pi_\sigma$ and involved adjunctions are all natural in $FG$-coalgebra morphisms (proposition \ref{prop:strict-slicing}, lemmas \ref{lem:extension-vs-slice} and \ref{lem:substitution-vs-pullback} ), thus our type theoretic structure is stable under substitutions.
 \end{proof}
 
-\section{Recovering an interpretation in a single lcc category}
+\section{Cwf structure on individual lcc categories}
 
-This section is devoted to showing that theorem \ref{th:lcc-supports-types} allows recovery of type theory in a given lcc category.
+This section is devoted to showing that theorem \ref{th:lcc-supports-types} allows recovery of an interpretation type theory in a given lcc category.
+
+\begin{proposition}
+  \label{prop:cats-of-weak-exts}
+  Let $(\Gamma, \lambda)$ be an $FG$-coalgebra.
+  Then the following 2-categories are biequivalent:
+  \begin{enumerate}
+    \item
+      \label{itm:locally-discrete-gamma-op}
+      $\Gamma^\mathrm{op}$, viewed as a locally discrete $\mathrm{Gpd}$-category;
+    \item
+      \label{itm:slice-2-category}
+      the full subcategory of $\mathrm{Lcc}_{G(\Gamma) /}$ given by the slice categories $\sigma^* : G(\Gamma) \rightarrow G(\Gamma_{/ \sigma})$;
+    \item
+      \label{itm:ext-2-category}
+      the full subcategory of $\mathrm{Lcc}_{G(\Gamma) /}$ given by the context extensions $G(p_\sigma) : G(\Gamma) \rightarrow G(\Gamma.\sigma)$;
+    \item
+      \label{itm:ext-1-category}
+      the full subcategory of the 1-categorical coslice $(\operatorname{Coa} \mathrm{Lcc})_{(\Gamma, \lambda) /}$ given by the context extensions $p_\sigma : (\Gamma, \lambda) \rightarrow (\Gamma.\sigma, \lambda.\sigma)$, viewed as a locally discrete $\mathrm{Gpd}$-category.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  As noted in remark \ref{rem:discrete-weak-ext-mapping}, the the categories \ref{itm:slice-2-category} and \ref{itm:ext-2-category} are locally equivalent to discrete groupoids, thus we may treat their morphisms up to isomorphism and establish equivalences of 1-categories \ref{itm:locally-discrete-gamma-op} through \ref{itm:ext-1-category}
+
+  The functor from \ref{itm:locally-discrete-gamma-op} to \ref{itm:slice-2-category} is given by assigning to a morphism $s : \tau \rightarrow \sigma$ in $\Gamma$ the isomorphism class of the pullback functor $s^* : G(\Gamma)_{/ \sigma} \rightarrow G(\Gamma_{/ \tau})$.
+  An isomorphism class of lcc functors $f : G(\Gamma)_{/ \sigma} \rightarrow G(\Gamma_{/ \tau})$ over $G(\Gamma)$ is uniquely determined by the morphism
+  \begin{equation}
+    \begin{tikzcd}
+      \mathrm{id}_\tau \arrow[r, "\cong"] & f(\mathrm{id}_\sigma) \arrow[r, "f(d)"] & f(\sigma^*(\sigma)) \arrow[r, "\cong"] & \tau^*(\sigma),
+    \end{tikzcd}
+  \end{equation}
+  which in turn corresponds to a morphism $s : \tau = \Sigma_\tau \mathrm{id}_\tau \rightarrow \sigma$, and then $f \cong s^*$.
+
+  The categories \ref{itm:slice-2-category} and \ref{itm:ext-2-category} are equivalent because they are both categories of weak context extensions (lemmas \ref{lem:strict-ext-is-weak-ext} and \ref{lem:slice-is-weak-ext}).
+  Finally, the inclusion of \ref{itm:ext-1-category} into \ref{itm:ext-2-category} is an equivalence by \ref{lem:strictification}.
+\end{proof}
 
 \begin{lemma}
-  Let $\mathbf{C}$ be a covariant cwf and let $\Gamma \in \mathbf{C}$ be a context.
-  Then the coslice category $\mathbf{C}_{\Gamma /}$ carries the structure of a covariant cwf such that the canonical inclusion $\mathbf{C}_{\Gamma /} \rightarrow \mathbf{C}$ preserves all structure of covariant cwfs except for the empty context and is full on types and terms.
+  Let $\mathcal{C}$ be a covariant cwf and let $\Gamma \in \mathcal{C}$ be a context.
+  Then the coslice category $\mathcal{C}_{\Gamma /}$ carries the structure of a covariant cwf such such that the canonical inclusion $\mathcal{C}_{\Gamma /} \rightarrow \mathcal{C}$ preserves context extension, and unit, finite product, equality, dependent product and dependent sum types (but not the empty context).
   \qed
 \end{lemma}
 
 \begin{theorem}
   \label{th:context-as-model}
-  Let $\Gamma \in \mathbf{Lcc}$ be an algebraically cofibrant strict lcc category.
-  Denote by $\mathbf{Lcc}_{| \Gamma}$ the least covariant cwf of $\mathbf{Lcc}_{\Gamma /}$ that is full on types and terms.
-  Then the category of contexts and cosubstitions of $\mathbf{Lcc}_{| \Gamma}$ is equivalent to $\Gamma^\mathrm{op}$.
+  Let $(\Gamma, \lambda)$ be an $FG$-coalgebra.
+  Denote by $(\operatorname{Coa} \mathrm{sLcc})_{| (\Gamma, \lambda)}$ the least covariant cwf contained in the (1-categorical) coslice cwf $(\operatorname{Coa} \mathrm{sLcc})_{(\Gamma, \lambda) /}$ that is full on types and terms, contains the empty context and is closed under context extension.
+  Then the underlying category of $(\operatorname{Coa} \mathrm{sLcc})_{| (\Gamma, \lambda)}$ is equivalent to $U(G(\Gamma))$.
+
+  In particular, every lcc category is equivalent to a category that admits cwf structure.
 \end{theorem}
 \begin{proof}
-  We construct a functor $H : \Gamma^\mathrm{op} \rightarrow \mathbf{Lcc}_{| \Gamma}$.
-  We have $H(\sigma) = \Gamma.\sigma$.
-  Let $f : \sigma \rightarrow \tau$ be a morphism in $\Gamma$.
-  Then $f$ determines a morphism $1 \rightarrow \sigma^*(\tau)$ in $\Gamma_{/ \sigma}$ via the isomorphisms $1 \cong \mathrm{id}_\sigma$ and $\sigma^*(\tau) \cong \sigma \times \tau$.
-  In turn, this morphism determines a term $\Gamma.\sigma \vdash f' : p_\sigma(\tau)$ via the equivalence $D_{\lambda, \tau} : \Gamma.\sigma \xrightarrow{\simeq} \Gamma_{/ \sigma}$.
-  Now we let $H(f) = \langle p_\sigma, f' \rangle : \Gamma.\tau \rightarrow \Gamma.\sigma$.
-  
-  $\mathbf{Lcc}_{| \Gamma}$ is democratic by construction, thus $H$ is essentially surjective.
-  \todo{
-    Full + faithful follows from equivalences isos
-    \begin{align}
-      & \mathrm{Hom}(\sigma, \tau) \\
-      \simeq {} & \mathrm{Hom}_\mathrm{Lcc}(\Gamma_{/ \tau} , \Gamma_{/ \sigma}) \\
-      \simeq {} & \mathrm{Hom}_\mathrm{sLcc}(\Gamma.\tau, \Gamma.\sigma)
-    \end{align}
-    for cofibrant $\Gamma$, where the first and third Hom-categories are discrete and the middle one is only discrete up to equivalence.
-    (The lcc and slcc functor categories have to be taken in category under $\Gamma$.)
-  }
+  By construction, $(\operatorname{Coa} \mathrm{sLcc})_{| (\Gamma, \lambda)}$ is democratic, meaning that every context is isomorphic to a context obtained by a single context extension from the empty context.
+  Thus $(\operatorname{Coa} \mathrm{sLcc})_{| (\Gamma, \lambda)}$ is equivalent to the category \ref{itm:ext-1-category} of proposition \ref{prop:cats-of-weak-exts}, and in particular equivalent to $\Gamma^\mathrm{op}$.
+
+  Given an arbitrary lcc category $\mathcal{C}$, we set $\Gamma = F(\mathcal{C})$ and $\lambda = F(\eta) : F(\mathcal{C}) \rightarrow F(G(F(\mathcal{C}))$.
+  Then $G(\Gamma)$ is equivalent to $\mathcal{C}$ and to $((\operatorname{Coa} \mathrm{sLcc})_{| (\Gamma, \lambda)})^\mathrm{op}$, the latter admitting cwf structure.
 \end{proof}
 
-By the Quillen equivalences $\mathrm{Lcc} \simeq \mathrm{sLcc} \simeq \mathbf{Lcc}$, every lcc category is equivalent to an algebraically cofibrant strict lcc category, i.e.\@ to a context in $\mathbf{Lcc}$, which by theorem \ref{th:context-as-model} is equivalent to a cwf supporting extensional ML type theory.
+\section{Polymorphism}
+
+\begin{definition}
+  \label{def:type-ext}
+  Let $\mathcal{C}$ be a covariant cwf and $\Gamma$ be a context of $\mathcal{C}$.
+  A \emph{context extension by a type variable} of $\Gamma$ is given by a context morphism $p : \Gamma \rightarrow \Gamma.A$ and a type $\Gamma.A \vdash A$ such that for every context morphisms $f : \Gamma \rightarrow \Delta$ and type $\Delta \vdash \sigma$, there is a unique morphism $\langle f, \sigma \rangle : \Gamma.A \rightarrow$ satisfying $\langle f, \sigma \rangle \circ p = f$ and $\langle f, \sigma \rangle(A) = \sigma$.
+  $\mathcal{C}$ \emph{supports} context extension by a type variable if for every context $\Gamma$ in $\mathcal{C}$ there exists a context extension by a type variable $\Gamma \rightarrow \Gamma.A$.
+\end{definition}
+
+\begin{theorem}
+  \label{th:slcc-coa-slcc-type-ext}
+  The cwfs and $\mathrm{sLcc}$ and $\operatorname{Coa} \mathrm{sLcc}$ support context extension by a type variable, and the functor $\mathrm{sLcc} \rightarrow \operatorname{Coa} \mathrm{sLcc}$ preserves it.
+\end{theorem}
+\begin{proof}
+  We proceed analogously to the construction of the usual context extension $\Gamma.\sigma$ in propositions \ref{prop:slcc-model} and \ref{prop:coa-slcc-exts}.
+  Let $\Gamma$ be a strict lcc category.
+  Then the inclusion
+  \begin{equation}
+    p : \Gamma \rightarrow \Gamma \amalg F(\{A\}),
+  \end{equation}
+  where $\{ A \} = \{ A \}^\flat$ denotes the minimally marked terminal category, is a context extension by a type variable in $\mathrm{sLcc}$.
+
+  Now let $\lambda : \Gamma \rightarrow F(G(A))$  be $FG$-coalgebra structure on $\Gamma$.
+  Then $F(G(p)) \circ \lambda : \Gamma \rightarrow F(G(\Gamma.A))$ and $\eta_{\Gamma.A}(A)$ is an object of $G(F(\Gamma))$, thus $\lambda.A = \langle \lambda, \eta_{\Gamma.A}(A) \rangle : \Gamma.A \rightarrow F(G(\Gamma.A))$.
+  $\lambda.A$ defines coalgebra structure on $\Gamma.A$.
+  If $f : (\Gamma, \lambda) \rightarrow (\Delta, \lambda')$ is a an $FG$-coalgebra morphisms $\Delta \vdash \sigma$, then $\langle f, \sigma \rangle : \Gamma.A \rightarrow \Delta$ is an $FG$-coalgebra morphism, too.
+  Thus $p : (\Gamma, \lambda) \rightarrow (\Gamma.A, \lambda.A)$ and $\Gamma.A \vdash A$ form a context extension by a type variable in $\operatorname{Coa} \mathrm{sLcc}$.
+\end{proof}
 
 \section{Conclusion}
 
