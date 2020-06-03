@@ -38,7 +38,16 @@
 \maketitle
 
 \begin{abstract}
-  \todo{TODO}
+  Locally cartesian closed (lcc) categories are natural categorical models of extensional dependent type theory.
+  This paper introduces the ``gros'' semantics in the category of lcc categories:
+  Instead of constructing an interpretation in a given individual lcc category, we show that also the category of all lcc categories can be endowed with the structure of a model of dependent type theory.
+  The original interpretation in a given individual lcc category can then be recovered by slicing.
+  As application, we show that a version of polymorphism can be modeled in the gros semantics via context extension by a variable type; usually this can only be approximated by a semantics in lcc categories that admit a type of (small) types.
+
+  As in the original interpretation, we face the issue of coherence:
+  Categorical structure is usually preserved only up to isomorphism, whereas syntactic substitution commutes with all type theoretic structure.
+  Our solution involves a presentation of the higher category of lcc categories in terms of the model category $\operatorname{Coa} \mathrm{sLcc}$, whose underlying 1-category is more suitable for semantics of type theory than the naïve category of lcc categories.
+  $\operatorname{Coa} \mathrm{sLcc}$ is obtained via the formalism of algebraically cofibrant algebraically fibrant objects from a model category of lcc sketches.
 \end{abstract}
 
 \section{Introduction}
