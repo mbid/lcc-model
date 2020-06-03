@@ -530,6 +530,7 @@ We want to consider lcc-marked categories equivalent if they represent the same 
 \end{definition}
 
 \begin{proposition}
+  \label{prop:lcc-model-cat}
   The model category $\mathrm{Lcc}$ is a model for the $(2, 1)$-category of lcc categories and lcc functors:
   \begin{enumerate}
     \item
@@ -614,7 +615,8 @@ Lcc categories are fibrant lcc sketches, which means that they have the right li
 In order to speak of canonical choices of lcc structure, we need canonical lifts against the trivial cofibrations.
 
 \begin{definition}[\cite{algebraic-models}]
-  Let $\mathcal{M}$ be a combinatorial model category with set $J$ of generating trivial cofibrations.
+  \label{def:algebraically-fibrant-objects}
+  Let $\mathcal{M}$ be a model category and let $J$ be a set of trivial cofibrations such that objects of $\mathcal{M}$ are fibrant if they have the right lifting property against all $J$.
   An \emph{algebraically fibrant object} of $\mathcal{M}$ (with respect to $J$) consists of an object $G(X) \in \operatorname{Ob} \mathcal{M}$ equipped with a choice of lifts against all morphisms $j \in J$.
   Thus $X$ comes with choices of lifts $\ell_X({j, a}) : B \rightarrow G(X)$ for all $j : A \rightarrow B$ in $J$ and $a : A \rightarrow G(X)$ in $\mathcal{M}$ such that
   \begin{equation}
@@ -628,42 +630,61 @@ In order to speak of canonical choices of lcc structure, we need canonical lifts
   The category of algebraically fibrant objects is denoted by $\operatorname{Alg} \mathcal{M}$, and the evident forgetful functor $\operatorname{Alg} \mathcal{M} \rightarrow \mathcal{M}$ by $G$.
 \end{definition}
 
-Fix a set $J$ of generating trivial cofibrations of $\mathrm{Lcc}$.
-As all of the morphisms $\mathbf{T_1}$, $\mathbf{Pb_1}$ and $\mathbf{Pi_1}$ of definition \ref{def:lcc-axioms} are trivial cofibrations in $\mathrm{Lcc}$, we may assume that they are in $J$.
-Let $\mathcal{C}$ be an algebraically fibrant lcc sketch (with respect to $J$).
-Then $G(\mathcal{C})$ is a fibrant lcc sketch, i.e.\@ an lcc category.
-The lifts $\ell_\mathcal{C}(j, a)$ against generating trivial cofibrations $j \in J$ determine canonical lcc structure on $\mathcal{C}$:
-The lift against $\mathbf{T_1}$ determines a canonical terminal object, lifts against $\mathbf{Pb_1}$ determine canonical pullback squares, and lifts against $\mathbf{Pi_1}$ determine canonical dependent products.
-Morphisms of fibrant lcc sketches preserve the universal properties of terminal objects, pullback squares and dependent products.
-Morphisms of algebraically fibrant lcc sketches furthermore preserve canonical choices of these universal objects:
-They are strict lcc functors.
+\begin{proposition}
+  \label{prop:object-generating-triv-cof-lcc}
+  \begin{enumerate}
+    \item
+      \label{itm:marked-fibrant-object-generators}
+      Let $K \in \operatorname{Ob} I_\mathrm{Lcc}$.
+      Let $j_K : A_K \hookrightarrow B_K$ be the evident inclusion of lcc-marked objects given by $U(A_K) = U(B_K) = \mathcal{I} \times K$ with $K \cong \{ 0 \} \times K \hookrightarrow \mathcal{I} \times K$ the only marking for $A_K$ and $K \cong \{ \varepsilon \} \times K \hookrightarrow \mathcal{I} \times K$, $\varepsilon = 0, 1$ the markings for $B_K$.
+      Then $j_K$ is a trivial cofibration in $\mathrm{Cat}^{I_\mathrm{Lcc}}$, and an object of $\mathrm{Cat}^{I_\mathrm{Lcc}}$ is fibrant if and only if it has the right lifting property against $j_K$ for all $K$.
+    \item
+      \label{itm:lcc-fibrant-object-generators}
+      Denote by $f \amalg f = B \amalg_A B$ the self-union of a morphism $f : A \rightarrow B$; there is a canonical map $\langle \mathrm{id}, \mathrm{id} \rangle : f \amalg f \rightarrow B$.
+      Then an object of $\mathrm{Lcc}$ is fibrant if and only if it has the right lifting property against the morphisms $j_K$ from \ref{itm:marked-fibrant-object-generators}, the morphisms of definition \ref{def:lcc-axioms}, and the canonical maps $\mathbf{T_2} \amalg \mathbf{T_2} \rightarrow \operatorname{cod} \mathbf{T_2}$, $\mathbf{Pb_2} \amalg \mathbf{Pb_2} \rightarrow \operatorname{cod} \mathbf{Pb_2}$ and $\mathbf{Pi_2} \amalg \mathbf{Pi_2} \rightarrow \operatorname{cod} \mathbf{Pi_2}$.
+  \end{enumerate}
+\end{proposition}
+\begin{proof}
+  By theorem \ref{th:marked-model-category}, an lcc-marked category is fibrant if and only if its markings are stable under homotopy, hence \ref{itm:marked-fibrant-object-generators}.
+  The fibrant objects of $\mathrm{Lcc}$ are the $S$-local fibrant lcc-marked categories where $S$ the set of morphisms of definition \ref{def:lcc-axioms}.
+  In particular, fibrant objects of $\mathrm{Lcc}$ have the right lifting property against $S$.
+  By proposition \ref{prop:lcc-model-cat}, the fibrant objects of $\mathrm{Lcc}$ are lcc categories with precisely the universal diagrams for terminal objects, pullback squares and dependent products marked, thus the maps induced by lifts against $\mathbf{T_2}, \mathbf{Pb_2}$ and $\mathbf{Pi_2}$ are unique.
+  This uniqueness is equivalent to the right lifting property against the canonical maps from these morphisms' self-unions to their codomains.
+  Conversely, if a fibrant lcc-marked category has the right lifting property against $S$ and the lifts against $\mathbf{T_2}, \mathbf{Pb_2}$ and $\mathbf{Pi_2}$ are unique, then it is an lcc category with appropriate markings and hence fibrant in $\mathrm{Lcc}$.
+\end{proof}
+
+\begin{definition}
+  A \emph{strict lcc category} is an algebraically fibrant object of $\mathrm{Lcc}$ with respect to the set $J$ of \ref{itm:lcc-fibrant-object-generators} in proposition \ref{prop:object-generating-triv-cof-lcc}.
+  The category of strict lcc categories is denoted by $\mathrm{sLcc}$.
+\end{definition}
+
+% Fix a set $J$ of generating trivial cofibrations of $\mathrm{Lcc}$.
+% As all of the morphisms $\mathbf{T_1}$, $\mathbf{Pb_1}$ and $\mathbf{Pi_1}$ of definition \ref{def:lcc-axioms} are trivial cofibrations in $\mathrm{Lcc}$, we may assume that they are in $J$.
+% Let $\mathcal{C}$ be an algebraically fibrant lcc sketch (with respect to $J$).
+% Then $G(\mathcal{C})$ is a fibrant lcc sketch, i.e.\@ an lcc category.
+% The lifts $\ell_\mathcal{C}(j, a)$ against generating trivial cofibrations $j \in J$ determine canonical lcc structure on $\mathcal{C}$:
+% The lift against $\mathbf{T_1}$ determines a canonical terminal object, lifts against $\mathbf{Pb_1}$ determine canonical pullback squares, and lifts against $\mathbf{Pi_1}$ determine canonical dependent products.
+% Morphisms of fibrant lcc sketches preserve the universal properties of terminal objects, pullback squares and dependent products.
+% Morphisms of algebraically fibrant lcc sketches furthermore preserve canonical choices of these universal objects:
+% They are strict lcc functors.
 
 \begin{theorem}[\cite{algebraic-models} Proposition 2.4, \cite{equipping-weak-equivalences} Theorem 19]
   \label{th:algebraically-fibrant-model-category}
-  Suppose $\mathcal{M}$ is a combinatorial model category.
-  Then $G$ is monadic with left adjoint $F$, and $\operatorname{Alg} \mathcal{M}$ is a locally presentable category.
-  The model structure of $\mathcal{M}$ can be transferred along the adjunction $F \dashv G$ to $\operatorname{Alg} \mathcal{M}$, making $\operatorname{Alg} \mathcal{M}$ a combinatorial model category and $F \dashv G$ a Quillen equivalence.
+  Let $\mathcal{M}$ be a combinatorial model category and let $J$ be a set of trivial cofibrations such that objects of $\mathcal{M}$ are fibrant if they have the right lifting property against all $J$.
+  Then $G : \operatorname{Alg} \mathcal{M} \rightarrow \mathcal{M}$ is monadic with left adjoint $F$, and $\operatorname{Alg} \mathcal{M}$ is a locally presentable category.
+  The model structure of $\mathcal{M}$ can be transferred along the adjunction $F \dashv G$ to $\operatorname{Alg} \mathcal{M}$, endowing $\operatorname{Alg} \mathcal{M}$ with the structure of a combinatorial model category.
+  $F \dashv G$ a Quillen equivalence, and the unit $X \rightarrow G(F(X))$ is a trivial cofibration for all $X \in \mathcal{M}$.
 \end{theorem}
+Theorem \ref{th:algebraically-fibrant-model-category} appears in \cite{algebraic-models} with the additional assumption that all cofibrations in $\mathcal{M}$ are monomorphism.
+This assumption is lifted in \cite{equipping-weak-equivalences}, but as stated there $J$ has to be a set of generating trivial cofibrations.
+However, the same proof given there goes through unaltered for the theorem as stated above.
 
 \begin{lemma}
   \label{lem:algebraically-fibrant-lproper-simplicial}
-  Let $\mathcal{M}$ be as in theorem \ref{th:algebraically-fibrant-model-category}.
-  \begin{enumerate}
-    \item
-      \label{itm:algebraic-left-proper}
-      If $\mathcal{M}$ is a left proper model category, then $\operatorname{Alg} \mathcal{M}$ is a left proper model category.
-      \todo{Is this needed? Looks nice as it is because it's similar to the analogue for marked objects.}
-    \item
-      \label{itm:algebraic-simplicial}
-      Suppose that $\mathcal{M}$ is a model $\mathrm{Gpd}$-category.
-      Then $\operatorname{Alg} \mathcal{M}$ has the structure of a model $\mathrm{Gpd}$-category, and the the adjunction $F \dashv G$ lifts to a Quillen $\mathrm{Gpd}$-adjunction.
-  \end{enumerate}
+  Let $\mathcal{M}$ and $J$ be as in theorem \ref{th:algebraically-fibrant-model-category}, and suppose furthermore that $\mathcal{M}$ is a model $\mathrm{Gpd}$-category.
+  Then $\operatorname{Alg} \mathcal{M}$ has the structure of a model $\mathrm{Gpd}$-category, and the the adjunction $F \dashv G$ lifts to a Quillen $\mathrm{Gpd}$-adjunction.
 \end{lemma}
 \begin{proof}
-  \emph{\ref{itm:algebraic-left-proper}.}
-  \todo{TODO}
-
-  \emph{\ref{itm:algebraic-simplicial}.}
   Let $X$ and $Y$ be algebraically fibrant objects.
   We define the mapping groupoid $(\operatorname{Alg} \mathcal{M})(X, Y)$ to be the full subgroupoid of $\mathcal{M}(G(X), G(Y))$ given by the maps of algebraically fibrant objects $X \rightarrow Y$.
 
@@ -805,16 +826,6 @@ Nevertheless, taking slice categories is otherwise well-behaved in $\mathrm{sLcc
     $U(G(\Gamma))_{/ \sigma}$ has lcc structure, and it can be explicitly constructed:
   }
   The canonical terminal object of $G(\Gamma)_{/ \sigma}$ is the identity $\sigma \rightarrow \sigma$ on $\sigma$, the canonical pullbacks in $G(\Gamma)_{/ \sigma}$ are computed as canonical pullbacks in $G(\Gamma)$, and the canonical functors $\Pi_k : (G(\Gamma)_{/ \sigma})_{/ \tau_0} \rightarrow (G(\Gamma)_{/ \sigma})_{/ \tau_1}$ for $k : \tau_0 \rightarrow \tau_1$ are defined using the the canonical $\Pi$-functors of $\Gamma$ via the isomorphisms $(G(\Gamma)_{/ \sigma})_{/ \tau_i} \cong (G(\Gamma)_{/ \operatorname{dom} \tau_i}$.
-  \todo{
-    To make this precise, we have to relate this to $J$.
-    For this we need an explicit description of $J$, which is hard because Smith's recognition theorem obfuscates this.
-    Perhaps it's better to only require that $J$ is such that an \emph{object} is fibrant iff it has the rlp wrt all $j \in J$.
-    It's even stated like this in Nikolaus, but there it's also required that all cofibrations are monos, whereas Bourke wants $J$ to be a generating set.
-    I'd be surprised if there wasn't a common generalization of the two.
-    Because fibrant objects in all model categories here are easy to
-    describe, it's probably easy to construct such a $J$ explicitly.
-  }
-
   $\Sigma_\sigma$ is given by taking domains of morphisms with codomain $\sigma$, and $\Pi_\sigma$ is given by the domain of the canonical evaluation maps.
   The adjunctions are then defined via the universal property of canonical pullbacks and canonical evaluation maps.
   Because all structure is defined directly in terms of the canonical lifts of $\Gamma$, it is stable under strict lcc functors.
@@ -917,19 +928,6 @@ As in the case of algebraically fibrant objects, we are justified in doing so be
 
 As $\mathrm{sLcc}$ is a model $\mathrm{Gpd}$-category, we may consider it as model $\mathrm{sSet}$-catgory via the nerve functor $\mathrm{Gpd} \rightarrow \mathrm{sSet}$.
 The first infinite cardinal $\omega$ satisfies the three conditions of theorem \ref{th:coalgebraic-model-category}, and $C = FG$ can be chosen as a cofibrant replacement comonad.
-\todo{
-  Verify this.
-  Conditions (1) and (2) are clear.
-  For condition (3), I think it suffices by the proof in \cite{coalgebraic-models} that
-  \begin{align}
-    & \mathrm{Hom}(\Delta^n \otimes \mathcal{C}, \operatorname{colim}_i \mathcal{D}_i) \\
-    \cong {} & \mathrm{Hom}(\mathcal{C}, (\operatorname{colim}_i \mathcal{D}_i)^{\Delta^n}) \\
-    \cong {} & \mathrm{Hom}(\mathcal{C}, \operatorname{colim}_i (\mathcal{D}_i^{\Delta^n})) \\
-    \cong {} & \operatorname{colim}_i \mathrm{Hom}(\mathcal{C}, \mathcal{D}_i^{\Delta^n}) \\
-    \cong {} & \mathrm{Hom}(\Delta^n \otimes \mathcal{C}, \operatorname{colim}_i \mathcal{D}_i) 
-  \end{align}
-  if $\mathcal{C}$ is finitely presentable and the $\mathcal{D}_i$ are filtered.
-}
 
 \begin{definition}
   The canonical covariant cwf structure on $\operatorname{Coa} \mathrm{sLcc}$ is defined by $\mathrm{Ty}((\Gamma, \lambda)) = \mathrm{Ty}(\Gamma)$ and $\mathrm{Tm}((\Gamma, \lambda), \sigma) = \mathrm{Tm}(\Gamma, \sigma)$ in terms of the canonical covariant cwf structure of $\mathrm{sLcc}$.
@@ -963,14 +961,7 @@ Denote by $\eta : \mathrm{Id} \Rightarrow G F : \mathrm{Lcc} \rightarrow \mathrm
   \begin{equation}
     \langle \mathrm{id}, \eta \varepsilon \rangle \eta = \langle \eta, \eta \varepsilon \eta \rangle = \langle \eta, \eta \rangle.
   \end{equation}
-  $\eta$ is a trivial cofibration because $F \dashv G$ is a Quillen equivalence.
-  \todo{
-    This is not enough.
-    I think because $G(\Gamma)$ is cofibrant $\eta$ is a weak equivalence.
-    Why is it a cofibration?
-    One way to see this is is that $\eta$ is constructed via the/Garner's small object argument, i.e.\@ as composition of pushouts of trivial cofibrations.
-    Is there a more conceptual reason?
-  }
+  By theorem \ref{th:algebraically-fibrant-model-category}, $\eta$ is a trivial cofibration because $F \dashv G$ is a Quillen equivalence.
   Because $2 \rightarrow \mathcal{I}$ is a cofibration of groupoids and $G(F(G(\Gamma)))$ is fibrant, the vertical morphism on the right-hand side is a fibration.
   As argued in the proof of lemma \ref{lem:algebraically-fibrant-lproper-simplicial}, the existence of a homotopy relating any two fillers of the square implies that the filler $\psi$ is unique and hence preserved by strict lcc functors $\Gamma \rightarrow \Delta$.
 \end{proof}
