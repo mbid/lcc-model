@@ -110,26 +110,26 @@ Removing all reference to the base category $\mathcal{C}$, we may now attempt to
 In the original interpretation, substitutions of types and terms was defined in terms of the lcc pullback functors $f^* : \mathcal{C}_{/ \Gamma} \rightarrow \mathcal{C}_{/ \Delta}$ along morphisms $f : \Delta \rightarrow \Gamma$.
 In the new interpretation, $f$ is already an lcc functor, which we simply apply to objects and morphisms of lcc categories.
 
-The idea that the contexts of logic should be understood as different categories is by no means novel, and indeed widespread among researchers of geometric logic; see e.g. \cite[section 4.5]{locales-and-toposes-as-spaces} and the concept of classifying toposes \todo{cite}.
+The idea that the contexts of logic should be understood as different categories is by no means novel, and indeed widespread among researchers of geometric logic; see e.g. \cite[section 4.5]{locales-and-toposes-as-spaces}.
 Not surprisingly, some of the ideas in this paper have independently already been explored in \cite{au-sketches} in the context of geometric logic.
 
-Like the original interpretation, the naïve interpretation in the category of lcc categories outlined above suffers from coherence issues:
+Like Seely's original interpretation, the naïve interpretation in the category of lcc categories outlined above suffers from coherence issues:
 Lcc functors preserve lcc structure only up to isomorphism and not necessarily on the nose as required by the syntax of dependent type theory.
 Furthermore, the obvious choice for a context extension by a variable of type $\sigma \in \operatorname{Ob} \Gamma$, the slice category $\Gamma_{/ \sigma}$, has the required universal property only in a higher sense:
 The groupoid of lcc functors $f : \Gamma \rightarrow \Delta$ and terms $\Delta \vdash w : f(\sigma)$ with natural isomorphisms of lcc functors as morphisms is equivalent, but not isomorphic, to the groupoid of lcc functors $k : \Gamma_{/ \sigma} \rightarrow \Delta$ which commute with the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and map the diagonal $\sigma \rightarrow \sigma \times \sigma$ in $\Gamma_{/ \sigma}$ to $w$.
 
 To motivate our solution to this problem, it is instructive to think of the the category of lcc categories as a $(2, 1)$-category, with natural isomorphisms of lcc functors as 2-cells.
-$(2, 1)$-categories are a special case of $(\infty, 1)$-categories, and as such may be presented in terms of model categories \todo{cite}.
+$(2, 1)$-categories are a special case of $(\infty, 1)$-categories, and as such may be presented in terms of model categories (see e.g.\@ \cite{hirschhorn}).
 The underlying 1-category of the presenting model category is not unique, and we may thus hope that some presentations are more suitable for interpreting type theory than others.
 To that end, we explore three Quillen equivalent model categories, all of which encode the same higher category of lcc categories.
 
-The reader of the paper is thus expected to have had some previous exposure to the theory of model categories, such as the concepts of \emph{combinatorial} model category and transfer of model category structure along adjunctions.
-We make extensive use of the notion of algebraically (co)fibrant object in a model category \todo{cite}, but the relevant results are cited when relevant and can be taken as black boxes.
-For somewhat technical reasons (the premise of theorem \todo{ref}), all model categories discussed here are model $\mathrm{Gpd}$-categories, that is, model categories enriched over the category of groupoids with their canonical model structure. \todo{cite}
-While it is more common to work with the more general simplicially enriched model categories, the fact that the higher category $\mathrm{Lcc}$ is 2-truncated allows us to work with the simpler groupoid enrichment instead.
+The reader of the paper is thus expected to have had some previous exposure to the theory of model categories and in particular familiarity with the concepts of (enriched) combinatorial model category and transfer of model category structure along adjunctions.
+We make extensive use of the notion of algebraically (co)fibrant object in a model category \cite{algebraic-models,coalgebraic-models}, but the relevant results are explained where necessary and can be taken as black boxes for the purpose of this paper.
+Because of the the condition on enrichment in theorem \ref{th:coalgebraic-model-category}, all model categories considered here are proved to be model $\mathrm{Gpd}$-categories, that is, model categories enriched over the category of groupoids with their canonical model structure (see \cite{enriched-model-cats} for background on enriched model category theory, \cite{groupoid-model-cat} for the canonical model category of groupoids, and \cite{homotopy-theoretic-aspects} for the closely related model $\mathrm{Cat}$-categories).
+While it is more common to work with the more general simplicially enriched model categories, the fact that the higher category off lcc categories is 2-truncated allows us to work with the simpler groupoid enrichment instead.
 
 In section \ref{sec:lcc-sketches}, we construct the model category $\mathrm{Lcc}$ of \emph{lcc sketches}, a left Bousfield localization of an instance of Isaev's model category structure on marked objects.
-Lcc sketches are to lcc categories as finite limit sketches are to finite limit categories \todo{cite}.
+Lcc sketches are to lcc categories as finite limit sketches are to finite limit categories.
 Thus lcc sketches are categories with some diagrams marked as corresponding to a universal object of lcc categories, but marked diagrams do not have to actually satisfy the universal property.
 The model category is then set up in such a way that every lcc sketch generates an lcc category via fibrant replacement, and lcc sketches are equivalent if and only if they generate equivalent lcc categories.
 
@@ -141,7 +141,7 @@ Section \ref{sec:algebraically-cofibrant} finally establishes the model of type 
 The objects of $\operatorname{Coa} \mathrm{sLcc}$ are strict lcc categories $\Gamma$ such that every (possibly non-strict) lcc functor $\Gamma \rightarrow \Delta$ has a canonical strict isomorph.
 This additional structure is crucial to reconcile the context extension operation, which is given by freely adjoining a morphism to a strict lcc category, with taking slice categories.
 
-In section \ref{sec:applications}, we show that the cwf structure on $(\operatorname{Coa} \mathrm{sLcc})^\mathrm{op}$ can be used to rectify Seely's original interpretation in a given lcc category $\mathcal{C}$.
+In section \ref{sec:applications} we show that the cwf structure on $(\operatorname{Coa} \mathrm{sLcc})^\mathrm{op}$ can be used to rectify Seely's original interpretation in a given lcc category $\mathcal{C}$.
 This is done by choosing an equivalent lcc category $\mathcal{C}^s \simeq \mathcal{C}$ with $\mathcal{C}^s \in \operatorname{Ob} \, (\operatorname{Coa} \mathrm{sLcc})$, and then $\mathcal{C}^s$ inherits cwf structure from the core of the slice cwf $(\operatorname{Coa} \mathrm{sLcc})^\mathrm{op}) / \mathcal{C}^s$.
 
 % To avoid having to dualize twice, we introduce the notion of \emph{covariant cwf}, which is a category $\mathcal{C}$ whose opposite is equipped with cwf structure.
@@ -285,7 +285,6 @@ The assignment $(m_X, X) \mapsto (\gamma(m_X), \gamma(X))$ is functorial.
       Y_1 \arrow[r, "g'"] & Z
     \end{tikzcd}
   \end{equation}
-  \todo{indicate weak eq?}
   be a pushout square in $\mathcal{M}^i$ such that $f$ is a weak equivalence.
   $\mathcal{M}$ is left proper, so $\gamma(f')$ is invertible as a map in $\operatorname{Ho} \mathcal{M}$.
 
@@ -347,8 +346,9 @@ The assignment $(m_X, X) \mapsto (\gamma(m_X), \gamma(X))$ is functorial.
 \end{proof}
 
 So far, the model structure is not aware of what kind of universal property marked diagrams are supposed to have, much like structures interpreting logical signatures are defined without reference to a set of axioms they might satisfy.
-To obtain a model category of lcc sketches, we \emph{localize} at a set of morphisms which encode the axioms of lcc categories:
+To obtain a model category of lcc sketches, we localize at a set of morphisms which encode the axioms of lcc categories:
 We want to consider lcc-marked categories equivalent if they represent the same lcc category.
+Note that $\mathrm{Lcc}$ is a left-proper combinatorial model category, hence left Bousfield localizations at any (small) set of maps in $\mathrm{Lcc}$ exist by \cite[Theorem 4.1.1]{hirschhorn}.
 
 \begin{definition}
   \label{def:lcc-axioms}
@@ -518,7 +518,7 @@ We want to consider lcc-marked categories equivalent if they represent the same 
       \end{equation}
       (where the codomain is marked via $\mathrm{Pb}$ and $\mathrm{Pi}$ as indicated by the variable names).
     \item
-      Any other morphism with an evaluation map factors via dependent products:
+      Any other morphism with an evaluation map factors via the evaluation map of dependent products:
       \begin{equation}
         \mathbf{Pi_2} :
         \left\{
@@ -539,7 +539,7 @@ We want to consider lcc-marked categories equivalent if they represent the same 
           \end{tikzcd}
         \right\}
       \end{equation}
-      \todo{(where several squares and triangle commute.)}
+      (where domain and codomain are marked via $\mathrm{Pb}$ and $\mathrm{Pi}$ as indicated and both diagrams commute).
   \end{itemize}
 \end{definition}
 
@@ -570,11 +570,12 @@ We want to consider lcc-marked categories equivalent if they represent the same 
   The homotopy function complexes of maps between fibrant objects in the localization of a model category $\mathcal{M}$ agree with those in $\mathcal{M}$, thus \ref{itm:lcc-homotopy-category} and \ref{itm:lcc-homotopy-function-complexes} follow from \ref{itm:lcc-fibrant-objects} and lemma \ref{lem:simplicial-marked-objects}.
 
   \ref{itm:lcc-fibrant-objects} is a classification of fibrant objects in left Bousfield localization $S^{-1} \mathrm{Cat}^{I_\mathrm{Lcc}}$, where $S$ is the set containing the morphisms defined in \ref{def:lcc-axioms}.
-  By \todo{reference Hirschhorn}, these are precisely the $S$-local fibrant objects of $\mathrm{Cat}^{I_\mathrm{Lcc}}$, i.e.\@ fibrant lcc marked categories $\mathcal{C}$ such that for all morphism $f : A \rightarrow B$ in $S$ the induced map
+  By \cite[Theorem 4.1.1]{hirschhorn}, these are precisely the $S$-local fibrant objects of $\mathrm{Cat}^{I_\mathrm{Lcc}}$, i.e.\@ fibrant lcc marked categories $\mathcal{C}$ such that for all morphism $f : A \rightarrow B$ in $S$ the induced map
   \begin{equation}
-    \mathrm{sSet}(f, \mathcal{C}) : \mathrm{sSet}(B, \mathcal{C}) \rightarrow \mathrm{sSet}(A, \mathcal{C})
+    \mathrm{Lcc}(f, \mathcal{C}) : \mathrm{Lcc}(B, \mathcal{C}) \rightarrow \mathrm{sSet}(A, \mathcal{C})
   \end{equation}
-  is a trivial Kan fibration.
+  of groupoids is a trivial fibration.
+  \todo{Rewrite the proof for groupoids.}
   Recall (\todo{lemma on enrichment}) that the mapping spaces $\mathrm{sSet}(-, \mathcal{C})$ of lcc-marked categories are the full subspaces of mapping spaces in $\mathrm{Cat}$ given by the marking preserving maps, and that the mapping spaces in $\mathrm{Cat}$ are the nerves of the groupoids of functors and their natural isomorphisms.
   Thus $\mathrm{sSet}(f, \mathcal{C})$ will be a trivial Kan fibration if it has the right lifting property with respect to the boundary inclusion $\partial \Delta^n \hookrightarrow \Delta^n$ for $n \leq 2$.
 
