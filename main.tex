@@ -41,8 +41,7 @@
   Locally cartesian closed (lcc) categories are natural categorical models of extensional dependent type theory.
   This paper introduces the ``gros'' semantics in the category of lcc categories:
   Instead of constructing an interpretation in a given individual lcc category, we show that also the category of all lcc categories can be endowed with the structure of a model of dependent type theory.
-  The original interpretation in a given individual lcc category can then be recovered by slicing.
-  As application, we show that a version of polymorphism can be modeled in the gros semantics via context extension by a variable type; usually this can only be approximated by a semantics in lcc categories that admit a type of (small) types.
+  The original interpretation in an individual lcc category can then be recovered by slicing.
 
   As in the original interpretation, we face the issue of coherence:
   Categorical structure is usually preserved only up to isomorphism, whereas syntactic substitution commutes with all type theoretic structure.
@@ -82,7 +81,7 @@ For pullback functors, however, we are only guaranteed a natural isomorphism $g^
 Similarly, in type theory we have $(\mathbf{\Pi}_\sigma \, \tau)[f] = \mathbf{\Pi}_{\sigma[f]} \, \tau[f^+]$ (where $f^+$ denotes the weakening of $f$ along $\sigma$), whereas for pullback functors there exist merely isomorphisms $f^*(\Pi_\sigma \, \tau) \cong \Pi_{f^*(\sigma)} \, (f^+)^*(\tau)$.
 
 In response to these problems, several notions of models with strict pullback operations have been introduced, e.g.\@ categories with families (cwf) \cite{internal-type-theory}, and coherence techniques have been developed to ``strictify'' weak models such as lcc categories to obtain models with well-behaved substitution \cite{substitution-up-to-isomorphism,on-the-interpretation-of-type-theory-in-lcc-categories,the-local-universes-model}.
-Thus to interpret dependent type theory in some lcc category $\mathcal{C}$, one first constructs an equivalence $\mathcal{C} \simeq \mathcal{C}^s$ of lcc categories so that $\mathcal{C}^s$ can endowed with the structure of a strict model of type theory (say, cwf structure) and interprets type theory in $\mathcal{C}^s$.
+Thus to interpret dependent type theory in some lcc category $\mathcal{C}$, one first constructs an equivalence $\mathcal{C} \simeq \mathcal{C}^s$ of lcc categories so that $\mathcal{C}^s$ can be endowed with the structure of a strict model of type theory (say, cwf structure) and interprets type theory in $\mathcal{C}^s$.
 
 In this paper we construct cwf structure on the category of all lcc categories (as opposed to on some specific lcc category).
 In which sense can the category of lcc categories be understood as a model of type theory?
@@ -112,45 +111,38 @@ In the original interpretation, substitutions of types and terms was defined in 
 In the new interpretation, $f$ is already an lcc functor, which we simply apply to objects and morphisms of lcc categories.
 
 The idea that the contexts of logic should be understood as different categories is by no means novel, and indeed widespread among researchers of geometric logic; see e.g. \cite[section 4.5]{locales-and-toposes-as-spaces} and the concept of classifying toposes \todo{cite}.
-And indeed, some of the ideas in this paper have independently already been explored in \cite{au-sketches}.
+Not surprisingly, some of the ideas in this paper have independently already been explored in \cite{au-sketches} in the context of geometric logic.
 
 Like the original interpretation, the naïve interpretation in the category of lcc categories outlined above suffers from coherence issues:
 Lcc functors preserve lcc structure only up to isomorphism and not necessarily on the nose as required by the syntax of dependent type theory.
 Furthermore, the obvious choice for a context extension by a variable of type $\sigma \in \operatorname{Ob} \Gamma$, the slice category $\Gamma_{/ \sigma}$, has the required universal property only in a higher sense:
 The groupoid of lcc functors $f : \Gamma \rightarrow \Delta$ and terms $\Delta \vdash w : f(\sigma)$ with natural isomorphisms of lcc functors as morphisms is equivalent, but not isomorphic, to the groupoid of lcc functors $k : \Gamma_{/ \sigma} \rightarrow \Delta$ which commute with the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and map the diagonal $\sigma \rightarrow \sigma \times \sigma$ in $\Gamma_{/ \sigma}$ to $w$.
 
-In the search for a more appropriate ``stricter'' but equivalent variant of the naïve interpretation, it is fruitful to consider the category of lcc categories as a $(2, 1)$-category in which the invertible 2-cells are natural isomorphisms of lcc functors.
-$(2, 1)$-categories are a special case of $(\infty, 1)$-categories, and as such are amenable to presentations in terms of model categories \todo{cite}.
-Model categories are 1-categories equipped with structure that is used to encode higher categorical phenomena in 1-categorical terms.
-The choice of presenting model category is not unique, and we may thus hope that some presentations are more amenable to an interpretation of type theory than others.
+To motivate our solution to this problem, it is instructive to think of the the category of lcc categories as a $(2, 1)$-category, with natural isomorphisms of lcc functors as 2-cells.
+$(2, 1)$-categories are a special case of $(\infty, 1)$-categories, and as such may be presented in terms of model categories \todo{cite}.
+The underlying 1-category of the presenting model category is not unique, and we may thus hope that some presentations are more suitable for interpreting type theory than others.
 To that end, we explore three Quillen equivalent model categories, all of which encode the same higher category of lcc categories.
 
-In section \ref{sec:lcc-sketches}, we construct the model category $\mathrm{Lcc}$ of \emph{lcc sketches}, a Bousfield localization of an instance of Isaev's model category structure on marked objects.
+The reader of the paper is thus expected to have had some previous exposure to the theory of model categories, such as the concepts of \emph{combinatorial} model category and transfer of model category structure along adjunctions.
+We make extensive use of the notion of algebraically (co)fibrant object in a model category \todo{cite}, but the relevant results are cited when relevant and can be taken as black boxes.
+For somewhat technical reasons (the premise of theorem \todo{ref}), all model categories discussed here are model $\mathrm{Gpd}$-categories, that is, model categories enriched over the category of groupoids with their canonical model structure. \todo{cite}
+While it is more common to work with the more general simplicially enriched model categories, the fact that the higher category $\mathrm{Lcc}$ is 2-truncated allows us to work with the simpler groupoid enrichment instead.
+
+In section \ref{sec:lcc-sketches}, we construct the model category $\mathrm{Lcc}$ of \emph{lcc sketches}, a left Bousfield localization of an instance of Isaev's model category structure on marked objects.
 Lcc sketches are to lcc categories as finite limit sketches are to finite limit categories \todo{cite}.
 Thus lcc sketches are categories with some diagrams marked as corresponding to a universal object of lcc categories, but marked diagrams do not have to actually satisfy the universal property.
 The model category is then set up in such a way that every lcc sketch generates an lcc category via fibrant replacement, and lcc sketches are equivalent if and only if they generate equivalent lcc categories.
 
 In section \ref{sec:slcc} we define the model category $\mathrm{sLcc}$ of \emph{strict lcc categories}.
-Strict lcc categories are the algebraically fibrant objects of $\mathrm{Lcc}$; that is, they are objects of $\mathrm{Lcc}$ \emph{equipped} with canonical lifts against trivial cofibrations witnessing their fibrancy therein.
+Strict lcc categories are the algebraically fibrant objects of $\mathrm{Lcc}$, that is, they are objects of $\mathrm{Lcc}$ \emph{equipped} with canonical lifts against trivial cofibrations witnessing their fibrancy in $\mathrm{Lcc}$.
 Such canonical lifts correspond to canonical choices of universal objects in lcc categories, and the morphisms in $\mathrm{sLcc}$ preserve these canonical choices on the nose and not just up to isomorphism.
 
-Finally, section \ref{sec:algebraically-cofibrant} is concerned with the study of $\operatorname{Coa} \mathrm{sLcc}$, the model category \emph{algebraically cofibrant strict lcc categories}.
+Section \ref{sec:algebraically-cofibrant} finally establishes the model of type theory in the opposite of $\operatorname{Coa} \mathrm{sLcc}$, the model category of algebraically cofibrant objects in $\mathrm{sLcc}$.
 The objects of $\operatorname{Coa} \mathrm{sLcc}$ are strict lcc categories $\Gamma$ such that every (possibly non-strict) lcc functor $\Gamma \rightarrow \Delta$ has a canonical strict isomorph.
-We then show that the opposite of $\operatorname{Coa} \mathrm{sLcc}$ can indeed be equipped with cwf structure supporting dependent sum and product, extensional equality and finite product types.
+This additional structure is crucial to reconcile the context extension operation, which is given by freely adjoining a morphism to a strict lcc category, with taking slice categories.
 
-Having established a semantics in $\operatorname{Coa} \mathrm{sLcc}$, we turn to applications in section \ref{sec:applications}.
-First we recover a strictification $\mathcal{C} \simeq \mathcal{C}^s$ of any given lcc category $\mathcal{C}$ such that $\mathcal{C}^s$ admits cwf structure, hence a new solution to the original coherence problem.
-Cwf structure on $\mathcal{C}^s$ is obtained by restriction of the cwf structure on $\operatorname{Coa} \mathrm{sLcc}$ via restriction to the core of the slice cwf.
-
-We finish with a short discussion of polymorphism in $\operatorname{Coa} \mathrm{sLcc}$.
-Usually polymorphism in dependent type theories is obtained using universes, i.e.\@ types of (small) types.
-Semantically, they correspond to weakly classifying morphisms in lcc categories, that is, morphisms $\tilde U \rightarrow U$ from which every (small) morphism can be obtained via pullback.
-Universes add proof-theoretic strength and can hence not be modeled in all lcc categories.
-
-As a conservative alternative, we propose the use of context extensions by type variables.
-Whereas the usual context extension in cwfs adjoins freely a term (the variable) of a given existing type, context extension by type variables are obtained by freely adjoining a new type.
-Constructions in such an extended context can be understood as depending on a free type variable, and indeed any concrete type can be substituted for the type variable by the universal property of the extended context.
-Extensions by type variables cannot be accounted for in Seely's original semantics, but they can easily be constructed in $\operatorname{Coa} \mathrm{sLcc}$.
+In section \ref{sec:applications}, we show that the cwf structure on $(\operatorname{Coa} \mathrm{sLcc})^\mathrm{op}$ can be used to rectify Seely's original interpretation in a given lcc category $\mathcal{C}$.
+This is done by choosing an equivalent lcc category $\mathcal{C}^s \simeq \mathcal{C}$ with $\mathcal{C}^s \in \operatorname{Ob} \, (\operatorname{Coa} \mathrm{sLcc})$, and then $\mathcal{C}^s$ inherits cwf structure from the core of the slice cwf $(\operatorname{Coa} \mathrm{sLcc})^\mathrm{op}) / \mathcal{C}^s$.
 
 % To avoid having to dualize twice, we introduce the notion of \emph{covariant cwf}, which is a category $\mathcal{C}$ whose opposite is equipped with cwf structure.
 % We refer to morphisms in a covariant cwf as \emph{cosubstitutions}.
@@ -160,15 +152,8 @@ Extensions by type variables cannot be accounted for in Seely's original semanti
 \section{Lcc sketches}
 \label{sec:lcc-sketches}
 
-As outlined earlier, the solution to these problems is a suitable model categorical presentation of the $(2, 1)$-category of lcc categories.
-As a preliminary step, we define a model category $\mathrm{Lcc}$ of locally cartesian closed (lcc) sketches, which presents the $(2, 1)$-category of lcc categories.
-Intuitively, lcc sketches are categories in which certain diagrams are marked as supposed to have a certain universal property but not required to actually satisfy it.
-Thus an lcc sketch comes with squares marked as pullback squares, with objects marked as terminal objects and diagrams marked as dependent products their evaluation maps, but none of these are required to actually satisfy the universal property.
-However, lcc category can be identified with their underlying lcc sketches, which are given by marking all diagrams as having a certain universal property if and only if they actually satisfy it.
-Because the morphisms in $\mathrm{Lcc}$ are defined as functors which preserve marking, lcc functors of lcc categories can be identified with morphisms of underlying sketches.
-
-The model category structure of $\mathrm{Lcc}$ is set up such that its fibrant objects are precisely the lcc categories, and general lcc sketches are equivalent if and only if the lcc categories they generate by fibrant replacement are equivalent.
-Thus $\mathrm{Lcc}$ can be seen as a model categorical presentation of the $(2, 1)$-category of lcc categories, lcc functors and their natural isomorphisms.
+This section is concerned with the model category $\mathrm{Lcc}$ of lcc sketches.
+$\mathrm{Lcc}$ is constructed as left Bousfield localization of a model category of lcc-marked objects, an instance of Isaev's model category structure on marked objects.
 
 \begin{definition}[\cite{marked-objects} Definition 2.1]
   Let $\mathcal{C}$ be a category.
@@ -633,15 +618,13 @@ We want to consider lcc-marked categories equivalent if they represent the same 
 \section{Strict lcc categories}
 \label{sec:slcc}
 
-As explained in the introduction, our ultimate goal is to define an interpretation of extensional dependent type theory in which contexts are interpreted as lcc categories, substitutions as lcc functors, types as objects in lcc categories and terms as morphisms with terminal domain.
-However, the category $\mathrm{Lcc}$ defined in \ref{sec:lcc-sketches} is not suitable for this purpose:
-All type theoretic structure has the be preserved up to equality by substitutions, but lcc functors preserve the corresponding objects with universal properties only up to isomorphism.
-Luckily $\mathrm{Lcc}$ is just one particular presentation of the $(2, 1)$-category of lcc categories, and so we may hope to find alternative presentations which are more suitable for interpreting type theory.
-In this section, we explain results from the literature for building such alternative descriptions.
-As a first step, we have to rectify the fact that lcc functors do not preserve lcc structure up to equality.
-Indeed, the way we have defined lcc sketches and categories, we cannot even state when an lcc functor is strict because there is no canonical choice of lcc structure.
-Lcc categories are fibrant lcc sketches, which means that they have the right lifting \emph{property} against the generating trivial cofibrants of $\mathrm{Lcc}$.
-In order to speak of canonical choices of lcc structure, we need canonical lifts against the trivial cofibrations.
+A naïve interpretation of type theory in the fibrant objects of $\mathrm{Lcc}$ as outlined in the introduction suffers from very similar issues as Seely's original version:
+Type theoretic structure has the be preserved up to equality by substitutions, but lcc functors preserve the corresponding objects with universal properties only up to isomorphism.
+
+In this section, we explore an alternative model categorical presentation of the higher category of lcc categories.
+Our goal is to rectify the deficiency that lcc functors do not preserve lcc structure up to equality.
+Indeed, lcc structure on fibrant lcc sketches is induced by the right lifting \emph{property} against trivial cofibrations of $\mathrm{Lcc}$, so we cannot even state the required preservation up to equality.
+In order to speak of a distinguished choice of lcc structure, we need canonical lifts against trivial cofibrations.
 
 \begin{definition}[\cite{algebraic-models}]
   \label{def:algebraically-fibrant-objects}
@@ -1321,6 +1304,7 @@ If $h_0, h_1 : \mathcal{D} \rightarrow \mathcal{E}$ are isomorphic over $\mathca
 \end{proof}
 
 \section{Cwf structure on individual lcc categories}
+\label{sec:applications}
 
 This section is devoted to showing that theorem \ref{th:lcc-supports-types} allows recovery of an interpretation type theory in a given lcc category.
 
@@ -1356,7 +1340,7 @@ This section is devoted to showing that theorem \ref{th:lcc-supports-types} allo
   which in turn corresponds to a morphism $s : \tau = \Sigma_\tau \mathrm{id}_\tau \rightarrow \sigma$, and then $f \cong s^*$.
 
   The categories \ref{itm:slice-2-category} and \ref{itm:ext-2-category} are equivalent because they are both categories of weak context extensions (lemmas \ref{lem:strict-ext-is-weak-ext} and \ref{lem:slice-is-weak-ext}).
-  Finally, the inclusion of \ref{itm:ext-1-category} into \ref{itm:ext-2-category} is an equivalence by \ref{lem:strictification}.
+  Finally, the inclusion of \ref{itm:ext-1-category} into \ref{itm:ext-2-category} is an equivalence by lemma \ref{lem:strictification}.
 \end{proof}
 
 \begin{lemma}
@@ -1381,41 +1365,34 @@ This section is devoted to showing that theorem \ref{th:lcc-supports-types} allo
   Then $G(\Gamma)$ is equivalent to $\mathcal{C}$ and to $((\operatorname{Coa} \mathrm{sLcc})_{| (\Gamma, \lambda)})^\mathrm{op}$, the latter admitting cwf structure.
 \end{proof}
 
-\section{Polymorphism}
-
-\begin{definition}
-  \label{def:type-ext}
-  Let $\mathcal{C}$ be a covariant cwf and $\Gamma$ be a context of $\mathcal{C}$.
-  A \emph{context extension by a type variable} of $\Gamma$ is given by a context morphism $p : \Gamma \rightarrow \Gamma.A$ and a type $\Gamma.A \vdash A$ such that for every context morphisms $f : \Gamma \rightarrow \Delta$ and type $\Delta \vdash \sigma$, there is a unique morphism $\langle f, \sigma \rangle : \Gamma.A \rightarrow$ satisfying $\langle f, \sigma \rangle \circ p = f$ and $\langle f, \sigma \rangle(A) = \sigma$.
-  $\mathcal{C}$ \emph{supports} context extension by a type variable if for every context $\Gamma$ in $\mathcal{C}$ there exists a context extension by a type variable $\Gamma \rightarrow \Gamma.A$.
-\end{definition}
-
-\begin{theorem}
-  \label{th:slcc-coa-slcc-type-ext}
-  The cwfs and $\mathrm{sLcc}$ and $\operatorname{Coa} \mathrm{sLcc}$ support context extension by a type variable, and the functor $\mathrm{sLcc} \rightarrow \operatorname{Coa} \mathrm{sLcc}$ preserves it.
-\end{theorem}
-\begin{proof}
-  We proceed analogously to the construction of the usual context extension $\Gamma.\sigma$ in propositions \ref{prop:slcc-model} and \ref{prop:coa-slcc-exts}.
-  Let $\Gamma$ be a strict lcc category.
-  Then the inclusion
-  \begin{equation}
-    p : \Gamma \rightarrow \Gamma \amalg F(\{A\}),
-  \end{equation}
-  where $\{ A \} = \{ A \}^\flat$ denotes the minimally marked terminal category, is a context extension by a type variable in $\mathrm{sLcc}$.
-
-  Now let $\lambda : \Gamma \rightarrow F(G(A))$  be $FG$-coalgebra structure on $\Gamma$.
-  Then $F(G(p)) \circ \lambda : \Gamma \rightarrow F(G(\Gamma.A))$ and $\eta_{\Gamma.A}(A)$ is an object of $G(F(\Gamma))$, thus $\lambda.A = \langle \lambda, \eta_{\Gamma.A}(A) \rangle : \Gamma.A \rightarrow F(G(\Gamma.A))$.
-  $\lambda.A$ defines coalgebra structure on $\Gamma.A$.
-  If $f : (\Gamma, \lambda) \rightarrow (\Delta, \lambda')$ is a an $FG$-coalgebra morphisms $\Delta \vdash \sigma$, then $\langle f, \sigma \rangle : \Gamma.A \rightarrow \Delta$ is an $FG$-coalgebra morphism, too.
-  Thus $p : (\Gamma, \lambda) \rightarrow (\Gamma.A, \lambda.A)$ and $\Gamma.A \vdash A$ form a context extension by a type variable in $\operatorname{Coa} \mathrm{sLcc}$.
-\end{proof}
-
 \section{Conclusion}
 
-The main insight so far was that the coherence problems in interpretations of type theory can be solved by assuming a global point of view:
-Instead of insisting on an interpretation in a given fixed lcc category, we interpret type theory in the category of all such categories, and theorem \ref{th:context-as-model} shows that we can recover from this single ``gros'' model a model in any fixed lcc category.
-The main advantage of working globally is that we can use the machinery of model category theory, which works best for locally presentable categories.
-While a given lcc category will often not be locally presentable, the category of all lcc categories is (at least when seen as a higher category).
+We have shown that the category of lcc categories is a model of dependent type theory.
+Previously only individual lcc categories had been considered as target of interpretations.
+As in these classical interpretations, we had to deal with the issue of coherence:
+Lcc functors (and pullback functors in particular) preserve lcc structure only up to isomorphism, whereas substitution in type theory commutes with type and term formers up to equality.
+
+Our novel solution to the coherence problem relies on working globally on all lcc categories at once.
+In contrast to individual lcc categories, the higher category of all lcc categories is locally presentable.
+This has allowed the use of model category to present this higher category in terms of different 1-categories.
+We have explored three such presentations:
+First we constructed the model category $\mathrm{Lcc}$ of lcc sketches using Isaev's model structure of marked objects.
+Its category of fibrant objects are precisely categories which can be endowed with lcc structure and functors which preserve lcc structure up to isomorphism.
+Next we transferred the model structure of $\mathrm{Lcc}$ to the category $\mathrm{sLcc} = \operatorname{Alg} \mathrm{Lcc}$ of algebraically fibrant lcc sketches.
+The objects of $\mathrm{sLcc}$ are categories with assigned lcc structure, and its morphisms are functors which preserve this canonical lcc structure.
+Finally, our interpretation is valued in the model category $\operatorname{Coa} \mathrm{sLcc}$ of algebraically cofibrant strict lcc categories.
+Its objects are categories $\mathcal{C}$ with assigned lcc structure such that every lcc functor our of $\mathcal{C}$ has a canonical strict lcc isomorph.
+
+While we have only studied an interpretation of a type theory with dependent sum and dependent product, extensional equality and finite product types, it is straightforward to adapt our method to theories with other type constructors.
+For example, a dependent type theory with a type of natural numbers can be interpreted in the category of lcc categories with natural numbers object.
+Alternatively, we can add finite coproduct, quotient and list types while omitting dependent products to obtain an interpretation in the category of list-arithmetic universes \todo{ref}.
+
+Ultimately one would hope to obtain by a general theorem a type theory and its interpretation in the category of algebras for every (higher) monad $M$ on $\mathrm{Cat}$ (with the algebras of $M$ perhaps subject to being finitely complete and stable under slicing).
+Such a theorem, however, is beyond the scope of the present paper.
+
+A further direction for future reasearch could be an adaptation of our technique to interpretations of intensional type theories in quasi-categories, where some coherence problems are currently still unresolved.
+The main difficulty is that presentations of a quasi-category in terms of a 1-category are usually complicated to work with if the quasi-category is not cocomplete and hence model category is not applicable.
+While the intended quasi-categories are not always cocomplete, using our technique we can still work with a very well-behaved combinatorial model category by considering all such quasi-categories at once.
 
 \bibliographystyle{alpha}
 
