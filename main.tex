@@ -569,51 +569,34 @@ Note that $\mathrm{Lcc}$ is a left-proper combinatorial model category, hence le
 \begin{proof}
   The homotopy function complexes of maps between fibrant objects in the localization of a model category $\mathcal{M}$ agree with those in $\mathcal{M}$, thus \ref{itm:lcc-homotopy-category} and \ref{itm:lcc-homotopy-function-complexes} follow from \ref{itm:lcc-fibrant-objects} and lemma \ref{lem:simplicial-marked-objects}.
 
-  \ref{itm:lcc-fibrant-objects} is a classification of fibrant objects in left Bousfield localization $S^{-1} \mathrm{Cat}^{I_\mathrm{Lcc}}$, where $S$ is the set containing the morphisms defined in \ref{def:lcc-axioms}.
-  By \cite[Theorem 4.1.1]{hirschhorn}, these are precisely the $S$-local fibrant objects of $\mathrm{Cat}^{I_\mathrm{Lcc}}$, i.e.\@ fibrant lcc marked categories $\mathcal{C}$ such that for all morphism $f : A \rightarrow B$ in $S$ the induced map
+  \ref{itm:lcc-fibrant-objects} is a classification of fibrant objects in the left Bousfield localization $S^{-1} \mathrm{Cat}^{I_\mathrm{Lcc}}$, where $S$ is the set of morphisms from definition \ref{def:lcc-axioms}.
+  By \cite[Theorem 4.1.1]{hirschhorn}, these are precisely the $S$-local fibrant objects of $\mathrm{Cat}^{I_\mathrm{Lcc}}$.
+  The homotopy function complexes of fibrant objects in model $\mathrm{Gpd}$-categories can be computed as nerves of mapping groupoids.
+  Because the nerve functor $N : \mathrm{Gpd} \rightarrow \mathrm{sSet}$ preserves and reflects trivial fibrations, $S$-locality of a fibrant $I_\mathrm{Lcc}$-marked category $\mathcal{C}$ is thus equivalent to 
   \begin{equation}
-    \mathrm{Lcc}(f, \mathcal{C}) : \mathrm{Lcc}(B, \mathcal{C}) \rightarrow \mathrm{sSet}(A, \mathcal{C})
+    \mathrm{Cat}^{I_\mathrm{Lcc}}(f, \mathcal{C}) : \mathrm{Cat}^{I_\mathrm{Lcc}}(B, \mathcal{C}) \rightarrow \mathrm{Cat}^{I_\mathrm{Lcc}}(A, \mathcal{C})
   \end{equation}
-  of groupoids is a trivial fibration.
-  \todo{Rewrite the proof for groupoids.}
-  Recall (\todo{lemma on enrichment}) that the mapping spaces $\mathrm{sSet}(-, \mathcal{C})$ of lcc-marked categories are the full subspaces of mapping spaces in $\mathrm{Cat}$ given by the marking preserving maps, and that the mapping spaces in $\mathrm{Cat}$ are the nerves of the groupoids of functors and their natural isomorphisms.
-  Thus $\mathrm{sSet}(f, \mathcal{C})$ will be a trivial Kan fibration if it has the right lifting property with respect to the boundary inclusion $\partial \Delta^n \hookrightarrow \Delta^n$ for $n \leq 2$.
-
-  The verification the equivalence asserted in \ref{itm:lcc-fibrant-objects} can be split up into three parts corresponding to terminal objects, pullback squares and dependent products.
-  As all three parts are proved very similarly, only the part for pullback squares will be shown here.
-  For this we must show that if $\mathcal{C}$ is a lcc-marked category, then marked maps of the form $i(\mathrm{Pb}) \rightarrow \mathcal{C}$ are stable under homotopy and $\mathrm{sSet}(\mathbf{Pb_i}, \mathcal{C})$ for $i = 0, 1, 2$ has the right lifting property with respect to $\partial \Delta^n \hookrightarrow \Delta^n$ for $n \leq 2$ if and only if the underlying category $U(\mathcal{C})$ has all pullbacks and maps $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ are marked precisely when their images are a pullback squares.
-
-  Let us unfold what it means that $\mathrm{sSet}(\mathbf{Pb_i}, \mathcal{C})$ has the right lifting property against $\partial \Delta^n \hookrightarrow \Delta^n$ for $i = 0, 1, 2$ and $n = 0, 1, 2$.
-  \todo{
-    Explain the ``vacuousness'' in the following list better.
-    The conditions for $n = 2$ are trivially true for functors that are surjective on morphisms, and the condition for $n = 1$ is trivial if the functors are surjective on objects.
-  }
+  being a surjective equivalence of groupoids (i.e. an equivalence that is surjective on objects) for all $f : A \rightarrow B$ in $S$.
+  If $\mathrm{Lcc}(f, \mathcal{C})$ is a surjective equivalence, then $\mathcal{C}$ has the right lifting property against $f$.
+  Conversely, if $\mathcal{C}$ has the right lifting property with respect to $f$ and natural isomorphisms $\phi : a_0 \cong a_1 : A \rightarrow \mathcal{C}$ can be lifted along $f$ functorially to natural isomorphisms of maps $B \rightarrow \mathcal{C}$, then $\mathcal{C}$ is $f$-local.
+  If $f$ is surjective on both objects and morphisms, then the existence of functorial liftings of natural isomorphisms follows from the right lifting property, and if $f$ is at least surjective on objects, then if liftings of natural isomorphisms exist they will be functorial.
+  
+  The verification of the equivalence asserted in \ref{itm:lcc-fibrant-objects} can now be split up into three parts corresponding to terminal objects, pullback squares and dependent products.
+  As all three parts are proved very similarly, we give only the proof for pullbacks.
+  For this we must show that if $\mathcal{C}$ is a lcc-marked category, then marked maps of the form $i(\mathrm{Pb}) \rightarrow \mathcal{C}$ are stable under isomorphisms and $\mathcal{C}$ is $\mathbf{Pb}_i$-local for $i = 0, 1, 2$ if and only if the underlying category $U(\mathcal{C})$ has all pullbacks and maps $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ are marked precisely when their images are pullback squares.
+  Let us unfold what $\mathbf{Pb}_i$-locality means.
   \begin{itemize}
     \item
-      For $i = 0$ and $n = 0$ this is equivalent to images of marked maps $\mathrm{Pb} \rightarrow U(\mathcal{C})$ being commutative squares.
+      For $i = 0$, it means that all $\mathrm{Pb}$-marked squares commute.
     \item
-      For $i = 0$ and $n = 1$ or $n = 2$ the condition is vacuous.
+      For $i = 1$, it means that every cospan can be completed to a $\mathrm{Pb}$-marked square, and isomorphisms of cospans can be lifted uniquely to isomorphisms of $\mathrm{Pb}$-marked squares completing them.
     \item
-      For $i = 1$ and $n = 0$ it says that every cospan $\cdot \xrightarrow{f_1} \cdot \xleftarrow{f_2} \cdot$ in $U(\mathcal{C})$ can be completed to a marked square.
-    \item
-      For $i = 1$ and $n = 1$ it says that every isomorphism of the lower cospans of two marked squares can be extended to an isomorphism of the full squares.
-    \item
-      For $i = 1$ and $n = 2$ it says that triangles of isomorphisms of marked squares commute as soon if their restrictions to cospans comute.
-    \item
-      For $i = 2$ and $n = 0$ it says that every square completing the cospan of a marked square factors via the marked square.
-    \item
-      For $i = 2$ and $n = 1$ it says that factorizations as in the case $i = 2$, $n = 0$ are compatible with isomorphisms of marked squares and completions of their cospans.
-    \item
-      For $i = 2$ and $n = 2$ the condition is vacuous.
+      For $i = 2$, it means that every commutative square completing the lower cospan of a $\mathrm{Pb}$-marked square factors via the $\mathrm{Pb}$-marked square, and the factorization is compatible with natural isomorphisms of diagrams.
+      In particular, by compatibility with the identity isomorphism, the factorization is unique.
   \end{itemize}
-  Now suppose that these conditions are satisfied.
-  Then every marked square is a pullback square:
-  Marked square commute by the condition for $n = 0, i = 0$.
-  The case $n = 2, i = 1$ guarantees that every cone over the lower cospan of a marked square factors via the marked square, and by $n = 2, i = 2$ instantiated with the identity isomorphism implies uniquness of the factorization.
-  $\mathcal{C}$ has all pullbacks by the condition for $i = 1, n = 0$.
-  Finally, if marked squares are stable under homotopy (i.e.\@ isomorphism), then all pullback squares will be marked because they are isomorphic to the marked squares over their cospans by the condition for $i = 1, n = 0$.
-
-  On the other hand, if $U(\mathcal{C})$ has all pullbacks and squares are marked if and only if they are pullback squares, then all of these conditions are satisfied, and marked squares are stable under isomorphism.
+  Thus if these conditions are satisfied, then every cospan in $\mathcal{C}$ can be completed to pullback squares which are $\mathrm{Pb}$-marked.
+  If furthermore $\mathrm{Pb}$-marked squares are stable under isomorphism, then precisely the pullback squares are $\mathrm{Pb}$-marked.
+  Conversely, the conditions for $i = 0, 1, 2$ are satisfied if we take as $\mathrm{Pb}$-marked squares precisely the pullback squares in a category with pullback squares, and they will be stable under isomorphism.
 \end{proof}
 
 \section{Strict lcc categories}
