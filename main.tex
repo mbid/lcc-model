@@ -372,22 +372,6 @@ Note that $\mathrm{Lcc}$ is a left-proper combinatorial model category, hence le
         \right\} 
       \end{equation}
       (where $t$ is marked via $\mathrm{T}$ in domain and codomain).
-    % \item[\bf T3]
-    %   Any two morphisms with the same domain and terminal codomain are equal:
-    %   \begin{equation}
-    %     \left\{
-    %       \begin{tikzcd}
-    %         \cdot \arrow[r, shift left] \arrow[r, shift right] & t
-    %       \end{tikzcd}
-    %     \right\}
-    %     \rightarrow
-    %     \left\{ 
-    %       \begin{tikzcd}
-    %         \cdot \arrow[r] & t
-    %       \end{tikzcd}
-    %     \right\} 
-    %   \end{equation}
-    %   (where $t$ is marked via $\mathrm{T}$ in domain and codomain).
     \item
       \label{itm:pbs-commute}
       Pullback squares commute:
@@ -450,27 +434,6 @@ Note that $\mathrm{Lcc}$ is a left-proper combinatorial model category, hence le
         \right\}
       \end{equation}
       (where the lower right squares are marked via $\mathrm{Pb}$ and the large squares commute in domain and codomain).
-    % \item
-    %   Every two factorizations via a pullback square are equal:
-    %   \begin{equation}
-    %     \left\{
-    %       \begin{tikzcd}
-    %         \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr, shift left] \arrow[dr, shift right] \\
-    %         & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
-    %         & \cdot \arrow[r, "f_1"] & \cdot
-    %       \end{tikzcd}
-    %     \right\}
-    %     \rightarrow
-    %     \left\{
-    %       \begin{tikzcd}
-    %         \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr] \\
-    %         & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
-    %         & \cdot \arrow[r, "f_1"] & \cdot
-    %       \end{tikzcd}
-    %     \right\}
-    %   \end{equation}
-    %   (where the lower right squares are marked via $\mathcal{B}$ and the large squares commute in domain and codomain).
-    %   \todo{Make more explicit that the two parallel arrows both separately commute with $q_1$ and $q_2$}
     \item
       The evaluation map $\varepsilon$ commutes with the projection map:
       \begin{equation}
@@ -1003,20 +966,6 @@ Denote by $\eta : \mathrm{Id} \Rightarrow G F : \mathrm{Lcc} \rightarrow \mathrm
   The two paths through the square agree after precomposing $p : \Gamma \rightarrow \Gamma.\sigma$ because by assumption $f$ is a coalgebra morphism, and they both map $v$ to the term $F(G(\Delta)) \vdash w' : \lambda'(f(\sigma))$ obtained from $w$ similarly to $v'$ because the isomorphism $\phi$ constructed in lemma \ref{lem:coalgebra-vs-eta} is compatible with coalgebra morphisms.
   \todo{double check this}
 \end{proof}
-
-% \begin{lemma}
-%   Let $\lambda : \Gamma \rightarrow F(G(\Gamma))$ be an $FG$-coalgebra and let $\Gamma \vdash \sigma$ be a type.
-%   Let $\Delta$ be a a strict lcc category and denote by $\mathcal{E}$ the groupoid of pairs $(f, s)$ with $f : G(\Gamma) \rightarrow G(\Delta)$ an lcc functor and $\Delta \vdash s : f(\sigma)$ a term.
-%   An isomorphism $\psi : (f_0, s_0) \cong (f_1, s_1)$ in $\mathcal{E}$ is given by a natural isomorphism $\psi : f_0 \cong f_1$ such that
-%   \begin{equation}
-%     \begin{tikzcd}
-%       1 \arrow[d, equals] \arrow[r, "s_0"] & f_0(\sigma) \arrow[d, "\psi_\sigma"] \\
-%       1 \arrow[r, "s_1"] & f_1(\sigma)
-%     \end{tikzcd}
-%   \end{equation}
-%   commutes.
-%   Then composition with $p_\sigma$ defines
-% \end{lemma}
 
 For any $\mathrm{Gpd}$-category $\mathcal{C}$ and object $x \in \mathcal{C}$, we denote by $\mathcal{C}_{x / }$ the coslice $\mathrm{Gpd}$-category under $x$.
 Its objects are morphisms out of $x$, its morphisms are triangles
