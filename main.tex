@@ -112,7 +112,7 @@ In our new interpretation, $f$ is already an lcc functor, which we simply apply 
 The idea that the contexts of logic should be understood as different categories is by no means novel, and indeed widespread among researchers of geometric logic; see e.g. \cite[section 4.5]{locales-and-toposes-as-spaces}.
 Not surprisingly, some of the ideas in this paper have independently already been explored in \cite{au-sketches} in the context of geometric logic.
 
-Like Seely's original interpretation, the naïve interpretation in the category of lcc categories outlined above suffers from coherence issues:
+Like Seely's original interpretation, the naive interpretation in the category of lcc categories outlined above suffers from coherence issues:
 Lcc functors preserve lcc structure up to isomorphism and but not necessarily up to equality, as would required for a model of type theory.
 Furthermore, the obvious choice for context extension by a variable of type $\sigma \in \operatorname{Ob} \Gamma$, the slice category $\Gamma_{/ \sigma}$, has the required universal property only in a higher sense:
 The groupoid of lcc functors $f : \Gamma \rightarrow \Delta$ and terms $\Delta \vdash w : f(\sigma)$ with natural isomorphisms of lcc functors is equivalent, but not isomorphic, to the groupoid of lcc functors $k : \Gamma_{/ \sigma} \rightarrow \Delta$ which commute with the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and map the diagonal $\sigma \rightarrow \sigma \times \sigma$ in $\Gamma_{/ \sigma}$ to $w$.
@@ -562,7 +562,7 @@ It follows that the left Bousfield localization at any (small) set of maps exist
 \section{Strict lcc categories}
 \label{sec:slcc}
 
-A naïve interpretation of type theory in the fibrant objects of $\mathrm{Lcc}$ as outlined in the introduction suffers from very similar issues as Seely's original version:
+A naive interpretation of type theory in the fibrant objects of $\mathrm{Lcc}$ as outlined in the introduction suffers from very similar issues as Seely's original version:
 Type theoretic structure is preserved up to equality by substitution, but lcc functors preserve the corresponding objects with universal properties only up to isomorphism.
 
 In this section, we explore an alternative model categorical presentation of the higher category of lcc categories.
@@ -737,7 +737,7 @@ To avoid having dualizing twice, we thus introduce the following notion.
 \begin{definition}
   A \emph{covariant cwf} is a category $\mathcal{C}$ equipped with a (covariant) functor $(\mathrm{Ty}, \mathrm{Tm}) : \mathcal{C} \rightarrow \mathrm{Fam}$.
 \end{definition}
-The intuition for a context morphism $f : \Gamma \rightarrow \Delta$ in a cwf is an assignment of terms in $\Gamma$ to the variables occuring in $\Delta$.
+The intuition for a context morphism $f : \Gamma \rightarrow \Delta$ in a cwf is an assignment of terms in $\Gamma$ to the variables occurring in $\Delta$.
 Dually, a morphism $f : \Delta \rightarrow \Gamma$ in a covariant cwf should thus be thought of as a mapping of the variables in $\Delta$ to terms in context $\Gamma$, or more conceptually as an interpretation of the mathematics internal to $\Delta$ into the mathematics internal to $\Gamma$.
 
 Apart from our use of covariant cwfs we adhere to standard terminology with the obvious dualization.
@@ -1203,7 +1203,7 @@ If $h_0, h_1 : \mathcal{D} \rightarrow \mathcal{E}$ are isomorphic over $\mathca
       G(\Gamma.\tau) \arrow[r] & G(\Gamma_{/ \tau}) \\
     \end{tikzcd}
   \end{equation}
-  in $\mathrm{Lcc}_{G(\Gamma)/ }$ commutes up to a unique natural ismorphism that is compatible with $FG$-coalgebra morphisms in $(\Gamma, \lambda)$.
+  in $\mathrm{Lcc}_{G(\Gamma)/ }$ commutes up to a unique natural isomorphism that is compatible with $FG$-coalgebra morphisms in $(\Gamma, \lambda)$.
 \end{lemma}
 \begin{proof}
   $\bar t^*$ maps the diagonal of $\sigma$ to the diagonal of $\tau$ up to the canonical isomorphism $\bar t^* \circ \sigma^* \cong \tau^*$, hence lemma \ref{lem:strict-ext-is-weak-ext} applies.
@@ -1231,7 +1231,7 @@ If $h_0, h_1 : \mathcal{D} \rightarrow \mathcal{E}$ are isomorphic over $\mathca
   \begin{equation}
     \mathrm{Hom}_{\Gamma.\sigma}(1, \tau) \cong \mathrm{Hom}_{\Gamma_{/ \sigma}}(\sigma^*(1), a(\tau)) \cong \mathrm{Hom}_{\Gamma}(1, \Pi_\sigma(a(\tau)))
   \end{equation}
-  by which we define lamba abstraction $\Gamma \vdash \lambda(t) : \mathbf{\Pi}_\sigma \, \tau$ for some term $\Gamma.\sigma \vdash t : \tau$ and the inverse to $\lambda$ (i.e.\@ application of $p_\sigma(u)$ to the variable $\Gamma.\sigma \vdash \mathbf{v} : \sigma$ for some term $\Gamma \vdash u : \mathbf{\Pi}_\sigma \, \tau$).
+  by which we define lambda abstraction $\Gamma \vdash \lambda(t) : \mathbf{\Pi}_\sigma \, \tau$ for some term $\Gamma.\sigma \vdash t : \tau$ and the inverse to $\lambda$ (i.e.\@ application of $p_\sigma(u)$ to the variable $\Gamma.\sigma \vdash \mathbf{v} : \sigma$ for some term $\Gamma \vdash u : \mathbf{\Pi}_\sigma \, \tau$).
 
   Now let $\Gamma \vdash s : \sigma$ and $\Gamma \vdash t : \langle \mathrm{id}_\Gamma, s \rangle(\tau)$.
   The pairing $u = (s, t)$ of type $\Gamma \vdash \mathbf{\Sigma}_\sigma \, \tau$ is defined by the diagram
@@ -1361,7 +1361,7 @@ Alternatively, we can add finite coproduct, quotient and list types while omitti
 Ultimately one would hope to obtain by a general theorem a type theory and its interpretation in the category of algebras for every (higher) monad $M$ on $\mathrm{Cat}$ (with the algebras of $M$ perhaps subject to being finitely complete and stable under slicing).
 Such a theorem, however, is beyond the scope of the present paper.
 
-A further direction for future reasearch could be an adaptation of our technique to interpretations of intensional type theories in quasi-categories, where some coherence problems are currently still unresolved.
+A further direction for future research could be an adaptation of our technique to interpretations of intensional type theories in quasi-categories, where some coherence problems are currently still unresolved.
 The main difficulty here is that presentations of a quasi-category in terms of a 1-category are often quite hard to work with if the quasi-category is not cocomplete and hence model category theory is not directly applicable.
 While the intended quasi-categories are not always cocomplete, using our technique we can still work with a very well-behaved combinatorial model category by considering all such quasi-categories at once.
 
