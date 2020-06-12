@@ -355,154 +355,136 @@ It follows that the left Bousfield localization at any (small) set of maps exist
   The model category $\mathrm{Lcc}$ of \emph{lcc sketches} is the left Bousfield localization of the model category of $I_\mathrm{Lcc}$-marked objects at the following morphisms.
   \begin{itemize}
     \item
-      There exists a (essentially unique) terminal object:
-      \begin{equation}
-        \mathbf{T_1} : \emptyset \rightarrow \{ t \}
-      \end{equation}
-      (in which $t$ is marked via $T$ in the codomain).
+      The morphism $\mathrm{tm}_1$ given by the unique map from the empty category to the marked category with a single, $T$-marked object.
+      $\mathrm{tm}_1$ corresponds to the essentially unique existence of a terminal object.
     \item
-      There exists a (unique) morphism from every object to every terminal object:
+      The morphism $\mathrm{tm}_2$ given by the inclusion of the category
       \begin{equation}
-        \mathbf{T_2} :
-        \left\{
-          \begin{tikzcd}
-            \cdot & t
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{ 
-          \begin{tikzcd}
-            \cdot \arrow[r] & t
-          \end{tikzcd}
-        \right\} 
+        \begin{tikzcd}
+          \cdot & t
+        \end{tikzcd}
       \end{equation}
-      (where $t$ is marked via $\mathrm{T}$ in domain and codomain).
+      with two objects with $t$ marked via $T$ into
+      \begin{equation}
+          \begin{tikzcd}
+            \cdot \arrow[r] & t.
+          \end{tikzcd}
+      \end{equation}
+      $\mathrm{tm}_2$ corresponds to existence and uniqueness of morphisms with terminal objects as codomains.
     \item
       \label{itm:pbs-commute}
-      Pullback squares commute:
+      The morphism $\mathrm{pb}_0$ given by the quotient map from the free-standing non-commutative and $\mathrm{Pb}$-marked square
       \begin{equation}
-        \mathbf{Pb_0} :
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
-            \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[dr, phantom, "\circlearrowleft"] \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
-            \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
+        \begin{tikzcd}
+          \cdot \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
+          \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
       \end{equation}
-      (where the squares in domain and codomain are marked via $\mathrm{Pb}$ but only the latter commutes).
+      to the commuting square
+      \begin{equation}
+        \begin{tikzcd}
+          \cdot \arrow[dr, phantom, "\circlearrowleft"] \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
+          \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
+      \end{equation}
+      (which is still marked via $\mathrm{Pb}$).
+      $\mathrm{pb}_0$ corresponds to the commutativity of pullback squares.
     \item
       \label{itm:pbs-exist}
-      There exists a (essentially unique) pullback square completing any given cospan:
+      The morphism $\mathrm{pb}_1$ given by the inclusion of the cospan
       \begin{equation}
-        \mathbf{Pb_1} : 
-        \left\{
-          \begin{tikzcd}
+        \begin{tikzcd}
             & \cdot \arrow[d, "f_2"] \\
             \cdot \arrow[r, "f_1"] & \cdot 
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
-            \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
+        \end{tikzcd}
       \end{equation}
-      (where the domain is minimally marked and the square in the codomain is marked via $\mathrm{Pb}$).
+      with no markings into the non-commutative square
+      \begin{equation}
+        \begin{tikzcd}
+          \cdot \arrow[r, "p_2"] \arrow[d, "p_1"] & \cdot \arrow[d, "f_2"] \\
+          \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
+      \end{equation}
+      which is marked via $\mathrm{Pb}$.
+      $\mathrm{pb}_1$ corresponds to the essentially unique existence of pullback squares.
     \item
       \label{itm:pbs-factorizations}
-      Every square completing a cospan factors (uniquely) via any pullback square over that cospan:
+      The morphism $\mathrm{pb}_2$ given by the inclusion of
       \begin{equation}
-        \mathbf{Pb_2} : 
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "q_1"'] \arrow[drr, bend left, "q_2"] \arrow[dr, phantom, "\circlearrowleft", near end] \\
-            & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
-            & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr] \\
-            & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
-            & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
+        \begin{tikzcd}
+          \cdot \arrow[ddr, bend right, "q_1"'] \arrow[drr, bend left, "q_2"] \arrow[dr, phantom, "\circlearrowleft", near end] \\
+          & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+          & \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
       \end{equation}
-      (where the lower right squares are marked via $\mathrm{Pb}$ and the outer squares commute in domain and codomain).
+      in which the lower right square is non-commutative and marked via $\mathrm{Pb}$, into the diagram
+      \begin{equation}
+        \begin{tikzcd}
+          \cdot \arrow[ddr, bend right, "q_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "q_2"] \arrow[drr, phantom, "\circlearrowleft"] \arrow[dr] \\
+          & \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+          & \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
+      \end{equation}
+      in which the indicated triangles commute.
+      $\mathrm{pb}_2$ corresponds to the universal property of pullback squares.
     \item
-      The evaluation map $\varepsilon$ commutes with the projection map:
+      The morphism $\mathrm{pi}_0$ given by the quotient map of the non-commutative diagram
       \begin{equation}
-        \mathbf{Pi_0} :
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "p_1"'] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
-            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
-            & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "p_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
-            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
-            & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
+        \begin{tikzcd}
+          \cdot \arrow[ddr, bend right, "p_1"'] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+          & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
+          & \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
       \end{equation}
-      (where domain and codomain are marked via $\mathrm{Pb}$ and $\mathrm{Pi}$ as indicated by the variable names).
+      in which the square made of the $p_i$ and $f_i$ is marked via $\mathrm{Pb}$, and the whole diagrams is marked via $\mathrm{Pi}$, to
+      \begin{equation}
+        \begin{tikzcd}
+          \cdot \arrow[ddr, bend right, "p_1"'] \arrow[ddr, phantom, "\circlearrowleft"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+          & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
+          & \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
+      \end{equation}
+      in which the indicated triangle commutes.
+      $\mathrm{pi}_0$ corresponds to the requirement that the evaluation map $\varepsilon$ of the dependent product $f_2 = \Pi_{f_1}(g)$ is a morphism in the slice category over $\operatorname{cod} g$.
     \item
-      There is a (essentially unique) dependent product $f_2 = \Pi_{f_1} g$ for every composable pair of morphisms:
+      The morphism $\mathrm{pi}_1$ given by the inclusion of a composable pair of morphisms
       \begin{equation}
-        \mathbf{Pi_1} :
-        \left\{
-          \begin{tikzcd}
-            & \cdot \arrow[d, "g"] \\
-            & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
-            & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
-            & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
+        \begin{tikzcd}
+          & \cdot \arrow[d, "g"] \\
+          & \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
       \end{equation}
-      (where the codomain is marked via $\mathrm{Pb}$ and $\mathrm{Pi}$ as indicated by the variable names).
+      into the non-commutative diagram
+      \begin{equation}
+        \begin{tikzcd}
+          \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+          & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
+          & \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
+      \end{equation}
+      which is marked via $\mathrm{Pi}$ (and hence the outer square is marked via $\mathrm{Pb}$).
+      $\mathrm{pi}_1$ corresponds to the essentially unique existence of dependent products $f_2 = \Pi_{f_1}(g)$ and their evaluation maps $\varepsilon$.
     \item
-      Any other morphism with an evaluation map factors (uniquely) via the evaluation map of dependent products:
+      The morphism $\mathrm{pi}_2$ given by the inclusion of the diagram
       \begin{equation}
-        \mathbf{Pi_2} :
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[dddrr, bend right, "p'_1"'] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right] & \\
-            & \cdot \arrow[ddr, bend right, "p_1", near end] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
-            & & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] & \cdot \arrow[dl, "f'_2"] \\
-            & & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
-        \rightarrow
-        \left\{
-          \begin{tikzcd}
-            \cdot \arrow[dr] \arrow[dddrr, bend right, "p'_1"'] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right] & \\
-            & \cdot \arrow[ddr, bend right, "p_1" near end] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
-            & & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] & \cdot \arrow[dl, "f'_2"] \arrow[l] \\
-            & & \cdot \arrow[r, "f_1"] & \cdot
-          \end{tikzcd}
-        \right\}
+        \begin{tikzcd}
+          \cdot \arrow[dddrr, bend right, "p'_1"'] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right, "e", pos=0.4] & \\
+          & \cdot \arrow[ddr, bend right, "p_1", near end] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+          & & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] & \cdot \arrow[dl, "f'_2"] \\
+          & & \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
       \end{equation}
-      (where domain and codomain are marked via $\mathrm{Pb}$ and $\mathrm{Pi}$ as indicated and both diagrams commute).
+      in which the square given by the $f_i$ and $p_i$ is marked via $\mathrm{Pb}$, the subdiagram given by the $f_i, p_i, g$ and $\varepsilon$ is marked via $\mathrm{Pi}$, the square given by $f_1, f'_2$ and the $p'_i$ is marked via $\mathrm{Pb}$, and $e \circ g = p'_1$, into the diagram
+      \begin{equation}
+        \begin{tikzcd}
+          \cdot \arrow[dr, "u"] \arrow[dddrr, bend right, "p'_1"'] \arrow[ddrrrr, bend left, "p'_2"] \arrow[ddrr, bend right, "e", pos=0.4] & \\
+          & \cdot \arrow[ddr, bend right, "p_1" near end] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+          & & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] & \cdot \arrow[dl, "f'_2"] \arrow[l] \\
+          & & \cdot \arrow[r, "f_1"] & \cdot
+        \end{tikzcd}
+      \end{equation}
+      in which $u$ commutes with the $p_i$ and $p'_i$, and $e = \varepsilon \circ u$.
+      $\mathrm{pi}_2$ corresponds to the universal property of the dependent product $f_2 = \Pi_{f_1}(g)$.
   \end{itemize}
 \end{definition}
 
@@ -543,8 +525,8 @@ It follows that the left Bousfield localization at any (small) set of maps exist
   
   The verification of the equivalence asserted in \ref{itm:lcc-fibrant-objects} can now be split up into three parts corresponding to terminal objects, pullback squares and dependent products.
   As all three parts are proved very similarly, we give only the proof for pullbacks.
-  For this we must show that if $\mathcal{C}$ is a lcc-marked category, then marked maps of the form $i(\mathrm{Pb}) \rightarrow \mathcal{C}$ are stable under isomorphisms and $\mathcal{C}$ is $\mathbf{Pb}_i$-local for $i = 0, 1, 2$ if and only if the underlying category $U(\mathcal{C})$ has all pullbacks and maps $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ are marked precisely when their images are pullback squares.
-  Thus let us explicitly the condition on $\mathbf{Pb}_i$-locality.
+  For this we must show that if $\mathcal{C}$ is a lcc-marked category, then marked maps of the form $i(\mathrm{Pb}) \rightarrow \mathcal{C}$ are stable under isomorphisms and $\mathcal{C}$ is $\mathrm{pb}_i$-local for $i = 0, 1, 2$ if and only if the underlying category $U(\mathcal{C})$ has all pullbacks and maps $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ are marked precisely when their images are pullback squares.
+  Thus let us explicitly the condition on $\mathrm{pb}_i$-locality.
   \begin{itemize}
     \item
       For $i = 0$, it means that all $\mathrm{Pb}$-marked squares commute.
@@ -603,16 +585,16 @@ In order to have a distinguished choice of lcc structure, we need canonical lift
       Denote by $f \amalg f = B \amalg_A B$ the self-union of a morphism $f : A \rightarrow B$.
       There is a canonical map $\langle \mathrm{id}, \mathrm{id} \rangle : f \amalg f \rightarrow B$.
 
-      An object of $\mathrm{Lcc}$ is fibrant if and only if it has the right lifting property against the morphisms $j_K$ from \ref{itm:marked-fibrant-object-generators}, the morphisms of definition \ref{def:lcc-axioms}, and the canonical maps $\mathbf{T_2} \amalg \mathbf{T_2} \rightarrow \operatorname{cod} \mathbf{T_2}$, $\mathbf{Pb_2} \amalg \mathbf{Pb_2} \rightarrow \operatorname{cod} \mathbf{Pb_2}$ and $\mathbf{Pi_2} \amalg \mathbf{Pi_2} \rightarrow \operatorname{cod} \mathbf{Pi_2}$.
+      An object of $\mathrm{Lcc}$ is fibrant if and only if it has the right lifting property against the morphisms $j_K$ from \ref{itm:marked-fibrant-object-generators}, the morphisms of definition \ref{def:lcc-axioms}, and the canonical maps $\mathrm{tm}_2 \amalg \mathrm{tm}_2 \rightarrow \operatorname{cod} \mathrm{tm}_2$, $\mathrm{pb}_2 \amalg \mathrm{pb}_2 \rightarrow \operatorname{cod} \mathrm{pb}_2$ and $\mathrm{pi}_2 \amalg \mathrm{pi}_2 \rightarrow \operatorname{cod} \mathrm{pi}_2$.
   \end{enumerate}
 \end{proposition}
 \begin{proof}
   By theorem \ref{th:marked-model-category}, an lcc-marked category is fibrant if and only if its markings are stable under homotopy, hence \ref{itm:marked-fibrant-object-generators}.
   The fibrant objects of $\mathrm{Lcc}$ are the $S$-local fibrant lcc-marked categories where $S$ the set of morphisms of definition \ref{def:lcc-axioms}.
   In particular, fibrant objects of $\mathrm{Lcc}$ have the right lifting property against $S$.
-  By proposition \ref{prop:lcc-model-cat}, the fibrant objects of $\mathrm{Lcc}$ are lcc categories with precisely the universal diagrams for terminal objects, pullback squares and dependent products marked, thus the maps induced by lifts against $\mathbf{T_2}, \mathbf{Pb_2}$ and $\mathbf{Pi_2}$ are unique.
+  By proposition \ref{prop:lcc-model-cat}, the fibrant objects of $\mathrm{Lcc}$ are lcc categories with precisely the universal diagrams for terminal objects, pullback squares and dependent products marked, thus the maps induced by lifts against $\mathrm{tm}_2, \mathrm{pb}_2$ and $\mathrm{pi}_2$ are unique.
   This uniqueness is equivalent to the right lifting property against the canonical maps from these morphisms' self-unions to their codomains.
-  Conversely, if a fibrant lcc-marked category has the right lifting property against $S$ and the lifts against $\mathbf{T_2}, \mathbf{Pb_2}$ and $\mathbf{Pi_2}$ are unique, then it is an lcc category with appropriate markings and hence fibrant in $\mathrm{Lcc}$.
+  Conversely, if a fibrant lcc-marked category has the right lifting property against $S$ and the lifts against $\mathrm{tm}_2, \mathrm{pb}_2$ and $\mathrm{pi}_2$ are unique, then it is an lcc category with appropriate markings and hence fibrant in $\mathrm{Lcc}$.
 \end{proof}
 
 \begin{definition}
@@ -621,7 +603,7 @@ In order to have a distinguished choice of lcc structure, we need canonical lift
 \end{definition}
 The objects in the image of the forgetful functor $G : \mathrm{sLcc} \rightarrow \mathrm{Lcc}$ are the fibrant lcc sketches, i.e.\@ lcc categories.
 To endow an lcc category with the structure of a strict lcc category, we need to choose canonical lifts $\ell(j, -)$ against the morphisms $j \in J$.
-Because the lifts against all other morphisms are uniquely determined, only the choices for $\mathbf{T}_1, \mathbf{Pb}_1$ and $\mathbf{Pi}_1$ are relevant for this.
+Because the lifts against all other morphisms are uniquely determined, only the choices for $\mathrm{tm}_1, \mathrm{pb}_1$ and $\mathrm{pi}_1$ are relevant for this.
 Thus a strict lcc category is an lcc category with assigned terminal object, pullback squares and dependent products (including the evaluation maps of dependent products).
 A strict lcc functor is then an lcc functor that preserves these canonical choices of universal objects not just up to isomorphism but up to equality.
 
