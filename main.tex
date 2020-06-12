@@ -512,33 +512,38 @@ It follows that the left Bousfield localization at any (small) set of maps exist
   \end{enumerate}
 \end{proposition}
 \begin{proof}
-  The homotopy function complexes of maps between fibrant objects in the localization of a model category $\mathcal{M}$ agree with those in $\mathcal{M}$, thus \ref{itm:lcc-homotopy-category} and \ref{itm:lcc-homotopy-function-complexes} follow from \ref{itm:lcc-fibrant-objects} and lemma \ref{lem:simplicial-marked-objects}.
+  Homotopy function complexes of maps from cofibrant to fibrant objects in a model $\mathrm{Gpd}$-category can be computed as nerves of the groupoid enrichment.
+  Thus \ref{itm:lcc-homotopy-category} and \ref{itm:lcc-homotopy-function-complexes} follow from \ref{itm:lcc-fibrant-objects} and lemma \ref{lem:simplicial-marked-objects}.
 
-  \ref{itm:lcc-fibrant-objects} is a classification of fibrant objects in the left Bousfield localization at the set $S$ of morphisms of definition \ref{def:lcc-axioms}.
-  By \cite[Theorem 4.1.1]{hirschhorn}, these are precisely the $S$-local fibrant objects of $\mathrm{Cat}^{I_\mathrm{Lcc}}$.
-  The homotopy function complexes of maps from cofibrant to fibrant objects in model $\mathrm{Gpd}$-categories can be computed as nerves of mapping groupoids.
-  Because the nerve functor $N : \mathrm{Gpd} \rightarrow \mathrm{sSet}$ preserves and reflects trivial fibrations, $S$-locality of a fibrant $I_\mathrm{Lcc}$-marked category $\mathcal{C}$ is thus equivalent to 
+  By \cite[Theorem 4.1.1]{hirschhorn}, the fibrant objects of the left Bousfield localization $\mathrm{Lcc} = S^{-1} \mathrm{Cat}^{I_\mathrm{Lcc}}$ at the set $S$ of morphisms from definition \ref{def:lcc-axioms} are precisely the fibrant lcc-marked categories $\mathcal{C}$ which are $f$-local for all $f \in S$.
+  The verification of the equivalence asserted in \ref{itm:lcc-fibrant-objects} can thus be split up into three parts corresponding to terminal objects, pullback squares and dependent products.
+  As the three proofs are very similar, we give only the proof for pullbacks.
+  For this we must show that if $\mathcal{C}$ is a $\mathrm{Pb}$-marked category, then marked maps $i(\mathrm{Pb}) \rightarrow \mathcal{C}$ are stable under isomorphisms and $\mathcal{C}$ is $\mathrm{pb}_i$-local for $i = 0, 1, 2$ if and only if the underlying category $U(\mathcal{C})$ has all pullbacks and maps $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ are marked if and only if their images are pullbacks.
+
+  Let $\mathcal{M}$ be a model $\mathrm{Gpd}$-category.
+  The homotopy function complexes of maps from cofibrant to fibrant objects in $\mathcal{M}$ can be computed as nerves of mapping groupoids.
+  The nerve functor $N : \mathrm{Gpd} \rightarrow \mathrm{sSet}$ preserves and reflects trivial fibrations.
+  Thus if $f : A \rightarrow B$ is a morphism of cofibrant objects $A, B$, then a fibrant object $X$ is $f$-local if and only if
   \begin{equation}
-    \mathrm{Cat}^{I_\mathrm{Lcc}}(f, \mathcal{C}) : \mathrm{Cat}^{I_\mathrm{Lcc}}(B, \mathcal{C}) \rightarrow \mathrm{Cat}^{I_\mathrm{Lcc}}(A, \mathcal{C})
+    \label{eq:locality}
+    \mathcal{M}(f, X) : \mathcal{M}(B, X) \rightarrow \mathcal{M}(A, X)
   \end{equation}
-  being a trivial fibration of groupoids, i.e. an equivalence that is surjective on objects, for all $f : A \rightarrow B$ in $S$.
+  is a trivial fibration of groupoids, i.e. an equivalence that is surjective on objects.
   
-  The verification of the equivalence asserted in \ref{itm:lcc-fibrant-objects} can now be split up into three parts corresponding to terminal objects, pullback squares and dependent products.
-  As all three parts are proved very similarly, we give only the proof for pullbacks.
-  For this we must show that if $\mathcal{C}$ is a lcc-marked category, then marked maps of the form $i(\mathrm{Pb}) \rightarrow \mathcal{C}$ are stable under isomorphisms and $\mathcal{C}$ is $\mathrm{pb}_i$-local for $i = 0, 1, 2$ if and only if the underlying category $U(\mathcal{C})$ has all pullbacks and maps $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ are marked precisely when their images are pullback squares.
-  Thus let us explicitly the condition on $\mathrm{pb}_i$-locality.
+  Unfolding this we obtain the following characterization of $\mathrm{pb}_i$-locality for a fibrant $\mathrm{Pb}$-marked category:
   \begin{itemize}
     \item
-      For $i = 0$, it means that all $\mathrm{Pb}$-marked squares commute.
+      $\mathcal{C}$ is $\mathrm{pb}_0$-local if and only if all $\mathrm{Pb}$-marked squares commute.
     \item
-      For $i = 1$, it means that every cospan can be completed to a $\mathrm{Pb}$-marked square, and isomorphisms of cospans can be lifted uniquely to isomorphisms of $\mathrm{Pb}$-marked squares completing them.
+      $\mathcal{C}$ is $\mathrm{pb}_1$-local if and only if every cospan can be completed to a $\mathrm{Pb}$-marked square, and isomorphisms of cospans can be lifted uniquely to isomorphisms of $\mathrm{Pb}$-marked squares completing them.
     \item
-      For $i = 2$, it means that every commutative square completing the lower cospan of a $\mathrm{Pb}$-marked square factors via the $\mathrm{Pb}$-marked square, and the factorization is compatible with natural isomorphisms of diagrams.
-      In particular, by compatibility with the identity isomorphism, the factorization is unique.
+      $\mathcal{C}$ is $\mathrm{pb}_2$-local if and only if every commutative square completing the lower cospan of a $\mathrm{Pb}$-marked square factors via the $\mathrm{Pb}$-marked square and every factorization is compatible with natural isomorphisms of diagrams.
+      By compatibility with the identity isomorphism, the factorization is unique.
   \end{itemize}
-  Thus if these conditions are satisfied, then every cospan in $\mathcal{C}$ can be completed to pullback squares which is $\mathrm{Pb}$-marked, and all $\mathrm{Pb}$-marked squares are pullbacks.
-  If furthermore $\mathrm{Pb}$-marked squares are stable under isomorphism, then precisely the pullback squares are $\mathrm{Pb}$-marked.
-  Conversely, the conditions for $i = 0, 1, 2$ are satisfied if we take as $\mathrm{Pb}$-marked squares precisely the pullback squares in a category with pullback squares, and they will be stable under isomorphism.
+  If these conditions are satisfied, then every cospan in $\mathcal{C}$ can be completed to a pullback square which is $\mathrm{Pb}$-marked, and $\mathrm{Pb}$-marked squares are pullbacks.
+  By fibrancy of $\mathcal{C}$, it follows that precisely the pullback squares are $\mathrm{Pb}$-marked.
+
+  Conversely, if we take as $\mathrm{Pb}$-marked squares the pullbacks in a category $\mathcal{C}$ with all pullbacks, then $\mathrm{Pb}$-marked squares will be stable under isomorphism, and, by the characterization above, $\mathcal{C}$ will be $\mathrm{pb}_i$-local for all $i$.
 \end{proof}
 
 \section{Strict lcc categories}
@@ -569,36 +574,54 @@ In order to have a distinguished choice of lcc structure, we need canonical lift
   The category of algebraically fibrant objects is denoted by $\operatorname{Alg} \mathcal{M}$, and the evident forgetful functor $\operatorname{Alg} \mathcal{M} \rightarrow \mathcal{M}$ by $G$.
 \end{definition}
 
+\begin{lemma}
+  \label{lem:object-generating-triv-cof-marked}
+  Denote by $\mathcal{I} \in \operatorname{Ob} \mathrm{Gpd}$ the free standing isomorphism with objects $0$ and $1$ and let $K \in \operatorname{Ob} I_\mathrm{Lcc}$.
+  Let $A_K, B_K$ be the lcc-marked object given by $U(A_K) = U(B_K) = \mathcal{I} \times K$ with $K \cong \{ 0 \} \times K \hookrightarrow \mathcal{I} \times K$ the only marking for $A_K$ and $K \cong \{ \varepsilon \} \times K \hookrightarrow \mathcal{I} \times K$, $\varepsilon = 0, 1$ the markings for $B_K$, and denote by $j_K : A_K \rightarrow B_K$ the obvious inclusion.
+
+  Then $j_K$ is a trivial cofibration in $\mathrm{Cat}^{I_\mathrm{Lcc}}$, and an object of $\mathrm{Cat}^{I_\mathrm{Lcc}}$ is fibrant if and only if it has the right lifting property against $j_K$ for all $K$.
+\end{lemma}
+\begin{proof}
+  The maps $j_K$ are injective on objects and hence cofibrations, and they reflect markings up to isomorphism, hence are also weak equivalences.
+  A map $a : A_K \rightarrow \mathcal{C}$ corresponds to an isomorphism of maps $a_0, a_1 : i(K) \rightarrow \mathcal{C}$ with $a_0$ marked, and $a$ can be lifted to $B_K$ if and only if $a_1$ is also marked.
+  Thus $\mathcal{C}$ has the right lifting property against the $j_K$ if and only if its markings are stable under isomorphism, which is the case if and only if $\mathcal{C}$ is fibrant.
+\end{proof}
+
 \begin{proposition}
   \label{prop:object-generating-triv-cof-lcc}
-  Fibrant lcc-marked categories and fibrant lcc sketches can be characterized by a right lifting property as follows.
+  An object of $\mathrm{Lcc}$ is fibrant if and only if it has the right lifting property against the following morphisms, all of which are trivial cofibrations in $\mathrm{Lcc}$:
   \begin{enumerate}
     \item
-      \label{itm:marked-fibrant-object-generators}
-      Denote by $\mathcal{I} \in \operatorname{Ob} \mathrm{Gpd}$ the free standing isomorphism with objects $0$ and $1$.
-      Let $K \in \operatorname{Ob} I_\mathrm{Lcc}$.
-      Let $A_K, B_K$ be the lcc-marked object given by $U(A_K) = U(B_K) = \mathcal{I} \times K$ with $K \cong \{ 0 \} \times K \hookrightarrow \mathcal{I} \times K$ the only marking for $A_K$ and $K \cong \{ \varepsilon \} \times K \hookrightarrow \mathcal{I} \times K$, $\varepsilon = 0, 1$ the markings for $B_K$, and denote by $j_K : A_K \rightarrow B_K$ the obvious inclusion.
-
-      Then $j_K$ is a trivial cofibration in $\mathrm{Cat}^{I_\mathrm{Lcc}}$, and an object of $\mathrm{Cat}^{I_\mathrm{Lcc}}$ is fibrant if and only if it has the right lifting property against $j_K$ for all $K$.
+      \label{itm:marking-stability}
+      The maps $j_K$ of lemma \ref{lem:object-generating-triv-cof-marked}.
     \item
-      \label{itm:lcc-fibrant-object-generators}
-      Denote by $f \amalg f = B \amalg_A B$ the self-union of a morphism $f : A \rightarrow B$.
-      There is a canonical map $\langle \mathrm{id}, \mathrm{id} \rangle : f \amalg f \rightarrow B$.
-
-      An object of $\mathrm{Lcc}$ is fibrant if and only if it has the right lifting property against the morphisms $j_K$ from \ref{itm:marked-fibrant-object-generators}, the morphisms of definition \ref{def:lcc-axioms}, and the canonical maps $\mathrm{tm}_2 \amalg \mathrm{tm}_2 \rightarrow \operatorname{cod} \mathrm{tm}_2$, $\mathrm{pb}_2 \amalg \mathrm{pb}_2 \rightarrow \operatorname{cod} \mathrm{pb}_2$ and $\mathrm{pi}_2 \amalg \mathrm{pi}_2 \rightarrow \operatorname{cod} \mathrm{pi}_2$.
+      \label{itm:lcc-axioms}
+      The morphisms of definition \ref{def:lcc-axioms}.
+    \item
+      \label{itm:self-unions}
+      The maps $\langle \mathrm{id}, \mathrm{id} \rangle : B \amalg_a B \rightarrow B$ where $a : A \rightarrow B$ is one of $\mathrm{tm}_2, \mathrm{pb}_2$ or $\mathrm{pi}_2$.
   \end{enumerate}
 \end{proposition}
 \begin{proof}
-  By theorem \ref{th:marked-model-category}, an lcc-marked category is fibrant if and only if its markings are stable under homotopy, hence \ref{itm:marked-fibrant-object-generators}.
-  The fibrant objects of $\mathrm{Lcc}$ are the $S$-local fibrant lcc-marked categories where $S$ the set of morphisms of definition \ref{def:lcc-axioms}.
-  In particular, fibrant objects of $\mathrm{Lcc}$ have the right lifting property against $S$.
-  By proposition \ref{prop:lcc-model-cat}, the fibrant objects of $\mathrm{Lcc}$ are lcc categories with precisely the universal diagrams for terminal objects, pullback squares and dependent products marked, thus the maps induced by lifts against $\mathrm{tm}_2, \mathrm{pb}_2$ and $\mathrm{pi}_2$ are unique.
-  This uniqueness is equivalent to the right lifting property against the canonical maps from these morphisms' self-unions to their codomains.
-  Conversely, if a fibrant lcc-marked category has the right lifting property against $S$ and the lifts against $\mathrm{tm}_2, \mathrm{pb}_2$ and $\mathrm{pi}_2$ are unique, then it is an lcc category with appropriate markings and hence fibrant in $\mathrm{Lcc}$.
+  All three types of maps are injective on objects and hence cofibrations in $\mathrm{Cat}^{I_\mathrm{Lcc}}$ and $\mathrm{Lcc}$.
+  By lemma \ref{lem:object-generating-triv-cof-marked}, the maps $j_K$ are trivial cofibrations of lcc-marked categories and hence also trivial cofibration in $\mathrm{Lcc}$.
+
+  By proposition \ref{prop:lcc-model-cat}, the fibrant objects of $\mathrm{Lcc}$ are precisely the lcc categories. 
+  If $\mathcal{C}$ is an lcc category and $f : X \rightarrow Y$ is a morphism of type \ref{itm:lcc-axioms} or \ref{itm:self-unions}, then 
+  \begin{equation}
+    \mathrm{Lcc}(f, \mathcal{C}) : \mathrm{Lcc}(Y, \mathcal{C}) \rightarrow \mathrm{Lcc}(X, \mathcal{C})
+  \end{equation}
+  is an equivalence of groupoids and hence induces a bijection of isomorphism classes.
+  It follows by the Yoneda lemma that $\gamma(f)$ is an isomorphism in $\operatorname{Ho} \mathrm{Lcc}$, so $f$ is  a weak equivalence in $\mathrm{Lcc}$.
+
+  On the other hand, let $\mathcal{C}$ be a fibrant lcc-marked category with the right lifting property against morphisms of type \ref{itm:lcc-axioms} and the morphisms of type \ref{itm:self-unions}.
+  The right lifting property against $\mathrm{pb}_0, \mathrm{pb}_1$ and $\mathrm{pb}_2$ implies that $\mathrm{Pb}$-marked diagrams commute, that every cospan can be completed to $\mathrm{Pb}$-marked square, and that every square over a cospan factors via every $\mathrm{Pb}$-marked square over the cospan.
+  Uniqueness of factorizations follows from the right lifting property against the map of type \ref{itm:self-unions} corresponding to pullbacks.
+  Thus $\mathcal{C}$ has pullbacks, and the argument for terminal objects and dependent products is similar.
 \end{proof}
 
 \begin{definition}
-  A \emph{strict lcc category} is an algebraically fibrant object of $\mathrm{Lcc}$ with respect to the set $J$ of item \ref{itm:lcc-fibrant-object-generators} in proposition \ref{prop:object-generating-triv-cof-lcc}.
+  A \emph{strict lcc category} is an algebraically fibrant object of $\mathrm{Lcc}$ with respect to the set $J$ consisting of the morphisms of types \ref{itm:marking-stability} -- \ref{itm:self-unions} of proposition \ref{prop:object-generating-triv-cof-lcc}.
   The category of strict lcc categories is denoted by $\mathrm{sLcc}$.
 \end{definition}
 The objects in the image of the forgetful functor $G : \mathrm{sLcc} \rightarrow \mathrm{Lcc}$ are the fibrant lcc sketches, i.e.\@ lcc categories.
