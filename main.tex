@@ -638,7 +638,7 @@ For strict lcc categories $\Gamma$, however, these functors can be constructed u
 \begin{proposition}
   \label{prop:strict-slicing}
   Let $\Gamma$ be a strict lcc category, and let $\sigma \in \operatorname{Ob} \Gamma$.
-  Then there is a strict lcc category $\Gamma_{/ \sigma}$ whose underlying category is the slice $U(G(\Gamma))_{/ \sigma}$ and similarly for $\tau$.
+  Then there is a strict lcc category $\Gamma_{/ \sigma}$ whose underlying category is the slice $U(G(\Gamma))_{/ \sigma}$.
 
   If $s : \sigma \rightarrow \tau$ is a morphism in $\Gamma$, then there is a canonical choice of pullback functor $s^* : G(\Gamma_{/ \tau}) \rightarrow G(\Gamma_{/ \sigma})$ which is lcc (but not necessarily strict) and canonical left and right adjoints
   \begin{equation}
@@ -678,14 +678,14 @@ For strict lcc categories $\Gamma$, however, these functors can be constructed u
 
 \begin{theorem}[\cite{algebraic-models} Proposition 2.4, \cite{equipping-weak-equivalences} Theorem 19]
   \label{th:algebraically-fibrant-model-category}
-  Let $\mathcal{M}$ be a combinatorial model category and let $J$ be a set of trivial cofibrations such that objects of $\mathcal{M}$ are fibrant if they have the right lifting property against $J$.
+  Let $\mathcal{M}$ be a combinatorial model category and let $J$ be a set of trivial cofibrations such that objects of with the right lifting property against $J$ are fibrant.
   Then $G : \operatorname{Alg} \mathcal{M} \rightarrow \mathcal{M}$ is monadic with left adjoint $F$, and $\operatorname{Alg} \mathcal{M}$ is a locally presentable category.
   The model structure of $\mathcal{M}$ can be transferred along the adjunction $F \dashv G$ to $\operatorname{Alg} \mathcal{M}$, endowing $\operatorname{Alg} \mathcal{M}$ with the structure of a combinatorial model category.
   $F \dashv G$ is a Quillen equivalence, and the unit $X \rightarrow G(F(X))$ is a trivial cofibration for all $X \in \mathcal{M}$.
 \end{theorem}
 Theorem \ref{th:algebraically-fibrant-model-category} appears in \cite{algebraic-models} with the additional assumption that all cofibrations in $\mathcal{M}$ are monomorphism.
-This assumption is lifted in \cite{equipping-weak-equivalences}, but there $J$ is set of generating trivial cofibrations, which is slightly stronger than the theorem as stated above.
-However, the same proof goes through in the more general setting.
+This assumption is lifted in \cite{equipping-weak-equivalences}, but there $J$ is a set of generating trivial cofibrations, which is slightly stronger requirement than the one stated in the theorem.
+However, the proof in \cite{equipping-weak-equivalences} works without change in the more general setting.
 
 \begin{lemma}
   \label{lem:algebraically-fibrant-lproper-simplicial}
