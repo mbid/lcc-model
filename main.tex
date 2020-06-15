@@ -113,7 +113,7 @@ The idea that the contexts of logic should be understood as different categories
 Not surprisingly, some of the ideas in this paper have independently already been explored in \cite{au-sketches} in the context of geometric logic.
 
 Like Seely's original interpretation, the naive interpretation in the category of lcc categories outlined above suffers from coherence issues:
-Lcc functors preserve lcc structure up to isomorphism and but not necessarily up to equality, as would required for a model of type theory.
+Lcc functors preserve lcc structure up to isomorphism and but not necessarily up to equality, as would be required for a model of type theory.
 Furthermore, the obvious choice for context extension by a variable of type $\sigma \in \operatorname{Ob} \Gamma$, the slice category $\Gamma_{/ \sigma}$, has the required universal property only in a higher sense:
 The groupoid of lcc functors $f : \Gamma \rightarrow \Delta$ and terms $\Delta \vdash w : f(\sigma)$ with natural isomorphisms of lcc functors is equivalent, but not isomorphic, to the groupoid of lcc functors $k : \Gamma_{/ \sigma} \rightarrow \Delta$ which commute with the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and map the diagonal $\sigma \rightarrow \sigma \times \sigma$ in $\Gamma_{/ \sigma}$ to $w$.
 
@@ -137,7 +137,7 @@ In section \ref{sec:slcc} we define the model category $\mathrm{sLcc}$ of \emph{
 Strict lcc categories are the algebraically fibrant objects of $\mathrm{Lcc}$, that is, they are objects of $\mathrm{Lcc}$ \emph{equipped} with canonical lifts against trivial cofibrations witnessing their fibrancy in $\mathrm{Lcc}$.
 Such canonical lifts correspond to canonical choices of universal objects in lcc categories, and the morphisms in $\mathrm{sLcc}$ preserve these canonical choices not only up to isomorphism but up to equality.
 
-Section \ref{sec:algebraically-cofibrant} finally establishes the model of type theory in the opposite of $\operatorname{Coa} \mathrm{sLcc}$, the model category of algebraically cofibrant objects in $\mathrm{sLcc}$.
+Section \ref{sec:algebraically-cofibrant} finally establishes the model of type theory in the opposite of $\operatorname{Coa} \mathrm{sLcc}$, the model category of \emph{algebraically cofibrant objects} in $\mathrm{sLcc}$.
 The objects of $\operatorname{Coa} \mathrm{sLcc}$ are strict lcc categories $\Gamma$ such that every (possibly non-strict) lcc functor $\Gamma \rightarrow \Delta$ has a canonical strict isomorph.
 This additional structure is crucial to reconcile the context extension operation, which is given by freely adjoining a morphism to a strict lcc category, with taking slice categories.
 
