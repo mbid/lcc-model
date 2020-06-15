@@ -63,7 +63,7 @@ Given an lcc category $\mathcal{C}$, one interprets
   \item
     terms $\Gamma \vdash s : \sigma$ as sections $s : \Gamma \rightleftarrows \operatorname{dom} \sigma : \sigma$ to the interpretations of types.
 \end{itemize}
-A context extension $\Gamma.\sigma$ is interpret as the domain of $\sigma$, substitution in types $\Gamma \vdash \sigma$ along substitutions $f : \Delta \rightarrow \Gamma$ is interpreted as pullback
+A context extension $\Gamma.\sigma$ is interpreted as the domain of $\sigma$, substitution in types $\Gamma \vdash \sigma$ along substitutions $f : \Delta \rightarrow \Gamma$ is interpreted as pullback
 \begin{equation}
   \begin{tikzcd}
     \operatorname{dom} \sigma[f] \arrow[r] \arrow[d, "{\sigma[f]}"] \arrow[dr, phantom, near start, "\lrcorner"] & \operatorname{dom} \sigma \arrow[d, "\sigma"] \\
