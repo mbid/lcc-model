@@ -113,18 +113,18 @@ The idea that the contexts of logic should be understood as different categories
 Not surprisingly, some of the ideas in this paper have independently already been explored in \cite{au-sketches} in the context of geometric logic.
 
 Like Seely's original interpretation, the naive interpretation in the category of lcc categories outlined above suffers from coherence issues:
-Lcc functors preserve lcc structure up to isomorphism and but not necessarily up to equality, as would be required for a model of type theory.
+Lcc functors preserve lcc structure up to isomorphism but not necessarily up to equality, as would be required for a model of type theory.
 Furthermore, the obvious choice for context extension by a variable of type $\sigma \in \operatorname{Ob} \Gamma$, the slice category $\Gamma_{/ \sigma}$, has the required universal property only in a higher sense:
 The groupoid of lcc functors $f : \Gamma \rightarrow \Delta$ and terms $\Delta \vdash w : f(\sigma)$ with natural isomorphisms of lcc functors is equivalent, but not isomorphic, to the groupoid of lcc functors $k : \Gamma_{/ \sigma} \rightarrow \Delta$ which commute with the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and map the diagonal $\sigma \rightarrow \sigma \times \sigma$ in $\Gamma_{/ \sigma}$ to $w$.
 
-To motivate our solution to these coherence problems, it is instructive to think of the the category of lcc categories as a $(2, 1)$-category, with natural isomorphisms of lcc functors as 2-cells.
+To motivate our solution to these coherence problems, it is instructive to think of the category of lcc categories as a $(2, 1)$-category, with natural isomorphisms of lcc functors as 2-cells.
 $(2, 1)$-categories are in particular $(\infty, 1)$-categories, and as such may be presented in terms of model categories (see e.g.\@ \cite{hirschhorn}).
 The underlying 1-category of the presenting model category is not unique, and we may thus hope that some presentations are more suitable for interpreting type theory than others.
 To that end, we explore three Quillen equivalent model categories, all of which encode the same higher category of lcc categories.
 
 The reader of the paper is thus expected to be familiar with basic notions of model category theory.
 We make extensive use of the notion of algebraically (co)fibrant object in a model category \cite{algebraic-models,coalgebraic-models}, but the relevant results are explained where necessary and can be taken as black boxes for the purpose of this paper.
-Because of the the condition on enrichment in theorem \ref{th:coalgebraic-model-category}, all model categories considered here are proved to be model $\mathrm{Gpd}$-categories, that is, model categories enriched over the category of groupoids with their canonical model structure.
+Because of the condition on enrichment in theorem \ref{th:coalgebraic-model-category}, all model categories considered here are proved to be model $\mathrm{Gpd}$-categories, that is, model categories enriched over the category of groupoids with their canonical model structure.
 See \cite{enriched-model-cats} for background on enriched model category theory, \cite{groupoid-model-cat} for the canonical model category of groupoids, and \cite{homotopy-theoretic-aspects} for the closely related model $\mathrm{Cat}$-categories.
 While it is more common to work with the more general simplicially enriched model categories, the fact that the higher category of lcc categories is 2-truncated affords us to work with the simpler groupoid enrichment instead.
 
@@ -677,7 +677,7 @@ For strict lcc categories $\Gamma$, however, these functors can be constructed u
       \Gamma_{/ \tau} \arrow[r, "f_{/ \tau}"] & \Delta_{/ f(\tau)}
     \end{tikzcd}
   \end{mathpar}
-  $f_{/ \sigma}$ and $f_{/ \tau}$ commute with taking transposes along the the involved adjunctions.
+  $f_{/ \sigma}$ and $f_{/ \tau}$ commute with taking transposes along the involved adjunctions.
 \end{proposition}
 \begin{proof}
   We take as canonical terminal object of $\Gamma_{/ \sigma}$ the identity $\sigma \rightarrow \sigma$ on $\sigma$.
@@ -779,11 +779,11 @@ However, the proof in \cite{equipping-weak-equivalences} works without change in
 \begin{lemma}
   \label{lem:algebraically-fibrant-lproper-simplicial}
   Let $\mathcal{M}$ and $J$ be as in theorem \ref{th:algebraically-fibrant-model-category}, and suppose furthermore that $\mathcal{M}$ is a model $\mathrm{Gpd}$-category.
-  Then $\operatorname{Alg} \mathcal{M}$ has the structure of a model $\mathrm{Gpd}$-category, and the the adjunction $F \dashv G$ lifts to a Quillen $\mathrm{Gpd}$-adjunction.
+  Then $\operatorname{Alg} \mathcal{M}$ has the structure of a model $\mathrm{Gpd}$-category, and the adjunction $F \dashv G$ lifts to a Quillen $\mathrm{Gpd}$-adjunction.
 \end{lemma}
 \begin{proof}
   Let $X$ and $Y$ be algebraically fibrant objects.
-  We define the mapping groupoid $(\operatorname{Alg} \mathcal{M})(X, Y)$ to be the full subgroupoid of $\mathcal{M}(G(X), G(Y))$ whose objects are the the maps of algebraically fibrant objects $X \rightarrow Y$.
+  We define the mapping groupoid $(\operatorname{Alg} \mathcal{M})(X, Y)$ to be the full subgroupoid of $\mathcal{M}(G(X), G(Y))$ whose objects are the maps of algebraically fibrant objects $X \rightarrow Y$.
 
   Because $\mathrm{Gpd}$ is generated under colimits by the walking isomorphism $\mathcal{I}$, it will follow from the existence of powers $X^\mathcal{I}$ that $\operatorname{Alg} \mathcal{M}$ is complete as a $\mathrm{Gpd}$-category.
   As we will later show that $G$ is a right adjoint, the powers in $\operatorname{Alg} \mathcal{M}$ must be constructed such that they commute with $G$, i.e.\@ $G(X^\mathcal{I}) = G(X)^\mathcal{I}$.
@@ -843,7 +843,7 @@ Phrased model categorically, this biuniversal property amounts to asserting that
   \end{tikzcd}
 \end{equation}
 is a homotopy pushout square in $\mathrm{Lcc}$.
-Here $\{t, x\} = \{t, x\}^\flat$ denotes the the discrete category with two objects and no markings, from which $\{d : t \rightarrow x\}$ is obtained by adjoining a single morphism $t \rightarrow x$.
+Here $\{t, x\} = \{t, x\}^\flat$ denotes the discrete category with two objects and no markings, from which $\{d : t \rightarrow x\}$ is obtained by adjoining a single morphism $t \rightarrow x$.
 The left vertical map $\{ t, x \} \rightarrow \mathcal{C}$ maps $t$ to some terminal object and $x$ to $x$, and the right vertical map maps $d$ to the diagonal $x \rightarrow x^*(x)$ in $\mathcal{C}_{/ x}$.
 
 Recall from proposition \ref{prop:slcc-model} that a context extension $\Gamma.\sigma$ in $\mathrm{sLcc}$ is defined by the 1-categorical pushout square
