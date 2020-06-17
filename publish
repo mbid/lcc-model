@@ -1,0 +1,36 @@
+#!/bin/sh
+
+set -e
+
+src_hash=$(git rev-parse HEAD)
+src_tree=$(mktemp -d /tmp/$(basename $(pwd))-${src_hash}-XXXXXXX)
+git "--work-tree=$src_tree" checkout $src_hash -- .
+rm_src_tree () { rm -r "$src_tree" || true; }
+trap rm_src_tree EXIT TERM INT
+
+(
+  cd "$src_tree"
+  ./build
+)
+
+git worktree prune
+dist_tree=$(mktemp -d /tmp/$(basename $(pwd))-dist-XXXXXXX)
+git worktree add "$dist_tree" dist
+rm_dist_tree () {
+  git worktree remove -f "$dist_tree" || true
+  rm -r "$dist_tree" > /dev/null 2>&1 || true
+}
+
+trap "rm_src_tree; rm_dist_tree;" EXIT TERM INT
+
+(
+  cd "$dist_tree"
+  cp "$src_tree/out/main.pdf" lcc-model.pdf
+  cp "$src_tree/out/main.pdf" "$src_hash.pdf"
+  git add .
+  if [ -n "$(git status -s)" ]
+  then
+    git commit --amend -m "$src_hash"
+    git push -f
+  fi
+)
