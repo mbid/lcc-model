@@ -174,11 +174,10 @@ $\mathrm{Lcc}$ is constructed as left Bousfield localization of a model category
 The forgetful functor $U : \mathcal{C}^i \rightarrow \mathcal{C}$ has a left and right adjoint:
 Its left adjoint $X \mapsto X^\flat$ is given by equipping an object $X$ of $\mathcal{C}$ with the minimal marking $m_{X^\flat} = \emptyset \subseteq \mathrm{Hom}(i(-), X)$, while the right adjoint $X \mapsto X^\sharp$ equips objects with their maximal marking $m_{X^\sharp} = \mathrm{Hom}(i(-), X)$.
 
-In our application, $\mathcal{C} = \mathrm{Cat}$ is the category of (sufficiently small) categories, and $I = I_\mathrm{Lcc}$ contains diagrams corresponding to the shapes (e.g. a squares for pullbacks) of lcc structure.
-The morphisms in $I$ are used to enforce that the domains of maps marked as evaluation maps of dependent products are marked as pullback squares.
+In our application, $\mathcal{C} = \mathrm{Cat}$ is the category of (sufficiently small) categories, and $I = I_\mathrm{lcc}$ contains diagrams corresponding to the shapes (e.g. a squares for pullbacks) of lcc structure.
 
 \begin{definition}
-  The subcategory $I_\mathrm{Lcc} \subseteq \mathrm{Cat}$ of \emph{lcc shapes} is given as follows.
+  The subcategory $I_\mathrm{lcc} \subseteq \mathrm{Cat}$ of \emph{lcc shapes} is given as follows.
   Its objects are the three diagrams $\mathrm{Tm}$, $\mathrm{Pb}$ and $\mathrm{Pi}$.
   $\mathrm{Tm}$ is given by the category with a single object $t$ and no nontrivial morphisms; it corresponds to terminal objects.
   $\mathrm{Pb}$ is the free-standing non-commutative square
@@ -198,10 +197,10 @@ The morphisms in $I$ are used to enforce that the domains of maps marked as eval
     \end{tikzcd}
   \end{equation}
   and corresponds to dependent products $f_2 = \Pi_{f_1}(g)$ and their evaluation maps $\varepsilon$.
-  The only nontrivial functor in $I_\mathrm{Lcc}$ is the inclusion of $\mathrm{Pb}$ into $\mathrm{Pi}$ as indicated by the variable names.
+  The only nontrivial functor in $I_\mathrm{lcc}$ is the inclusion of $\mathrm{Pb}$ into $\mathrm{Pi}$ as indicated by the variable names.
   It corresponds to the requirement that the domain of the evaluation map of dependent products must be a suitable pullback.
 
-  We obtain the category $\mathrm{Cat}^{I_\mathrm{Lcc}}$ of \emph{lcc-marked categories}.
+  We obtain the category $\mathrm{Cat}^\mathrm{lcc} = \mathrm{Cat}^{I_\mathrm{lcc}}$ of \emph{lcc-marked categories}.
 \end{definition}
 
 Now suppose that $\mathcal{C} = \mathcal{M}$ is a model category.
@@ -340,20 +339,20 @@ Then one defines what it means for such a structure to satisfy a formula over th
 For very well-behaved logics such as Lawvere theories, there is a method for freely turning structures into models of the theory, so that the category of models is a reflective subcategory of the category of structures.
 
 By analogy, lcc-marked categories correspond to the structures of the signature of lcc categories.
-The model structure of $\mathrm{Cat}^{I_\mathrm{Lcc}}$ ensures that markings respect the homotopy theory of $\mathrm{Cat}$, in that the choice of marking is only relevant up to isomorphism of diagrams.
+The model structure of $\mathrm{Cat}^{\mathrm{lcc}}$ ensures that markings respect the homotopy theory of $\mathrm{Cat}$, in that the choice of marking is only relevant up to isomorphism of diagrams.
 However, the model structure does not encode the universal property marked diagrams are ultimately supposed to satisfy.
-To obtain the analogue of the category of models for a logical theory, we now define a reflective subcategory of $\mathrm{Cat}^{I_\mathrm{Lcc}}$.
-The technical tool to accomplish this is a left Bousfield localization at a set $S$ of morphism in $\mathrm{Cat}^{I_\mathrm{Lcc}}$.
+To obtain the analogue of the category of models for a logical theory, we now define a reflective subcategory of $\mathrm{Cat}^{\mathrm{lcc}}$.
+The technical tool to accomplish this is a left Bousfield localization at a set $S$ of morphism in $\mathrm{Cat}^{\mathrm{lcc}}$.
 $S$ corresponds to the set of axioms of a logical theory.
 We thus need to define $S$ in such a way that an lcc-marked category is lcc if and only if it has the right lifting property against the morphisms in $S$ such that lifts are determined uniquely up to unique isomorphism.
 
 $\mathrm{Cat}$ is a combinatorial and left proper model $\mathrm{Gpd}$-category with mapping groupoids $\mathrm{Cat}(\mathcal{C}, \mathcal{D})$ given by sets of functors and their natural isomorphisms.
-Thus $\mathrm{Cat}^{I_\mathrm{Cat}}$ has the structure of a combinatorial and left proper model $\mathrm{Gpd}$-category by lemma \ref{lem:simplicial-marked-objects}.
+Thus $\mathrm{Cat}^{\mathrm{lcc}}$ has the structure of a combinatorial and left proper model $\mathrm{Gpd}$-category by lemma \ref{lem:simplicial-marked-objects}.
 It follows that the left Bousfield localization at any (small) set of maps exists by \cite[Theorem 4.1.1]{hirschhorn}.
 
 \begin{definition}
   \label{def:lcc-axioms}
-  The model category $\mathrm{Lcc}$ of \emph{lcc sketches} is the left Bousfield localization of the model category of $I_\mathrm{Lcc}$-marked categories at the following morphisms.
+  The model category $\mathrm{Lcc}$ of \emph{lcc sketches} is the left Bousfield localization of the model category of $\mathrm{lcc}$-marked categories at the following morphisms.
   \begin{itemize}
     \item
       The morphism $\mathrm{tm}_1$ given by the unique map from the empty category to the marked category with a single, $\mathrm{Tm}$-marked object.
@@ -516,7 +515,7 @@ It follows that the left Bousfield localization at any (small) set of maps exist
   Homotopy function complexes of maps from cofibrant to fibrant objects in a model $\mathrm{Gpd}$-category can be computed as nerves of the groupoid enrichment.
   Thus \ref{itm:lcc-homotopy-category} and \ref{itm:lcc-homotopy-function-complexes} follow from \ref{itm:lcc-fibrant-objects} and lemma \ref{lem:simplicial-marked-objects}.
 
-  By \cite[Theorem 4.1.1]{hirschhorn}, the fibrant objects of the left Bousfield localization $\mathrm{Lcc} = S^{-1} \mathrm{Cat}^{I_\mathrm{Lcc}}$ at the set $S$ of morphisms from definition \ref{def:lcc-axioms} are precisely the fibrant lcc-marked categories $\mathcal{C}$ which are $f$-local for all $f \in S$.
+  By \cite[Theorem 4.1.1]{hirschhorn}, the fibrant objects of the left Bousfield localization $\mathrm{Lcc} = S^{-1} \mathrm{Cat}^{\mathrm{lcc}}$ at the set $S$ of morphisms from definition \ref{def:lcc-axioms} are precisely the fibrant lcc-marked categories $\mathcal{C}$ which are $f$-local for all $f \in S$.
   The verification of the equivalence asserted in \ref{itm:lcc-fibrant-objects} can thus be split up into three parts corresponding to terminal objects, pullback squares and dependent products.
   As the three proofs are very similar, we give only the proof for pullbacks.
   For this we must show that if $\mathcal{C}$ is a $\mathrm{Pb}$-marked category, then marked maps $i(\mathrm{Pb}) \rightarrow \mathcal{C}$ are stable under isomorphisms and $\mathcal{C}$ is $\mathrm{pb}_i$-local for $i = 0, 1, 2$ if and only if the underlying category $U(\mathcal{C})$ has all pullbacks and maps $i(\mathrm{Pb}) \rightarrow U(\mathcal{C})$ are marked if and only if their images are pullbacks.
@@ -576,10 +575,10 @@ To be able to speak of distinguished choice of lcc structure, we employ the foll
 
 \begin{proposition}
   \label{prop:object-generating-triv-cof-marked}
-  Denote by $\mathcal{I} \in \operatorname{Ob} \mathrm{Gpd}$ the free-standing isomorphism with objects $0$ and $1$ and let $K \in \operatorname{Ob} I_\mathrm{Lcc}$.
+  Denote by $\mathcal{I} \in \operatorname{Ob} \mathrm{Gpd}$ the free-standing isomorphism with objects $0$ and $1$ and let $K \in \operatorname{Ob} I_\mathrm{lcc}$.
   Let $A_K, B_K$ be the lcc-marked object given by $U(A_K) = U(B_K) = \mathcal{I} \times K$ with $K \cong \{ 0 \} \times K \hookrightarrow \mathcal{I} \times K$ the only marking for $A_K$ and $K \cong \{ \varepsilon \} \times K \hookrightarrow \mathcal{I} \times K$, $\varepsilon = 0, 1$ the markings for $B_K$, and denote by $j_K : A_K \rightarrow B_K$ the obvious inclusion.
 
-  Then $j_K$ is a trivial cofibration in $\mathrm{Cat}^{I_\mathrm{Lcc}}$, and an object of $\mathrm{Cat}^{I_\mathrm{Lcc}}$ is fibrant if and only if it has the right lifting property against $j_K$ for all $K$.
+  Then $j_K$ is a trivial cofibration in $\mathrm{Cat}^{\mathrm{lcc}}$, and an object of $\mathrm{Cat}^{\mathrm{lcc}}$ is fibrant if and only if it has the right lifting property against $j_K$ for all $K$.
 \end{proposition}
 \begin{proof}
   The maps $j_K$ are injective on objects and hence cofibrations, and they reflect markings up to isomorphism, hence are also weak equivalences.
@@ -603,7 +602,7 @@ To be able to speak of distinguished choice of lcc structure, we employ the foll
   \end{enumerate}
 \end{proposition}
 \begin{proof}
-  All three types of maps are injective on objects and hence cofibrations in $\mathrm{Cat}^{I_\mathrm{Lcc}}$ and $\mathrm{Lcc}$.
+  All three types of maps are injective on objects and hence cofibrations in $\mathrm{Cat}^{\mathrm{lcc}}$ and $\mathrm{Lcc}$.
   By proposition \ref{prop:object-generating-triv-cof-marked}, the maps $j_K$ are trivial cofibrations of lcc-marked categories and hence also trivial cofibrations in $\mathrm{Lcc}$.
 
   By proposition \ref{prop:lcc-model-cat}, the fibrant objects of $\mathrm{Lcc}$ are precisely the lcc categories. 
