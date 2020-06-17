@@ -178,37 +178,28 @@ In our application, $\mathcal{C} = \mathrm{Cat}$ is the category of (sufficientl
 The morphisms in $I$ are used to enforce that the domains of maps marked as evaluation maps of dependent products are marked as pullback squares.
 
 \begin{definition}
-  The small subcategory $I_\mathrm{Lcc} \subseteq \mathrm{Cat}$ of \emph{lcc shapes} is given by the terminal category 
+  The subcategory $I_\mathrm{Lcc} \subseteq \mathrm{Cat}$ of \emph{lcc shapes} is given as follows.
+  Its objects are the three diagrams $\mathrm{Tm}$, $\mathrm{Pb}$ and $\mathrm{Pi}$.
+  $\mathrm{Tm}$ is given by the category with a single object $t$ and no nontrivial morphisms; it corresponds to terminal objects.
+  $\mathrm{Pb}$ is the free-standing non-commutative square
   \begin{equation}
-    \mathrm{Tm} =
-    \left\{
-      \begin{tikzcd}
-        t
-      \end{tikzcd}
-    \right\}
+    \begin{tikzcd}
+      \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
+      \cdot \arrow[r, "f_1"] & \cdot;
+    \end{tikzcd}
   \end{equation}
-  consisting of a single object $t$, the free-standing non-commutative square
+  and corresponds to pullback squares.
+  $\mathrm{Pi}$ is the free-standing non-commutative diagram
   \begin{equation}
-    \mathrm{Pb} =
-    \left\{
-      \begin{tikzcd}
-        \cdot \arrow[d, "p_1"] \arrow[r, "p_2"] & \cdot \arrow[d, "f_2"] \\
-        \cdot \arrow[r, "f_1"] & \cdot
-      \end{tikzcd}
-    \right\}
+    \begin{tikzcd}
+      \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
+      & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
+      & \cdot \arrow[r, "f_1"] & \cdot
+    \end{tikzcd}
   \end{equation}
-  and the non-commutative diagram
-  \begin{equation}
-    \mathrm{Pi} =
-    \left\{
-      \begin{tikzcd}
-        \cdot \arrow[ddr, bend right, "p_1"] \arrow[drr, bend left, "p_2"] \arrow[dr, "\varepsilon"] \\
-        & \cdot \arrow[d, "g"] & \cdot \arrow[d, "f_2"] \\
-        & \cdot \arrow[r, "f_1"] & \cdot
-      \end{tikzcd}
-    \right\}.
-  \end{equation}
-  The only non-trivial morphism in $I_\mathrm{Lcc}$ is the inclusion $\mathrm{Pb} \subseteq \mathrm{Pi}$ given by the outer square of $\mathrm{Pi}$ as indicated by the variable names.
+  and corresponds to dependent products $f_2 = \Pi_{f_1}(g)$ and their evaluation maps $\varepsilon$.
+  The only nontrivial functor in $I_\mathrm{Lcc}$ is the inclusion of $\mathrm{Pb}$ into $\mathrm{Pi}$ as indicated by the variable names.
+  It corresponds to the requirement that the domain of the evaluation map of dependent products must be a suitable pullback.
 
   We obtain the category $\mathrm{Cat}^{I_\mathrm{Lcc}}$ of \emph{lcc-marked categories}.
 \end{definition}
