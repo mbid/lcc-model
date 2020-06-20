@@ -48,7 +48,8 @@
   As in the original interpretation, we face the issue of coherence:
   Categorical structure is usually preserved by functors only up to isomorphism, whereas syntactic substitution commutes strictly with all type theoretic structure.
   Our solution involves a suitable presentation of the higher category of lcc categories as model category.
-  To that end, we construct a model category of lcc sketches, from which we obtain by the formalism of algebraically (co)fibrant objects model categories of strict lcc categories and then algebraically cofibrant strict lcc categories, and the latter is our model of dependent type theory.
+  To that end, we construct a model category of lcc sketches, from which we obtain by the formalism of algebraically (co)fibrant objects model categories of strict lcc categories and then algebraically cofibrant strict lcc categories.
+  The latter is our model of dependent type theory.
 \end{abstract}
 
 \section{Introduction}
@@ -112,8 +113,9 @@ Removing all reference to the base category $\mathcal{C}$, we may now attempt to
 In the original interpretation, substitution in types and terms is defined by the pullback functor $f^* : \mathcal{C}_{/ \Gamma} \rightarrow \mathcal{C}_{/ \Delta}$ along a morphism $f : \Delta \rightarrow \Gamma$.
 In our new interpretation, $f$ is already an lcc functor, which we simply apply to objects and morphisms of lcc categories.
 
-The idea different contexts should be understood as different categories is by no means novel, and indeed widespread among researchers of geometric logic; see e.g. \citet[section 4.5]{locales-and-toposes-as-spaces}.
+The idea that different contexts should be understood as different categories is by no means novel, and indeed widespread among researchers of geometric logic; see e.g. \citet[section 4.5]{locales-and-toposes-as-spaces}.
 Not surprisingly, some of the ideas in this paper have independently already been explored in \citet{au-sketches} for geometric logic.
+/todo{Mention model category theory}
 To my knowledge, however, an interpretation of type theory along those lines, especially one with strict substitution, has never been spelled out explicitly, and the present paper is an attempt at filling this gap.
 
 Like Seely's original interpretation, the naive interpretation in the category of lcc categories outlined above suffers from coherence issues:
@@ -342,7 +344,7 @@ For very well-behaved logics such as Lawvere theories, there is a method for fre
 
 By analogy, lcc-marked categories correspond to the structures of the signature of lcc categories.
 The model structure of $\mathrm{Cat}^{\mathrm{lcc}}$ ensures that markings respect the homotopy theory of $\mathrm{Cat}$, in that the choice of marking is only relevant up to isomorphism of diagrams.
-However, the model structure does not encode the universal property marked diagrams are ultimately supposed to satisfy.
+However, the model structure does not encode the universal property that marked diagrams are ultimately supposed to satisfy.
 To obtain the analogue of the category of models for a logical theory, we now define a reflective subcategory of $\mathrm{Cat}^{\mathrm{lcc}}$.
 The technical tool to accomplish this is a left Bousfield localization at a set $S$ of morphism in $\mathrm{Cat}^{\mathrm{lcc}}$.
 $S$ corresponds to the set of axioms of a logical theory.
@@ -372,7 +374,7 @@ It follows that the left Bousfield localization at any (small) set of maps exist
             \cdot \arrow[r] & t.
           \end{tikzcd}
       \end{equation}
-      $\mathrm{tm}_2$ corresponds to existence and uniqueness of morphisms with terminal objects as codomains.
+      $\mathrm{tm}_2$ corresponds to the universal property of terminal objects.
     \item
       \label{itm:pbs-commute}
       The morphism $\mathrm{pb}_0$ given by the quotient map from the free-standing non-commutative and $\mathrm{Pb}$-marked square
@@ -616,7 +618,7 @@ To be able to speak of distinguished choice of lcc structure, we employ the foll
   It follows by the Yoneda lemma that $\gamma(f)$ is an isomorphism in $\operatorname{Ho} \mathrm{Lcc}$, so $f$ is  a weak equivalence in $\mathrm{Lcc}$.
 
   On the other hand, let $\mathcal{C}$ be a fibrant lcc-marked category with the right lifting property against morphisms of type \ref{itm:lcc-axioms} and the morphisms of type \ref{itm:self-unions}.
-  The right lifting property against $\mathrm{pb}_0, \mathrm{pb}_1$ and $\mathrm{pb}_2$ implies that $\mathrm{Pb}$-marked diagrams commute, that every cospan can be completed to $\mathrm{Pb}$-marked square, and that every square over a cospan factors via every $\mathrm{Pb}$-marked square over the cospan.
+  The right lifting property against $\mathrm{pb}_0, \mathrm{pb}_1$ and $\mathrm{pb}_2$ implies that $\mathrm{Pb}$-marked diagrams commute, that every cospan can be completed to a $\mathrm{Pb}$-marked square, and that every square over a cospan factors via every $\mathrm{Pb}$-marked square over the cospan.
   Uniqueness of factorizations follows from the right lifting property against the map of type \ref{itm:self-unions} corresponding to pullbacks.
   Thus $\mathcal{C}$ has pullbacks, and the argument for terminal objects and dependent products is similar.
 \end{proof}
@@ -636,7 +638,7 @@ To be able to speak of distinguished choice of lcc structure, we employ the foll
 
 The slice category $\mathcal{C}_{/ \sigma}$ over an object $\sigma$ of an lcc category $\mathcal{C}$ is lcc again.
 A morphism $s : \sigma \rightarrow \tau$ in $\mathcal{C}$ induces by pullback an lcc functor $s^* : \mathcal{C}_{/ \tau} \rightarrow \mathcal{C}_{/ \sigma}$, and there exist functors $\Pi_s, \Sigma_s : U(\mathcal{C}_{/ \tau}) \rightarrow U(\mathcal{C}_{/ \sigma})$ and adjunctions $\Sigma_s \dashv U(s^*) \dashv \Pi_s$.
-These data depend on choices of pullback squares and dependent product, and hence hence preserved by lcc functors only up to isomorphism.
+These data depend on choices of pullback squares and dependent product, and hence preserved by lcc functors only up to isomorphism.
 
 For strict lcc categories $\Gamma$, however, these functors can be constructed using canonical lcc structure, i.e.\@ using the lifts $\ell(j, -)$ for various $j \in J$, and this choice is preserved by strict lcc functors.
 \begin{proposition}
@@ -682,7 +684,7 @@ For strict lcc categories $\Gamma$, however, these functors can be constructed u
 
 The context morphisms in our categories with families (cwfs) \citep{internal-type-theory} will usually be defined as functors of categories in the opposite directions.
 Cwfs are categories equipped with contravariant functors to $\mathrm{Fam}$, the category of families of sets.
-To avoid having dualizing twice, we thus introduce the following notion.
+To avoid having to dualize twice, we thus introduce the following notion.
 \begin{definition}
   A \emph{covariant cwf} is a category $\mathcal{C}$ equipped with a (covariant) functor $(\mathrm{Ty}, \mathrm{Tm}) : \mathcal{C} \rightarrow \mathrm{Fam}$.
 \end{definition}
@@ -763,11 +765,11 @@ Nevertheless, $\mathrm{sLcc}$ has model category structure that presents the sam
   The model structure of $\mathcal{M}$ can be transferred along the adjunction $F \dashv G$ to $\operatorname{Alg} \mathcal{M}$, endowing $\operatorname{Alg} \mathcal{M}$ with the structure of a combinatorial model category.
   $F \dashv G$ is a Quillen equivalence, and the unit $X \rightarrow G(F(X))$ is a trivial cofibration for all $X \in \mathcal{M}$.
 \end{theorem}
-Theorem \ref{th:algebraically-fibrant-model-category} appears in \citet{algebraic-models} with the additional assumption that all cofibrations in $\mathcal{M}$ are monomorphism.
-This assumption is lifted in \citet{equipping-weak-equivalences}, but there $J$ is a set of generating trivial cofibrations, which is slightly stronger requirement than the one stated in the theorem.
+Theorem \ref{th:algebraically-fibrant-model-category} appears in \citet{algebraic-models} with the additional assumption that all cofibrations in $\mathcal{M}$ are monomorphisms.
+This assumption is lifted in \citet{equipping-weak-equivalences}, but there $J$ is a set of generating trivial cofibrations, which is a slightly stronger condition than the one stated in the theorem.
 However, the proof in \citet{equipping-weak-equivalences} works without change in the more general setting.
 
-That the model structure of $\operatorname{Alg} \mathcal{M}$ is transferred from that of $\mathcal{M}$ means that $G$ reflects fibrations and weak equivalences.
+That the model structure of $\operatorname{Alg} \mathcal{M}$ is obtained by transfer from that of $\mathcal{M}$ means that $G$ reflects fibrations and weak equivalences.
 
 \begin{lemma}
   \label{lem:algebraically-fibrant-lproper-simplicial}
@@ -844,7 +846,7 @@ Recall from proposition \ref{prop:slcc-model} that a context extension $\Gamma.\
   \label{eq:slcc-context-extension-2}
   \begin{tikzcd}
     F(\{ t, \sigma \}) \arrow[d] \arrow[r] & F(\{ v : t \rightarrow \sigma \}) \arrow[d] \\
-    \Gamma \arrow[r, "p"] & \Gamma.\sigma,
+    \Gamma \arrow[r, "p"] & \Gamma.\sigma.
   \end{tikzcd}
 \end{equation}
 Because $F \dashv G$ is a Quillen equivalence, we should thus expect to find weak equivalences relating $\Gamma_{/ \sigma}$ to $\Gamma.\sigma$ if the pushout \eqref{eq:slcc-context-extension-2} is also a \emph{homotopy} pushout.
@@ -877,7 +879,7 @@ The dependent product type $\mathbf{\Pi}_\sigma \, \tau$ would be defined by app
   \end{tikzcd}
 \end{equation}
 to $\tau$.
-Unfortunately, the definition of the comparison functor $\Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$ required a \emph{choice} of section $\lambda : \Gamma \rightarrow F(G(\Gamma))$, and this choices will not generally be compatible with strict lcc functors $\Gamma \rightarrow \Delta$.
+Unfortunately, the definition of the comparison functor $\Gamma.\sigma \rightarrow \Gamma_{/ \sigma}$ required a \emph{choice} of section $\lambda : \Gamma \rightarrow F(G(\Gamma))$, and this choice will not generally be compatible with strict lcc functors $\Gamma \rightarrow \Delta$.
 The dependent products defined as above will thus not be stable under substitution.
 
 To solve this issue, we make the section $\lambda$ part of the structure.
@@ -918,7 +920,7 @@ For $\mathcal{M} = \mathrm{sLcc}$, the first infinite cardinal $\omega$ satisfie
   in terms of the covariant cwf structure on $\mathrm{sLcc}$.
 \end{definition}
 
-We denote by $\eta : \mathrm{Id} \Rightarrow G F : \mathrm{Lcc} \rightarrow \mathrm{Lcc}$ and $\varepsilon : F G \Rightarrow \mathrm{Id} : \mathrm{sLcc} \rightarrow \mathrm{sLcc}$ the unit respectively counit of the adjunction $F \dashv G$.
+We denote by $\eta : \mathrm{Id} \Rightarrow G F : \mathrm{Lcc} \rightarrow \mathrm{Lcc}$ the unit and by $\varepsilon : F G \Rightarrow \mathrm{Id} : \mathrm{sLcc} \rightarrow \mathrm{sLcc}$ the counit of the adjunction $F \dashv G$.
 
 \begin{lemma}
   \label{lem:coalgebra-vs-eta}
@@ -1005,7 +1007,7 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
 \begin{definition}
   \label{def:weak-ext}
   Let $\mathcal{C}$ be an lcc category and $x \in \operatorname{Ob} \mathcal{C}$.
-  A \emph{weak context extension} of $\mathcal{C}$ by $x$ consists of an lcc functor $f : \mathcal{C} \rightarrow \mathcal{D}$ and a morphism $v : t \rightarrow f(x)$ with $t$ a terminal object in $\mathcal{D}$ that satisfies the following biuniversal property:
+  A \emph{weak context extension} of $\mathcal{C}$ by $x$ consists of an lcc functor $f : \mathcal{C} \rightarrow \mathcal{D}$ and a morphism $v : t \rightarrow f(x)$ with $t$ a terminal object in $\mathcal{D}$ such that the following biuniversal property holds:
 
   For every lcc category $\mathcal{E}$, lcc functor $g : \mathcal{C} \rightarrow \mathcal{E}$ and morphism $w : u \rightarrow g(x)$ in $\mathcal{E}$ with $u$ terminal, the full subgroupoid of $\mathrm{Lcc}_{\mathcal{C} /}(f, g)$ given by pairs of lcc functor $h : \mathcal{D} \rightarrow \mathcal{E}$ and natural isomorphism $\phi : hf \cong g$ such that the square
   \begin{equation}
@@ -1025,7 +1027,7 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
 
 \begin{lemma}
   \label{lem:strictification}
-  Let $\lambda : \Gamma \rightarrow F(G(\Gamma))$ an $FG$-coalgebra and let $\Delta$ be a strict lcc category.
+  Let $\lambda : \Gamma \rightarrow F(G(\Gamma))$ be an $FG$-coalgebra and let $\Delta$ be a strict lcc category.
   Then the full and faithful inclusion of groupoids
   \begin{equation}
     \label{eq:forget-strictness}
@@ -1193,7 +1195,7 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
       1 \arrow[r, "v"] & p(\sigma).
     \end{tikzcd}
   \end{mathpar}
-  All data involved in the the construction are natural in $\Gamma$ by proposition \ref{prop:strict-slicing}, hence so are $b$ and $\beta$.
+  All data involved in the construction are natural in $\Gamma$ by proposition \ref{prop:strict-slicing}, hence so are $b$ and $\beta$.
 
   By remark \ref{rem:discrete-weak-ext-mapping}, the natural isomorphisms $(b, \beta) \circ (a, \alpha) \cong \mathrm{id}$ and $\mathrm{id} \cong (b, \beta) \circ (a, \alpha)$ over $G(\Gamma)$ are uniquely determined given their domain and codomain.
   Their naturality in $(\Gamma, \lambda)$ and $\sigma$ thus follows from that of $(a, \alpha)$ and $(b, \beta)$.
