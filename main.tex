@@ -1350,28 +1350,18 @@ In this section we show that the covariant cwf structure on $\operatorname{Coa} 
 
 \section{Conclusion}
 
-We have shown that the category of lcc categories is a model of dependent type theory.
+We have shown that the category of lcc categories is a model of extensional dependent type theory.
 Previously only individual lcc categories had been considered as targets of interpretations.
-As in these classical interpretations, we had to deal with the issue of coherence:
+As in these previous interpretations, we have had to deal with the issue of coherence:
 Lcc functors (and pullback functors in particular) preserve lcc structure only up to isomorphism, whereas substitution in type theory commutes with type and term formers up to equality.
 
-Our novel solution to the coherence problem relies on working globally on all lcc categories at once.
+Our novel solution to the coherence problem relies on working globally, on all lcc categories at once.
 In contrast to some individual lcc categories, the higher category of all lcc categories is locally presentable.
-This allowed the use of model category theory to present this higher category in terms of different 1-categories.
+This allows the use of model category theory to construct a presentation of this higher category in terms of a 1-category that admits an interpretation of type theory.
 
-We explored three such presentations:
-First we constructed the model category $\mathrm{Lcc}$ of lcc sketches using Isaev's model structure of marked objects.
-Its category of fibrant objects are precisely categories which can be endowed with lcc structure and functors which preserve lcc structure up to isomorphism.
-
-Next we transferred the model structure of $\mathrm{Lcc}$ to the category $\mathrm{sLcc} = \operatorname{Alg} \mathrm{Lcc}$ of algebraically fibrant lcc sketches.
-The objects of $\mathrm{sLcc}$ are categories with assigned lcc structure, and its morphisms are functors which preserve this canonical lcc structure.
-
-Finally, our interpretation is valued in the model category $\operatorname{Coa} \mathrm{sLcc}$ of algebraically cofibrant strict lcc categories.
-Its objects are categories $\mathcal{C}$ with assigned lcc structure such that every lcc functor out of $\mathcal{C}$ can be assigned an isomorphic strict lcc functor.
-
-While we only studied an interpretation of a type theory with dependent sum and dependent product, extensional equality and finite product types, it is straightforward to adapt our method to theories with other type constructors.
+While we have only studied an interpretation of a type theory with dependent sum and dependent product, extensional equality and finite product types, it is straightforward to adapt the techniques of this paper to type theories with other type constructors.
 For example, a dependent type theory with a type of natural numbers can be interpreted in the category of lcc categories with objects of natural numbers.
-Alternatively, we can add finite coproduct, quotient and list types while omitting dependent products and obtain an interpretation in the category of arithmetic universes \citep{au-as-list-arithmetic-pretopos,au-sketches}.
+Alternatively, we can add finite coproduct, quotient and list types but omit dependent products, and obtain an interpretation in the category of arithmetic universes \citep{au-as-list-arithmetic-pretopos,au-sketches}.
 
 Ultimately one would hope to obtain by a general theorem a type theory and its interpretation in the category of algebras for every (higher) monad $M$ on $\mathrm{Cat}$ (with the algebras of $M$ perhaps subject to being finitely complete and stable under slicing).
 Such a theorem, however, is beyond the scope of the present paper.
