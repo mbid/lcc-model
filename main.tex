@@ -87,7 +87,7 @@ Similarly, in type theory we have $(\mathbf{\Pi}_\sigma \, \tau)[f] = \mathbf{\P
 In response to these problems, several notions of models with strict pullback operations have been introduced, e.g.\@ categories with families (cwfs) \citep{internal-type-theory}, and coherence techniques have been developed to ``strictify'' weak models such as lcc categories to obtain models with well-behaved substitution \citep{substitution-up-to-isomorphism,on-the-interpretation-of-type-theory-in-lcc-categories,the-local-universes-model}.
 Thus to interpret dependent type theory in some lcc category $\mathcal{C}$, one first constructs an equivalence $\mathcal{C} \simeq \mathcal{C}^s$ such that $\mathcal{C}^s$ can be endowed with the structure of a strict model of type theory (say, cwf structure), and then interprets type theory in $\mathcal{C}^s$.
 
-In this paper we construct cwf structure on the category of all lcc categories instead instead of cwf structure on some specific lcc category.
+In this paper we construct cwf structure on the category of all lcc categories instead of cwf structure on some specific lcc category.
 First note that the classical interpretation of type theory in an lcc category $\mathcal{C}$ is essentially an interpretation in the slice categories of $\mathcal{C}$:
 \begin{itemize}
   \item
@@ -114,8 +114,7 @@ In the original interpretation, substitution in types and terms is defined by th
 In our new interpretation, $f$ is already an lcc functor, which we simply apply to objects and morphisms of lcc categories.
 
 The idea that different contexts should be understood as different categories is by no means novel, and indeed widespread among researchers of geometric logic; see e.g. \citet[section 4.5]{locales-and-toposes-as-spaces}.
-Not surprisingly, some of the ideas in this paper have independently already been explored in \citet{au-sketches} for geometric logic.
-/todo{Mention model category theory}
+Not surprisingly, some of the ideas in this paper have independently already been explored, in more explicit form, in \citet{au-sketches} for geometric logic.
 To my knowledge, however, an interpretation of type theory along those lines, especially one with strict substitution, has never been spelled out explicitly, and the present paper is an attempt at filling this gap.
 
 Like Seely's original interpretation, the naive interpretation in the category of lcc categories outlined above suffers from coherence issues:
@@ -156,7 +155,7 @@ I would like to thank the organizers of the TYPES workshop 2019 and the HoTT con
 Conversations with Emily Riehl, Karol Szumiło and David White made me aware that the constructions in this paper could be phrased model categorically; I believe this improved the presentation significantly.
 Daniel Gratzer pointed out to me the biuniversal property of slice categories.
 Valery Isaev explained to me some aspects of the model category structure on marked objects.
-Bas Spitters provided invaluable advice and enabled me to work on this paper.
+I would like to thank my advisor Bas Spitters for his advice on this paper, which is part of my PhD research.
 
 This work was supported by the Air Force Office and Scientific Research project ``Homotopy Type Theory and Probabilistic Computation'', grant number 12595060.
 
