@@ -119,8 +119,23 @@ To my knowledge, however, an interpretation of type theory along those lines, es
 
 Like Seely's original interpretation, the naive interpretation in the category of lcc categories outlined above suffers from coherence issues:
 Lcc functors preserve lcc structure up to isomorphism, but not necessarily up to equality, and the latter would be required for a model of type theory.
-Furthermore, the obvious choice of context extension by a variable of type $\sigma \in \operatorname{Ob} \Gamma$, the slice category $\Gamma_{/ \sigma}$, has the required universal property only in a higher sense:
-The groupoid of pairs of lcc functors $f : \Gamma \rightarrow \Delta$ and morphisms $w : 1 \rightarrow f(\sigma)$ in $\Delta$ is equivalent, but not isomorphic, to the groupoid of lcc functors $k : \Gamma_{/ \sigma} \rightarrow \Delta$ which commute with the pullback functor $\sigma^* : \Gamma \rightarrow \Gamma_{/ \sigma}$ and map the diagonal $\sigma \rightarrow \sigma \times \sigma$ in $\Gamma_{/ \sigma}$ to $w$.
+
+What's worse, our interpretation of contexts as lcc categories does not admit well-behaved context extensions.
+Recall that for a context $\Gamma$ and type $\Gamma \vdash \sigma$ in a cwf, a context extension consists of a a context morphism $p : \Gamma.\sigma \rightarrow \Gamma$ and a term $\Gamma.\sigma \vdash v : \sigma[p]$, such that for every other morphisms $f : \Delta \rightarrow \Gamma$ and term $\Delta \sigma \vdash s : \sigma[f]$ there is a unique morphism $\langle f, s \rangle : \Delta \rightarrow \Gamma.\sigma$ over $\Gamma$ such that $v[\langle f, s \rangle] = s$.
+In our case a context morphism is an lcc functor in the opposite direction.
+Thus a context extension of an lcc category $\Gamma$ by $\sigma \in \operatorname{Ob} \Gamma$ would consist of an lcc functor $p : \Gamma \rightarrow \Gamma.\sigma$ and a morphism $v : 1 \rightarrow p(\sigma)$ in $\Gamma.\sigma$, and $(p, v)$ would have to be suitably initial.
+At first sight it might seem that the slice category $\Gamma_{/ \sigma}$ is a good candidate:
+Pullback along the unique map $\sigma \rightarrow 1$ defines an lcc functor $\sigma^* : \Gamma \cong \Gamma_{/ 1} \rightarrow \Gamma_{/ \sigma}$.
+The terminal object of $\Gamma_{/ \sigma}$ is the identity on $\sigma$, and applying $\sigma^*$ to $\sigma$ itself yields the first projection $\mathrm{pr}_1 : \sigma \times \sigma \rightarrow \sigma$.
+Thus the diagonal $d : \sigma \rightarrow \sigma \times \sigma$ corresponds to a term $\Gamma_{/ \sigma} \vdash \sigma^*(\sigma)$.
+The problem is that, while this data is indeed universal in a suitable sense, it is only so in the bicategorical sense (see Lemma \ref{lem:slice-is-weak-ext}).
+Given any lcc functor $f : \Gamma \rightarrow \Delta$ and term $\Delta \vdash w : f(\sigma)$, we obtain an lcc functor
+\begin{equation}
+  \begin{tikzcd}
+    \langle f, s \rangle : \Gamma_{/ \sigma} \arrow[r, "{f_{/ \sigma}}"] & \Delta_{/ f(\sigma)} \arrow[r, "s^*"] & \Delta,
+  \end{tikzcd}
+\end{equation}
+but this functor commutes with $\sigma^*$ and $f$ up to a natural isomorphism, and the equation $\langle f, s \rangle(d) = s$ holds only up to this natural isomorphism.
 
 To motivate our solution to these coherence problems, it is instructive to think of the category of lcc categories as a $(2, 1)$-category, with natural isomorphisms of lcc functors as 2-cells.
 Higher categories can often be presented in terms of 1-categories using model category theory (see e.g.\@ \citet{hirschhorn}).
@@ -163,7 +178,7 @@ This work was supported by the Air Force Office and Scientific Research project 
 \label{sec:lcc-sketches}
 
 This section is concerned with the model category $\mathrm{Lcc}$ of lcc sketches.
-$\mathrm{Lcc}$ is constructed as left Bousfield localization of a model category of lcc-marked objects, an instance of Isaev's model category structure on marked objects.
+$\mathrm{Lcc}$ is constructed as the left Bousfield localization of a model category of lcc-marked objects, an instance of Isaev's model category structure on marked objects.
 
 \begin{definition}[\citet{marked-objects} Definition 2.1]
   Let $\mathcal{C}$ be a category and let $i : I \rightarrow \mathcal{C}$ be a diagram in $\mathcal{C}$.
@@ -237,18 +252,18 @@ Thus a morphism $K \rightarrow X$ in $\operatorname{Ho} \mathcal{M}$ is marked i
       & R(X) \arrow[r, "R(f)"] & R(Y)
     \end{tikzcd}
   \end{equation}
-  in which the outer square commutes up to homotopy and $k$ is marked, there exists a marked map $h' : i(K) \rightarrow X$ as indicated such that $h' t_X \simeq h$.
+  in which the outer square commutes up to homotopy and $k$ is marked, there exists a marked map $h' : i(K) \rightarrow X$ as indicated such that $t_X h' \simeq h$.
   ($h'$ is not required to commute with $k$ and $f$.)
 
   Now assume that $f : (m_X, X) \rightarrow (m_Y, Y)$ satisfies this condition and let us prove that $\gamma(f)$ is an isomorphism of induced marked objects in the homotopy category.
-  $\gamma(f)$ is an isomorphism in $\mathcal{M}$, so it suffices to show that $\gamma(f)^{-1}$ preserves markings.
+  $\gamma(f)$ is an isomorphism in $\operatorname{Ho} \mathcal{M}$, so it suffices to show that $\gamma(f)^{-1}$ preserves markings.
   By definition, every marked morphism of $\gamma(Y)$ is of the form $\gamma(k) : \gamma(i(K)) \rightarrow \gamma(Y)$ for some marked $k : i(K) \rightarrow Y$.
-  Because $i(X)$ is cofibrant and $R(X)$ is fibrant, the map $\gamma(t_X)^{-1} \circ \gamma(f)^{-1} \circ \gamma(k) : \gamma(i(K)) \rightarrow \gamma(R(X))$ has a preimage $h : i(K) \rightarrow R(X)$ under $\gamma$.
+  Because $i(K)$ is cofibrant and $R(X)$ is fibrant, the map $\gamma(t_X) \circ \gamma(f)^{-1} \circ \gamma(k) : \gamma(i(K)) \rightarrow \gamma(R(X))$ has a preimage $h : i(K) \rightarrow R(X)$ under $\gamma$.
   % This is \cite[Theorem 1.2.10]{hovey-model-categories}
-  As $i(K)$ is cofibrant, $R(Y)$ is fibrant and $\gamma(h \circ R(f)) = \gamma(t_Y k)$, there is a homotopy $h \circ R(f) \simeq t_Y k$.
+  As $i(K)$ is cofibrant, $R(Y)$ is fibrant and $\gamma(R(f) \circ h) = \gamma(t_Y k)$, there is a homotopy $h \circ R(f) \simeq t_Y k$.
   By assumption, there exists a marked map $h' : i(K) \rightarrow X$ such that $h' t_X \simeq h$, thus $\gamma(f)^{-1} \circ \gamma(k) = \gamma(h')$ is marked.
 
-  To prove the other direction of the equivalence, assume that $\gamma(f)$ is an isomorphism of marked objects and let $h, k$ as in \eqref{eq:isaev-classification-weak-equivalences}.
+  To prove the other direction of the equivalence, assume that $\gamma(f)$ is an isomorphism of marked objects and let $h, k$ be as in diagram \eqref{eq:isaev-classification-weak-equivalences}.
   $\gamma(f)^{-1} \gamma(k)$ is marked, hence has a preimage $h' : i(K) \rightarrow X$ under $\gamma$ which is marked.
   We have $\gamma(t_X h') = \gamma(h)$ because postcomposition of both sides with the isomorphism $\gamma(R(f))$ gives equal results.
   $i(K)$ is cofibrant and $R(X)$ is fibrant, thus $t_X h' \simeq h$.
@@ -293,7 +308,7 @@ Thus a morphism $K \rightarrow X$ in $\operatorname{Ho} \mathcal{M}$ is marked i
 
   \emph{\ref{itm:marked-simplicial}}.
   Let $X$ and $Y$ be marked objects.
-  We define the mapping groupoid $\mathcal{M}^i(X, Y)$ as the full subgroupoid of $\mathcal{M}(G(X), G(Y))$ of marking preserving maps.
+  We define the mapping groupoid $\mathcal{M}^i(X, Y)$ as the full subgroupoid of $\mathcal{M}(U(X), U(Y))$ of marking preserving maps.
 
   $\mathcal{M}^i$ is complete and cocomplete as a 1-category.
   Thus if we construct tensors $\mathcal{G} \otimes X$ and powers $X^\mathcal{G}$ for all $X \in \operatorname{Ob} \mathcal{M}$ and $\mathcal{G} \in \operatorname{Ob} \mathrm{Gpd}$ it follows that $\mathcal{M}^i$ is also complete and cocomplete as a $\mathrm{Gpd}$-category.
@@ -345,7 +360,7 @@ By analogy, lcc-marked categories correspond to the structures of the signature 
 The model structure of $\mathrm{Cat}^{\mathrm{lcc}}$ ensures that markings respect the homotopy theory of $\mathrm{Cat}$, in that the choice of marking is only relevant up to isomorphism of diagrams.
 However, the model structure does not encode the universal property that marked diagrams are ultimately supposed to satisfy.
 To obtain the analogue of the category of models for a logical theory, we now define a reflective subcategory of $\mathrm{Cat}^{\mathrm{lcc}}$.
-The technical tool to accomplish this is a left Bousfield localization at a set $S$ of morphism in $\mathrm{Cat}^{\mathrm{lcc}}$.
+The technical tool to accomplish this is a left Bousfield localization at a set $S$ of morphisms in $\mathrm{Cat}^{\mathrm{lcc}}$.
 $S$ corresponds to the set of axioms of a logical theory.
 We thus need to define $S$ in such a way that an lcc-marked category is lcc if and only if it has the right lifting property against the morphisms in $S$ such that lifts are determined uniquely up to unique isomorphism.
 
@@ -786,7 +801,7 @@ That the model structure of $\operatorname{Alg} \mathcal{M}$ is obtained by tran
   The canonical lift $\ell(j, a) : B \rightarrow G(X)^\mathcal{I}$ is constructed as follows:
   $a$ corresponds to a map $\bar a : \mathcal{I} \rightarrow \mathcal{M}(A, G(X))$, i.e.\@ an isomorpism of maps $A \rightarrow G(X)$.
   Its source and target are morphisms $\bar a_0, \bar a_1 : A \rightarrow G(X)$, for which we obtain canonical lifts $\ell(j, \bar a_i) : B \rightarrow G(X)$ using the canonical lifts of $X$.
-  Because $G(X)$ is fibrant and $j$ is a trivial cofibration, the map $\mathcal{M}(j, X) : \mathcal{M}(B, X) \rightarrow \mathcal{M}(A, X)$ is a trivial fibration and in particular an equivalence.
+  Because $G(X)$ is fibrant and $j$ is a trivial cofibration, the map $\mathcal{M}(j, G(X)) : \mathcal{M}(B, G(X)) \rightarrow \mathcal{M}(A, G(X))$ is a trivial fibration and in particular an equivalence.
   It follows that $\bar a$ can be lifted uniquely to an isomorphism of $\ell(j, \bar a_0)$ with $\ell(j, \bar a_1)$, and we take $\ell(j, a) : B \rightarrow G(X)^\mathcal{I}$ as this isomorphism's transpose.
 
   From uniqueness of the lift defining $\ell(j, a)$, it follows that a map $G(Y) \rightarrow G(X)^\mathcal{I}$ preserves canonical lifts if and only if the two maps
@@ -836,7 +851,7 @@ As noted in remark \ref{rem:slcc-slice-problem}, to interpret dependent sum and 
 In this section we discuss how this problem can be circumvented by considering yet another Quillen equivalent model category: The category of algebraically \emph{cofibrant} strict lcc categories.
 
 The slice category $\mathcal{C}_{/ x}$ of an lcc category $\mathcal{C}$ is bifreely generated by (any choice of) the pullback functor $\sigma^* : \mathcal{C} \rightarrow \mathcal{C}_{/ x}$ and the diagonal $d : x \rightarrow x \times x$, viewed as a morphism $1 \rightarrow x^*(x)$ in $\mathcal{C}_{/ x}$:
-Given a pair of lcc functor $f : \mathcal{C} \rightarrow \mathcal{D}$ and morphism $s : 1 \rightarrow f(x)$ in $\mathcal{D}$, there is an lcc functor $g : \mathcal{C}_{/ \sigma} \rightarrow \mathcal{D}$ that commutes with $f$ and $\sigma^*$ up to a natural isomorphism under which $g(d)$ corresponds to $s$, and every other lcc functor with this property is uniquely isomorphic to $g$.
+Given a pair of lcc functor $f : \mathcal{C} \rightarrow \mathcal{D}$ and morphism $s : 1 \rightarrow f(x)$ in $\mathcal{D}$, there is an lcc functor $g : \mathcal{C}_{/ x} \rightarrow \mathcal{D}$ that commutes with $f$ and $x^*$ up to a natural isomorphism under which $g(d)$ corresponds to $s$, and every other lcc functor with this property is uniquely isomorphic to $g$.
 
 Phrased in terms of model category theory, this biuniversal property amounts to asserting that the square
 \begin{equation}
@@ -990,12 +1005,12 @@ We denote by $\eta : \mathrm{Id} \Rightarrow G F : \mathrm{Lcc} \rightarrow \mat
   by the universal property of $\Gamma.\sigma$.
   $\lambda.\sigma$ is compatible with $p$ and $\lambda$ by construction.
 
-  Now let $f : (\Gamma, \lambda) \rightarrow (\Delta, \lambda')$ be a comonad morphism and let $\Delta \vdash w : f(\sigma)$.
+  Now let $f : (\Gamma, \lambda) \rightarrow (\Delta, \lambda')$ be a coalgebra morphism and let $\Delta \vdash w : f(\sigma)$.
   We need to show that
   \begin{equation}
     \begin{tikzcd}[column sep=large, row sep=large]
       \Gamma.\sigma \arrow[r, "{\langle f, w \rangle}"] \arrow[d, "\lambda.\sigma"] & \Delta \arrow[d, "\lambda'"] \\
-      F(G(\Gamma.\sigma)) \arrow[r, "{G(F(\langle f, w \rangle}))"] & F(G(\Delta))
+      F(G(\Gamma.\sigma)) \arrow[r, "{F(G(\langle f, w \rangle}))"] & F(G(\Delta))
     \end{tikzcd}
   \end{equation}
   commutes.
@@ -1083,8 +1098,8 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
     \end{tikzcd}
   \end{equation}
   commutes.
-  We need to show that $h$ and $G(g)$ are uniquely isomorphic over $x$.
-  Lemma \ref{lem:strictification} reduces this to the unique existence of an extension of the isomorphism $g p \cong h^s p : \Gamma \rightarrow \Delta.\sigma$ defined as composite
+  We need to show that $h$ and $G(g)$ are uniquely isomorphic under $G(\Gamma)$.
+  Lemma \ref{lem:strictification} reduces this to the unique existence of an extension of the isomorphism $g p \cong h^s p : \Gamma \rightarrow \Delta$ defined as composite
   \begin{equation}
     G(gp) \cong f \cong h \circ G(p) \cong G((h \circ G(p))^s) = G(h^s p)
   \end{equation}
@@ -1113,7 +1128,7 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
       \mathcal{C}_{/ x} \arrow[r, "f_{/ x}"] & \mathcal{E}_{/ f(x)} \arrow[r, "w^*"] & \mathcal{E}
     \end{tikzcd}
   \end{equation}
-  where $w^* : \mathcal{E}_{ / x} \rightarrow \mathcal{E}_{/ t} \xrightarrow{\sim} \mathcal{E}$ is given by a choice of pullback functor.
+  where $w^* : \mathcal{E}_{ / f(x)} \rightarrow \mathcal{E}_{/ t} \xrightarrow{\sim} \mathcal{E}$ is given by a choice of pullback functor.
 
   Let $y \in \operatorname{Ob} \mathcal{C}$.
   We denote the composite $f(x) \rightarrow t \xrightarrow{w} f(x)$ by $w'$.
@@ -1125,7 +1140,7 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
     \end{tikzcd}
     \and
     \begin{tikzcd}
-      f(\tau) \arrow[r, "{\langle w, \mathrm{id} \rangle}"] \arrow[d] & f(x \times y) \arrow[d, "f(\mathrm{pr}_1)"] \\
+      f(y) \arrow[r, "{\langle w, \mathrm{id} \rangle}"] \arrow[d] & f(x \times y) \arrow[d, "f(\mathrm{pr}_1)"] \\
       t \arrow[r, "w"] & f(x)
     \end{tikzcd}
   \end{mathpar}
@@ -1158,7 +1173,7 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
 \begin{lemma}
   \label{lem:extension-vs-slice}
   Let $\lambda : \Gamma \rightarrow F(G(\Gamma))$ be an $FG$-coalgebra and let $\Gamma \vdash \sigma$ be a type.
-  Then $G(p) : G(\Gamma) \rightarrow G(\Gamma.\sigma)$ and $\sigma^* : G(\Gamma) \rightarrow G(\Gamma_{/ \sigma})$ are equivalent objects of the coslice category $\mathrm{Lcc}_{G(x) /}$.
+  Then $G(p) : G(\Gamma) \rightarrow G(\Gamma.\sigma)$ and $\sigma^* : G(\Gamma) \rightarrow G(\Gamma_{/ \sigma})$ are equivalent objects of the coslice category $\mathrm{Lcc}_{G(\Gamma) /}$.
   The equivalence $a : G(\Gamma.\sigma) \rightleftarrows G(\Gamma_{/ \sigma}) : b$ can be constructed naturally in $(\Gamma, \lambda)$ and $\sigma$, in the sense that coalgebra morphisms in $(\Gamma, \lambda)$ preserving $\sigma$ induce natural transformations of diagrams
   \begin{equation}
     \label{eq:ext-equivalence}
@@ -1168,7 +1183,7 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
   \end{equation}
 \end{lemma}
 \begin{proof}
-  It follows immediately from lemmas \ref{lem:strict-ext-is-weak-ext} and \ref{lem:slice-is-weak-ext} that $G(\Gamma.\sigma)$ and $G(\Gamma_{/ \sigma})$ are equivalent over $G(\Gamma)$.
+  It follows immediately from lemmas \ref{lem:strict-ext-is-weak-ext} and \ref{lem:slice-is-weak-ext} that $G(\Gamma.\sigma)$ and $G(\Gamma_{/ \sigma})$ are equivalent under $G(\Gamma)$.
   However, a priori the corresponding diagrams \eqref{eq:ext-equivalence} can only be assumed to vary pseudonaturally in $(\Gamma, \lambda)$ and $\sigma$, meaning that for example the square
   \begin{equation}
     \label{eq:strict-ext-to-slice}
@@ -1189,7 +1204,7 @@ in $\mathcal{C}$ which commute up to specified isomorphism $\phi$, and its 2-cel
   As in the proof of lemma \ref{lem:slice-is-weak-ext}, the map in the other direction can be constructed as composite
   \begin{equation}
     \begin{tikzcd}
-      b : G(\Gamma_{/ \sigma}) \arrow[r, "p_{/ \sigma}"] & G(\Gamma.\sigma_{/ p(\sigma)}) \arrow[r, "v^*"] & G(\Gamma.\sigma_{/ 1}) \arrow[r, "\cong"] & G(\Delta),
+      b : G(\Gamma_{/ \sigma}) \arrow[r, "p_{/ \sigma}"] & G(\Gamma.\sigma_{/ p(\sigma)}) \arrow[r, "v^*"] & G(\Gamma.\sigma_{/ 1}) \arrow[r, "\cong"] & G(\Gamma.\sigma),
     \end{tikzcd}
   \end{equation}
   where $v^*$ is the canonical pullback along the variable $v$, and the components of the natural isomorphism $\beta : b \sigma^* \cong G(p)$ are the unique isomorphisms relating pullback squares

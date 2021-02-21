@@ -37,20 +37,58 @@ It also strikes me as a bit strange to say “think of the category of lcc categ
 Typos:
 
 p4: “Lcc is constructed as left Bousfield” should be “Lcc is constructed as the left Bousfield” 
+- Done.
+
 p6: The order of morphism composition seems to be switching back and forth in Rem 4. For example, two lines under diagram (1), there is h't_X, but two lines above Lem 5, there is t_X h’.
 p6: “γ(f) is an isomorphism in M" should be “γ(f) is an isomorphism in HoM"
+- Done.
+
 p6: "Because i(X) is cofibrant" should be "Because i(K) is cofibrant"
+- Done.
+
 p6: In the same sentence as the above comment, γ(t_X)^{-1} should be γ(t_X) (i.e. no inverse).
+- Done.
+
+In the proof of remark 1: I've replaced "let h, k as in (1)" by "let h, k be as
+in diagram (1)", I hope that's less wrong/more idiomatic.
+
 p7: second line of the proof of (2), in M(GX,GY), G should be U
+- Done.
+
 p8: "a set S of morphism of Cat" should be "a set S of morphisms of Cat"
+- I've pluralized "morphism" now, but I've kept it as "morphisms *in* Cat"
+  instead of "morphisms *of* Cat". Not sure whether that was part of the
+  suggestion here.
+
 p17: second paragraph, 6th line, in M(j,X): M(B,X) -> M(A,X), X should be GX
+- Done.
+
 p18: second paragraph of Section 4, σ and x seem to refer to the same object, and are switching back and forth throughout the paragraph.
+-Done.
+
 p21: "Now let ... be a comonad morphism" should be "Now let ... be a coalgebra morphism"
+- Done.
+
 p21: In the first displayed diagram, in the label for the lower horizontal morphism, GF should be FG.
+- Done.
+
 p22: There is "are uniquely isomorphic over x", but x has not appeared in the statement/proof yet.
+- Done, should've been "uniquely isomorphic under G(\Gamma)"
+
 p22: In the second to last line, Δ.σ should be just Δ
+- Done.
+
 p23: In the 5th line of the proof, E/x should be E/f(x)
+- Done.
+
 p23: In the second square diagram of the proof, in the upper right hand corner, f(τ) should be f(y).
+- Done.
+
 p24: In the 3rd line of Lem 30, Lcc_{G(x)/} should be Lcc_{G(Γ)/}
+- Done.
+
 p24: In the second line of the proof, "over" should be "under"
+- Done.
+
 p24: In the 2nd display of the proof, the last object, G(Δ) should be G(Γ.σ)
+- Done.
