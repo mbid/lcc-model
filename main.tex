@@ -120,29 +120,68 @@ To my knowledge, however, an interpretation of type theory along those lines, es
 Like Seely's original interpretation, the naive interpretation in the category of lcc categories outlined above suffers from coherence issues:
 Lcc functors preserve lcc structure up to isomorphism, but not necessarily up to equality, and the latter would be required for a model of type theory.
 
-What's worse, our interpretation of contexts as lcc categories does not admit well-behaved context extensions.
-Recall that for a context $\Gamma$ and type $\Gamma \vdash \sigma$ in a cwf, a context extension consists of a a context morphism $p : \Gamma.\sigma \rightarrow \Gamma$ and a term $\Gamma.\sigma \vdash v : \sigma[p]$, such that for every other morphisms $f : \Delta \rightarrow \Gamma$ and term $\Delta \sigma \vdash s : \sigma[f]$ there is a unique morphism $\langle f, s \rangle : \Delta \rightarrow \Gamma.\sigma$ over $\Gamma$ such that $v[\langle f, s \rangle] = s$.
+Even worse, our interpretation of contexts as lcc categories does not admit well-behaved context extensions.
+Recall that for a context $\Gamma$ and type $\Gamma \vdash \sigma$ in a cwf, a context extension consists of a context morphism $p : \Gamma.\sigma \rightarrow \Gamma$ and a term $\Gamma.\sigma \vdash v : \sigma[p]$, such that for every morphism $f : \Delta \rightarrow \Gamma$ and term $\Delta \vdash s : \sigma[f]$ there is a unique morphism $\langle f, s \rangle : \Delta \rightarrow \Gamma.\sigma$ over $\Gamma$ such that $v[\langle f, s \rangle] = s$.
 In our case a context morphism is an lcc functor in the opposite direction.
 Thus a context extension of an lcc category $\Gamma$ by $\sigma \in \operatorname{Ob} \Gamma$ would consist of an lcc functor $p : \Gamma \rightarrow \Gamma.\sigma$ and a morphism $v : 1 \rightarrow p(\sigma)$ in $\Gamma.\sigma$, and $(p, v)$ would have to be suitably initial.
 At first sight it might seem that the slice category $\Gamma_{/ \sigma}$ is a good candidate:
 Pullback along the unique map $\sigma \rightarrow 1$ defines an lcc functor $\sigma^* : \Gamma \cong \Gamma_{/ 1} \rightarrow \Gamma_{/ \sigma}$.
 The terminal object of $\Gamma_{/ \sigma}$ is the identity on $\sigma$, and applying $\sigma^*$ to $\sigma$ itself yields the first projection $\mathrm{pr}_1 : \sigma \times \sigma \rightarrow \sigma$.
-Thus the diagonal $d : \sigma \rightarrow \sigma \times \sigma$ corresponds to a term $\Gamma_{/ \sigma} \vdash \sigma^*(\sigma)$.
-The problem is that, while this data is indeed universal in a suitable sense, it is only so in the bicategorical sense (see Lemma \ref{lem:slice-is-weak-ext}).
-Given any lcc functor $f : \Gamma \rightarrow \Delta$ and term $\Delta \vdash w : f(\sigma)$, we obtain an lcc functor
+Thus the diagonal $d : \sigma \rightarrow \sigma \times \sigma$ is a term $\Gamma_{/ \sigma} \vdash d : \sigma^*(\sigma)$.
+The problem is that, this data being indeed universal, it is only so in the bicategorical sense (see Lemma \ref{lem:slice-is-weak-ext}):
+Given an lcc functor $f : \Gamma \rightarrow \Delta$ and term $\Delta \vdash w : f(\sigma)$, we obtain an lcc functor
 \begin{equation}
   \begin{tikzcd}
     \langle f, s \rangle : \Gamma_{/ \sigma} \arrow[r, "{f_{/ \sigma}}"] & \Delta_{/ f(\sigma)} \arrow[r, "s^*"] & \Delta,
   \end{tikzcd}
 \end{equation}
-but this functor commutes with $\sigma^*$ and $f$ up to a natural isomorphism, and the equation $\langle f, s \rangle(d) = s$ holds only up to this natural isomorphism.
+however, $\langle f, s \rangle$ commutes with $\sigma^*$ and $f$ only up to natural isomorphism, and the equation $\langle f, s \rangle(d) = s$ holds only up to this natural isomorphism.
 
-To motivate our solution to these coherence problems, it is instructive to think of the category of lcc categories as a $(2, 1)$-category, with natural isomorphisms of lcc functors as 2-cells.
-Higher categories can often be presented in terms of 1-categories using model category theory (see e.g.\@ \citet{hirschhorn}).
-The underlying 1-category of the presenting model category is not unique, and we may thus hope that some presentations are more suitable for interpreting type theory than others.
-To that end, we explore three Quillen equivalent model categories, all of which encode the same higher category of lcc categories.
+The issue with context extensions can be understood from the perspective of comprehension categories, an alternative notion of model of type theory, as follows.
+Our cwf is constructed on the opposite of $\mathrm{Lcc}$, the category of lcc categories and lcc functors.\footnote{
+  Not to be confused with the category $\mathrm{Lcc}$ of lcc sketches of Definition \ref{def:lcc-axioms}; here we mean the category of fully realized lcc categories, i.e.\@ fibrant lcc sketches.
+}
+The corresponding comprehension category should thus consist of a Grothendieck fibration $p : \mathcal{E} \rightarrow \mathrm{Lcc}^\mathrm{op}$ and a functor $\mathcal{P} : \mathcal{E} \rightarrow (\mathrm{Lcc}^\mathrm{op})^\rightarrow$ to the arrow category of $\mathrm{Lcc}^\mathrm{op}$ such that
+\begin{equation}
+  \begin{tikzcd}
+    \mathcal{E} \arrow[rr, "\mathcal{P}"] \arrow[dr, "p"'] & & (\mathrm{Lcc}^\mathrm{op})^{\rightarrow} \arrow[dl, "\mathrm{cod}"] \\
+    & \mathrm{Lcc}^\mathrm{op}
+  \end{tikzcd}
+\end{equation}
+commutes and $\mathcal{P}(f)$ is a pullback square for each cartesian morphism $f$ in $\mathcal{E}$.
+The data of a Grothendieck fibration $p$ as above is equivalent to a (covariant) functor $\mathrm{Lcc} \rightarrow \mathrm{Cat}$ via the Grothendieck construction, and here we simply take the forgetful functor.
+Thus the objects of $\mathcal{E}$ are pairs $(\Gamma, \tau)$ such that $\Gamma$ is an lcc category and $\tau \in \operatorname{Ob} \Gamma$, and a morphism $(\Gamma, \tau) \rightarrow (\Delta, \sigma)$ in $\mathcal{E}$ is pair $(f, k)$ of lcc functor $f : \Delta \rightarrow \Gamma$ and a morphism $k : \tau \rightarrow f(\sigma)$ in $\Gamma$.
 
-The reader of the paper is thus expected to be familiar with basic notions of model category theory.
+The functor $\mathcal{P}$ should assign to objects $(\Gamma, \tau)$ of $\mathcal{E}$ the projection of the corresponding context extension, hence we define $\mathcal{P}(\Gamma, \tau) = \tau^* : \Gamma \rightarrow \Gamma_{/ \tau}$ as the pullback functor to the slice category.
+The cartesian morphisms of $\mathcal{E}$ are those with invertible vertical components $k$, so they are given up to isomorphism by pairs $(f, \mathrm{id}) : (\Gamma, f(\sigma)) \rightarrow (\Delta, \sigma)$.
+The images of such morphisms under $\mathcal{P}$ are squares
+\begin{equation}
+  \label{eq:homotopy-pushout-comprehension}
+  \begin{tikzcd}
+    \Delta \arrow[d, "\sigma^*"] \arrow[r, "f"] & \Gamma \arrow[d, "f(\tau)^*"] \\
+    \Delta_{/ \sigma} \arrow[r, "f_{/ \sigma}"] & \Gamma_{/ f(\tau)}
+  \end{tikzcd}
+\end{equation}
+in $\mathrm{Lcc}$.
+For $(p, \mathcal{P})$ to be a comprehension category, they would have to be pushout squares, but in fact they are bipushout squares:
+They satisfy they universal property of pushouts up to unique isomorphism, but not up to equality.
+If $f$ does not preserve pullback squares up to strict equality, then the square \eqref{eq:homotopy-pushout-comprehension} commutes only up to isomorphism, not equality.
+Thus $\mathcal{P}$ is not even a functor but a bifunctor.
+
+Usually when one considers coherence problems for type theory, the problem lies in the fibration $p$, which is often not strict, and it suffices to change the total category $\mathcal{E}$ while leaving the base unaltered.
+Our fibration $p$ is already strict, but it does not support substitution stable type constructors.
+Here the main problem is the base category, however:
+The required pullback diagrams exist only in the bicategorical sense.
+Thus the usual constructions \citep{on-the-interpretation-of-type-theory-in-lcc-categories,the-local-universes-model} are not applicable.
+
+The goal must thus be to find a category that is (bi)equivalent to $\mathrm{Lcc}$ in which we can replace slice categories by 1-categorical pushouts.
+Our tool of choice to that end will be \emph{model category theory} (see e.g.\@ \citet{hirschhorn}).
+Model categories are presentations of higher categories as ordinary 1-categories with additional structure.
+Crucially, model categories allow the computation of higher (co)limits as ordinary 1-categorical (co)limits under suitable hypotheses.
+The underlying 1-category of the model category presenting a higher category is not unique, and some presentations are more suitable for our purposes than others.
+We explore three Quillen equivalent model categories, all of which encode the same higher category of lcc categories, and show that the third one indeed admits the structure of a model of dependent type theory.
+
+Because of its central role in the paper, the reader is thus expected to be familiar with some notions of model category theory.
 We make extensive use of the notion of algebraically (co)fibrant object in a model category \citep{algebraic-models,coalgebraic-models}, but the relevant results are explained where necessary and can be taken as black boxes for the purpose of this paper.
 Because of the condition on enrichment in theorem \ref{th:coalgebraic-model-category}, all model categories considered here are proved to be model $\mathrm{Gpd}$-categories, that is, model categories enriched over the category of groupoids with their canonical model structure.
 See \citet{enriched-model-cats} for background on enriched model category theory, \citet{groupoid-model-cat} for the canonical model category of groupoids, and \citet{homotopy-theoretic-aspects} for the closely related model $\mathrm{Cat}$-categories.
