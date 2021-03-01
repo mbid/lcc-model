@@ -1,94 +1,80 @@
-Dear Mr. Bidlingmaier:
+> Reviewer(s)' Comments to Author:
+> Referee: 1
+> 
+> Comments to the Corresponding Author
+> In this paper, the author constructs a model of extensional dependent type theory that `strictifies’ the model given by Seely (1984) in any locally cartesian closed category. To do this, the author employs several sophisticated pieces of categorical machinery and interesting ideas. First, instead of working inside any one lccc, he works in the (2,1)-category of lccc’s, identifying a lccc Γ with the collection of its slice lccc's Γ/x. He presents the category of lccc’s as the category of fibrant objects in a particular (2,1)-model category, employing the techniques of marked categories (Isaev 2016) and sketches (Section 2). To ensure that morphisms are strict, he turns to the category of algebraically fibrant objects (Section 3). To ensure that morphisms can be strictified (which is necessary to define e.g. Pi-types), he turns to the algebraically cofibrant objects of the algebraically fibrant objects (Section 4). After this, he is able (Section 5) to say that any lccc Γ is equivalent to a cwf (built out of the category of algebraically cofibrant objects) with an empty context, context extensions, finite products, extensional equality, Sigma, and Pi types.
+> 
+> I can easily recommend this paper for acceptance. The ideas are interesting and useful. I have thoroughly checked all proofs, and believe them to be correct.
+> 
+> I have some some minor comments about presentation, and some small typos to point out.
+> 
+> There is a theme running throughout the paper about the universal property of a slice category of a lccc and how it almost corresponds to the required universal property for context extension. I think that this is not so well known, and the reader would benefit from the author’s knowledge through a thorough and explicit discussion in the introduction. In particular, the second half of the second full paragraph on p3 “Furthermore, the obvious choice … to w.” could be explained a bit more. Spell out why this corresponds to context extension. Then something like Lemma 29 could appear: explain why slice categories of lccc’s have this property, but only weakly (though in the introduction, the explanation could be less technical and more for building intuition than the proof of Lemma 29). This would make the second paragraph of Section 4 more appropriate (“The slice category … uniquely isomorphic to g.”) since it presupposes that the reader already understands how to prove Lemma 29.
 
-MSCS-2020-052 entitled "An interpretation of dependent type theory in a model category of locally cartesian closed categories" which you submitted to Mathematical Structures in Computer Science, has been reviewed.  The comments of the reviewer(s) are included at the bottom of this letter.
+- Yes, I've added several paragraphs about the issue of biuniversal context extensions/slice categories in the introduction (starting with "Even worse, our interpretation...").
 
-The reviewer(s) see potential for publication, but also suggest some minor revisions to your manuscript. Therefore, I invite you to respond to the reviewer(s)' comments and revise your manuscript.
+> It also strikes me as a bit strange to say “think of the category of lcc categories as a (2,1)-category … Higher categories can often be presented in terms of 1-categories using model category theory …” since the (2,1)-category of lcc categories is presented in the paper via a groupoid-enriched-, i.e., (2,1)-model category. This point deserves a bit of clarification.
 
-To revise your manuscript, log into https://mc.manuscriptcentral.com/mscs and enter your Author Center, where you will find your manuscript under "Manuscripts with Decisions."  Under "Actions," click on "Create a Revision."  Your manuscript number will be appended to denote a revision. You may also click this link to start your revision:
+- I've rephrased that paragraph a bit so as to emphasize that model categories can be used to compute higher colimits via their 1-categorical counterpart. I hope it's less confusing now.
 
-*** PLEASE NOTE: This is a two-step process. After clicking on the link, you will be directed to a webpage to confirm. *** 
+> Typos:
+> 
+> p4: “Lcc is constructed as left Bousfield” should be “Lcc is constructed as the left Bousfield” 
+Done.
 
-https://mc.manuscriptcentral.com/mscs?URL_MASK=efe1f98144c84a38a2a8708dc847349e
-
-When submitting your revised manuscript, you will be able to respond to the comments made by the reviewer(s) in the space provided.  Please use this space to document any changes you make to the original manuscript.  In order to expedite the processing of the revised manuscript, please be as specific as possible in your response to the reviewer(s).
-
-Once again, thank you for submitting your manuscript to Mathematical Structures in Computer Science and I look forward to receiving your revision.
-
-Sincerely,
-Dr. Nicola Gambino
-Editor, Mathematical Structures in Computer Science
-n.gambino@leeds.ac.uk
-https://mc.manuscriptcentral.com/mscs
-
-Reviewer(s)' Comments to Author:
-Referee: 1
-
-Comments to the Corresponding Author
-In this paper, the author constructs a model of extensional dependent type theory that `strictifies’ the model given by Seely (1984) in any locally cartesian closed category. To do this, the author employs several sophisticated pieces of categorical machinery and interesting ideas. First, instead of working inside any one lccc, he works in the (2,1)-category of lccc’s, identifying a lccc Γ with the collection of its slice lccc's Γ/x. He presents the category of lccc’s as the category of fibrant objects in a particular (2,1)-model category, employing the techniques of marked categories (Isaev 2016) and sketches (Section 2). To ensure that morphisms are strict, he turns to the category of algebraically fibrant objects (Section 3). To ensure that morphisms can be strictified (which is necessary to define e.g. Pi-types), he turns to the algebraically cofibrant objects of the algebraically fibrant objects (Section 4). After this, he is able (Section 5) to say that any lccc Γ is equivalent to a cwf (built out of the category of algebraically cofibrant objects) with an empty context, context extensions, finite products, extensional equality, Sigma, and Pi types.
-
-I can easily recommend this paper for acceptance. The ideas are interesting and useful. I have thoroughly checked all proofs, and believe them to be correct.
-
-I have some some minor comments about presentation, and some small typos to point out.
-
-There is a theme running throughout the paper about the universal property of a slice category of a lccc and how it almost corresponds to the required universal property for context extension. I think that this is not so well known, and the reader would benefit from the author’s knowledge through a thorough and explicit discussion in the introduction. In particular, the second half of the second full paragraph on p3 “Furthermore, the obvious choice … to w.” could be explained a bit more. Spell out why this corresponds to context extension. Then something like Lemma 29 could appear: explain why slice categories of lccc’s have this property, but only weakly (though in the introduction, the explanation could be less technical and more for building intuition than the proof of Lemma 29). This would make the second paragraph of Section 4 more appropriate (“The slice category … uniquely isomorphic to g.”) since it presupposes that the reader already understands how to prove Lemma 29.
-
-It also strikes me as a bit strange to say “think of the category of lcc categories as a (2,1)-category … Higher categories can often be presented in terms of 1-categories using model category theory …” since the (2,1)-category of lcc categories is presented in the paper via a groupoid-enriched-, i.e., (2,1)-model category. This point deserves a bit of clarification.
-
-Typos:
-
-p4: “Lcc is constructed as left Bousfield” should be “Lcc is constructed as the left Bousfield” 
+> p6: The order of morphism composition seems to be switching back and forth in Rem 4. For example, two lines under diagram (1), there is h't_X, but two lines above Lem 5, there is t_X h’.
+> p6: “γ(f) is an isomorphism in M" should be “γ(f) is an isomorphism in HoM"
 - Done.
 
-p6: The order of morphism composition seems to be switching back and forth in Rem 4. For example, two lines under diagram (1), there is h't_X, but two lines above Lem 5, there is t_X h’.
-p6: “γ(f) is an isomorphism in M" should be “γ(f) is an isomorphism in HoM"
+> p6: "Because i(X) is cofibrant" should be "Because i(K) is cofibrant"
 - Done.
 
-p6: "Because i(X) is cofibrant" should be "Because i(K) is cofibrant"
+> p6: In the same sentence as the above comment, γ(t_X)^{-1} should be γ(t_X) (i.e. no inverse).
 - Done.
 
-p6: In the same sentence as the above comment, γ(t_X)^{-1} should be γ(t_X) (i.e. no inverse).
+- In the proof of remark 1: I've replaced "let h, k as in (1)" by "let h, k be as
+  in diagram (1)", I hope that's less wrong/more idiomatic.
+
+> p7: second line of the proof of (2), in M(GX,GY), G should be U
 - Done.
 
-In the proof of remark 1: I've replaced "let h, k as in (1)" by "let h, k be as
-in diagram (1)", I hope that's less wrong/more idiomatic.
-
-p7: second line of the proof of (2), in M(GX,GY), G should be U
-- Done.
-
-p8: "a set S of morphism of Cat" should be "a set S of morphisms of Cat"
+> p8: "a set S of morphism of Cat" should be "a set S of morphisms of Cat"
 - I've pluralized "morphism" now, but I've kept it as "morphisms *in* Cat"
   instead of "morphisms *of* Cat". Not sure whether that was part of the
   suggestion here.
 
-p17: second paragraph, 6th line, in M(j,X): M(B,X) -> M(A,X), X should be GX
+> p17: second paragraph, 6th line, in M(j,X): M(B,X) -> M(A,X), X should be GX
 - Done.
 
-p18: second paragraph of Section 4, σ and x seem to refer to the same object, and are switching back and forth throughout the paragraph.
--Done.
-
-p21: "Now let ... be a comonad morphism" should be "Now let ... be a coalgebra morphism"
+> p18: second paragraph of Section 4, σ and x seem to refer to the same object, and are switching back and forth throughout the paragraph.
 - Done.
 
-p21: In the first displayed diagram, in the label for the lower horizontal morphism, GF should be FG.
+> p21: "Now let ... be a comonad morphism" should be "Now let ... be a coalgebra morphism"
 - Done.
 
-p22: There is "are uniquely isomorphic over x", but x has not appeared in the statement/proof yet.
+> p21: In the first displayed diagram, in the label for the lower horizontal morphism, GF should be FG.
+- Done.
+
+> p22: There is "are uniquely isomorphic over x", but x has not appeared in the statement/proof yet.
 - Done, should've been "uniquely isomorphic under G(\Gamma)"
 
-p22: In the second to last line, Δ.σ should be just Δ
+> p22: In the second to last line, Δ.σ should be just Δ
 - Done.
 
-p23: In the 5th line of the proof, E/x should be E/f(x)
+> p23: In the 5th line of the proof, E/x should be E/f(x)
 - Done.
 
-p23: In the second square diagram of the proof, in the upper right hand corner, f(τ) should be f(y).
+> p23: In the second square diagram of the proof, in the upper right hand corner, f(τ) should be f(y).
 - Done.
 
-p24: In the 3rd line of Lem 30, Lcc_{G(x)/} should be Lcc_{G(Γ)/}
+> p24: In the 3rd line of Lem 30, Lcc_{G(x)/} should be Lcc_{G(Γ)/}
 - Done.
 
-p24: In the second line of the proof, "over" should be "under"
+> p24: In the second line of the proof, "over" should be "under"
 - Done.
 
-p24: In the 2nd display of the proof, the last object, G(Δ) should be G(Γ.σ)
+> p24: In the 2nd display of the proof, the last object, G(Δ) should be G(Γ.σ)
 - Done.
+
+
+- In addition to these points I noticed that I hadn't capitalized correctly, e.g.
+  in "section 2", "theorem 4" etc. This should be fixed now.
