@@ -121,14 +121,14 @@ Like Seely's original interpretation, the naive interpretation in the category o
 Lcc functors preserve lcc structure up to isomorphism, but not necessarily up to equality, and the latter would be required for a model of type theory.
 
 Even worse, our interpretation of contexts as lcc categories does not admit well-behaved context extensions.
-Recall that for a context $\Gamma$ and type $\Gamma \vdash \sigma$ in a cwf, a context extension consists of a context morphism $p : \Gamma.\sigma \rightarrow \Gamma$ and a term $\Gamma.\sigma \vdash v : \sigma[p]$, such that for every morphism $f : \Delta \rightarrow \Gamma$ and term $\Delta \vdash s : \sigma[f]$ there is a unique morphism $\langle f, s \rangle : \Delta \rightarrow \Gamma.\sigma$ over $\Gamma$ such that $v[\langle f, s \rangle] = s$.
+Recall that for a context $\Gamma$ and a type $\Gamma \vdash \sigma$ in a cwf, a context extension consists of a context morphism $p : \Gamma.\sigma \rightarrow \Gamma$ and a term $\Gamma.\sigma \vdash v : \sigma[p]$ such that for every morphism $f : \Delta \rightarrow \Gamma$ and term $\Delta \vdash s : \sigma[f]$ there is a unique morphism $\langle f, s \rangle : \Delta \rightarrow \Gamma.\sigma$ over $\Gamma$ such that $v[\langle f, s \rangle] = s$.
 In our case a context morphism is an lcc functor in the opposite direction.
 Thus a context extension of an lcc category $\Gamma$ by $\sigma \in \operatorname{Ob} \Gamma$ would consist of an lcc functor $p : \Gamma \rightarrow \Gamma.\sigma$ and a morphism $v : 1 \rightarrow p(\sigma)$ in $\Gamma.\sigma$, and $(p, v)$ would have to be suitably initial.
 At first sight it might seem that the slice category $\Gamma_{/ \sigma}$ is a good candidate:
 Pullback along the unique map $\sigma \rightarrow 1$ defines an lcc functor $\sigma^* : \Gamma \cong \Gamma_{/ 1} \rightarrow \Gamma_{/ \sigma}$.
 The terminal object of $\Gamma_{/ \sigma}$ is the identity on $\sigma$, and applying $\sigma^*$ to $\sigma$ itself yields the first projection $\mathrm{pr}_1 : \sigma \times \sigma \rightarrow \sigma$.
 Thus the diagonal $d : \sigma \rightarrow \sigma \times \sigma$ is a term $\Gamma_{/ \sigma} \vdash d : \sigma^*(\sigma)$.
-The problem is that, this data being indeed universal, it is only so in the bicategorical sense (see Lemma \ref{lem:slice-is-weak-ext}):
+The problem is that, while this data is indeed universal, it is only so in the bicategorical sense (see Lemma \ref{lem:slice-is-weak-ext}):
 Given an lcc functor $f : \Gamma \rightarrow \Delta$ and term $\Delta \vdash w : f(\sigma)$, we obtain an lcc functor
 \begin{equation}
   \begin{tikzcd}
