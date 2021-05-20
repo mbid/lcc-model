@@ -1,57 +1,45 @@
 \documentclass{msc}
 
 \usepackage[utf8]{inputenc}
-% \usepackage[round]{natbib}
-% \usepackage[english]{babel}
+\usepackage[english]{babel}
 \usepackage{amsfonts}
 \usepackage{amsmath}
-% \usepackage{amsthm}
-% \usepackage{amssymb}
-\DeclareMathSymbol{\leftrightarrows}{\mathrel}{AMSa}{"1C}
-\DeclareMathSymbol{\rightarrowtail} {\mathrel}{AMSa}{"1A}
-% \usepackage{dsfont}
-% \usepackage{url}
-% \usepackage{hyperref}
 \usepackage{tikz-cd}
 \usepackage{mathpartir}
 \usepackage{mathtools}
-% \usepackage{enumitem}
-% \usepackage{color}
+\usepackage{enumitem}
+\usepackage{color}
 \usepackage{newtxtext}
 \usepackage{newtxmath}
+\usepackage{extrasymbol}
 
 
 \mathtoolsset{showonlyrefs}
 
 \newcommand{\todo}[1]{\textcolor{red}{#1}}
 
-% \newtheorem{theorem}{Theorem}
-% \newtheorem{corollary}[theorem]{Corollary}
-% \newtheorem{lemma}[theorem]{Lemma}
-% \newtheorem{proposition}[theorem]{Proposition}
-% \theoremstyle{remark}
-% \newtheorem{remark}[theorem]{Remark}
-% \theoremstyle{definition}
-% \newtheorem{definition}[theorem]{Definition}
-
 \begin{document}
 
-\lefttitle{LaTeX\ Supplement}
+\lefttitle{An interpretation of dependent type theory in a model category of locally cartesian closed categories}
 \righttitle{Mathematical Structures in Computer}
 
 \papertitle{Article}
 
-\jnlPage{1}{00}
-\jnlDoiYr{2019}
-\doival{10.1017/xxxxx}
+\jnlPage{A}{BB}
+\jnlDoiYr{YYYY}
+\doival{99.9999/xxxxx}
 
 \title{An interpretation of dependent type theory in a model category of locally cartesian closed categories}
 
+\begin{authgrp}
 \author{Martin E. Bidlingmaier}
+\affiliation{
+  Aarhus University \\
+  \email{mbidlingmaier@cs.au.dk}
+}
+\end{authgrp}
 
-\date{}
-
-\maketitle
+\history{(Received xx xxx xxx; revised xx xxx xxx; accepted xx xxx xxx)}
 
 \begin{abstract}
   Locally cartesian closed (lcc) categories are natural categorical models of extensional dependent type theory.
@@ -66,6 +54,8 @@
   The latter is our model of dependent type theory.
 \end{abstract}
 
+\maketitle
+
 \section{Introduction}
 
 Locally cartesian closed (lcc) categories are natural categorical models of extensional dependent type theory \citep{lcc-categories-and-type-theory}:
@@ -78,7 +68,7 @@ Given an lcc category $\mathcal{C}$, one interprets
   \item
     types $\Gamma \vdash \sigma$ as morphisms $\sigma : \operatorname{dom} \sigma \rightarrow \Gamma$ in $\mathcal{C}$ with codomain $\Gamma$; and
   \item
-    terms $\Gamma \vdash s : \sigma$ as sections \todo{fix this} % $s : \Gamma \rightleftarrows \operatorname{dom} \sigma : \sigma$ to the interpretations of types.
+    terms $\Gamma \vdash s : \sigma$ as sections $s : \Gamma \rightleftarrows \operatorname{dom} \sigma : \sigma$ to the interpretations of types.
 \end{itemize}
 A context extension $\Gamma.\sigma$ is interpreted as the domain of $\sigma$.
 Application of a substitution $f : \Delta \rightarrow \Gamma$ to a type $\Gamma \vdash \sigma$ is interpreted as pullback
@@ -325,7 +315,7 @@ Thus a morphism $K \rightarrow X$ in $\operatorname{Ho} \mathcal{M}$ is marked i
 \begin{lemma}
   \label{lem:simplicial-marked-objects}
   Let $\mathcal{M}$ and $i : K \rightarrow \mathcal{M}$ be as in Theorem \ref{th:marked-model-category}.
-  \begin{enumerate}% [label={(\arabic*)}]
+  \begin{enumerate}
     \item
       \label{itm:marked-left-proper}
       If $\mathcal{M}$ is a left proper model category, then $\mathcal{M}^i$ is a left proper model category.
@@ -562,7 +552,7 @@ It follows that the left Bousfield localization at any (small) set of maps exist
 \begin{proposition}
   \label{prop:lcc-model-cat}
   The model category $\mathrm{Lcc}$ is a model for the $(2, 1)$-category of lcc categories and lcc functors:
-  \begin{enumerate}[label={(\arabic*)}]
+  \begin{enumerate}
     \item
       \label{itm:lcc-fibrant-objects}
       An object $\mathcal{C} \in \mathrm{Lcc}$ is fibrant if and only if its underlying category is lcc and
@@ -660,7 +650,7 @@ To be able to speak of distinguished choice of lcc structure, we employ the foll
 \begin{proposition}
   \label{prop:object-generating-triv-cof-lcc}
   An object of $\mathrm{Lcc}$ is fibrant if and only if it has the right lifting property against all of the following morphisms, all of which are trivial cofibrations in $\mathrm{Lcc}$:
-  \begin{enumerate}[label={(\arabic*)}]
+  \begin{enumerate}
     \item
       \label{itm:marking-stability}
       The maps $j_K$ of Proposition \ref{prop:object-generating-triv-cof-marked}.
@@ -968,7 +958,7 @@ As in the case of algebraically fibrant objects, we are justified in doing so be
   \label{th:coalgebraic-model-category}
   Let $\mathcal{M}$ be a combinatorial and model $\mathrm{Gpd}$-category.
   Then there are arbitrarily large cardinals $\lambda$ such that
-  \begin{enumerate}[label={(\arabic*)}]
+  \begin{enumerate}
     \item
       $\mathcal{M}$ is locally $\lambda$-presentable;
     \item
@@ -1352,7 +1342,7 @@ In this section we show that the covariant cwf structure on $\operatorname{Coa} 
   \label{lem:cats-of-weak-exts}
   Let $\lambda : \Gamma \rightarrow F(G(\Gamma))$ be an $FG$-coalgebra.
   Then the following categories are equivalent:
-  \begin{enumerate}[label={(\arabic*)}]
+  \begin{enumerate}
     \item
       \label{itm:locally-discrete-gamma-op}
       $\Gamma^\mathrm{op}$;

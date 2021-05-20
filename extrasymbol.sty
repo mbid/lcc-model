@@ -1,0 +1,24 @@
+
+\makeatletter
+\newcommand\imCMsym[4][\mathord]{%
+  \DeclareFontFamily{U} {#2}{}
+  \DeclareFontShape{U}{#2}{m}{n}{
+    <-6> #25
+    <6-7> #26
+    <7-8> #27
+    <8-9> #28
+    <9-10> #29
+    <10-12> #210
+    <12-> #212}{}
+  \DeclareSymbolFont{CM#2} {U} {#2}{m}{n}
+  \DeclareMathSymbol{#4}{#1}{CM#2}{#3}
+}
+
+\let\jmath\undefined
+\let\amalg\undefined
+\let\coprod\undefined
+
+\imCMsym{cmmi}{124}{\jmath}
+\imCMsym[\mathop]{cmsy}{113}{\amalg}
+\imCMsym[\mathop]{cmex}{96}{\coprod}
+\makeatother
